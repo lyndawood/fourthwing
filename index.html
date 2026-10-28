@@ -49,12 +49,13 @@
 
   /* ---------- Header ---------- */
   header { text-align: center; padding: 5rem 1rem 2.2rem; }
-  .mark { margin-bottom: 1.5rem; }
+  .mark { margin-bottom: 1.5rem; animation: fade-in-scale 0.8s ease-out 0.1s both; }
   .mark svg { width: 128px; height: 66px; filter: drop-shadow(0 6px 22px rgba(0,0,0,.8)); }
   header .eyebrow {
     font-family: var(--label);
     letter-spacing: .46em; text-indent: .46em; text-transform: uppercase;
     font-size: .64rem; color: var(--amber); margin-bottom: 1.15rem;
+    animation: fade-in-up 0.7s ease-out 0.2s both;
   }
   header h1 {
     font-family: var(--display); font-weight: 700;
@@ -62,23 +63,37 @@
     letter-spacing: .13em; text-transform: uppercase;
     color: var(--bone); line-height: 1.05;
     text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(170,185,205,.14), 0 0 80px rgba(212,175,55,.2);
-    animation: glow-pulse 3s ease-in-out infinite;
+    animation: glow-pulse 3s ease-in-out infinite, fade-in-scale 0.9s ease-out 0.3s both;
   }
   @keyframes glow-pulse {
-    0%, 100% { text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(170,185,205,.14), 0 0 80px rgba(212,175,55,.2); }
-    50% { text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(170,185,205,.14), 0 0 120px rgba(212,175,55,.35); }
+    0%, 100% { text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 60px rgba(170,185,205,.2), 0 0 120px rgba(212,175,55,.3), 0 0 180px rgba(212,175,55,.15); }
+    50% { text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 80px rgba(170,185,205,.28), 0 0 160px rgba(212,175,55,.5), 0 0 240px rgba(212,175,55,.25); }
+  }
+  @keyframes fade-in-scale {
+    0% { opacity: 0; transform: scale(0.92); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(12px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes gem-glow {
+    0%, 100% { box-shadow: 0 0 12px rgba(227,182,98,.8), 0 0 24px rgba(227,182,98,.4); }
+    50% { box-shadow: 0 0 20px rgba(227,182,98,1), 0 0 40px rgba(227,182,98,.6), 0 0 60px rgba(212,175,55,.3); }
   }
   header .subtitle {
     font-family: var(--label); font-size: .7rem;
     letter-spacing: .4em; text-indent: .4em; text-transform: uppercase;
     color: var(--stone); margin-top: 1rem;
+    animation: fade-in-up 0.7s ease-out 0.4s both;
   }
-  header p.sub { margin-top: 1.25rem; color: var(--muted); font-size: 1.14rem; font-style: italic; }
+  header p.sub { margin-top: 1.25rem; color: var(--muted); font-size: 1.14rem; font-style: italic; animation: fade-in-up 0.7s ease-out 0.5s both; }
   .ornament {
     margin: 1.9rem auto 0; width: min(360px, 70%); height: 2px;
     background: linear-gradient(90deg, transparent, var(--edge-str) 20%, var(--amber) 50%, var(--edge-str) 80%, transparent);
     position: relative;
     box-shadow: 0 0 20px rgba(212,175,55,.3), 0 0 40px rgba(212,175,55,.1);
+    animation: fade-in-up 0.7s ease-out 0.6s both;
   }
   .ornament .gem { 
     display: block;
@@ -90,10 +105,11 @@
     top: 50%;
     transform: translateY(-50%);
     box-shadow: 0 0 12px rgba(227,182,98,.8);
+    animation: gem-glow 2.5s ease-in-out infinite;
   }
-  .ornament .gem:nth-child(1) { left: 15%; }
-  .ornament .gem:nth-child(2) { left: 50%; transform: translateX(-50%) translateY(-50%); }
-  .ornament .gem:nth-child(3) { right: 15%; }
+  .ornament .gem:nth-child(1) { left: 15%; animation-delay: 0s; }
+  .ornament .gem:nth-child(2) { left: 50%; transform: translateX(-50%) translateY(-50%); animation-delay: 0.3s; }
+  .ornament .gem:nth-child(3) { right: 15%; animation-delay: 0.6s; }
 
   /* ---------- Controls ---------- */
   .controls {
@@ -296,10 +312,14 @@
 
   /* ---------- Parallax ---------- */
   #parallax { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-  #parallax .plx { position: absolute; will-change: transform; }
+  #parallax .plx { position: absolute; will-change: transform; animation: parallax-fade-in 1.2s ease-out forwards; }
   #parallax svg { display: block; }
   header, main, .empty-msg, footer { position: relative; z-index: 1; }
-  @media (prefers-reduced-motion: reduce) { #parallax .plx { transform: none !important; } }
+  @media (prefers-reduced-motion: reduce) { #parallax .plx { transform: none !important; animation: none; } }
+  @keyframes parallax-fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
 
   @media (max-width: 430px) {
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
@@ -315,28 +335,28 @@
   <!-- wing of dragons, upper right -->
   <div class="plx" data-speed="0.07" style="top:4vh; right:2vw;">
     <svg viewBox="0 0 620 420" style="width:58vmin;height:auto;min-width:320px;">
-      <g transform="translate(300 10) scale(0.85)"><g fill="#0d1117" opacity="0.55" transform="scale(1)">
+      <g transform="translate(300 10) scale(0.85)"><g fill="#0d1117" opacity="0.75" transform="scale(1)">
         <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
         <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
         <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
         <path d="M106 38 C86 31 58 27 20 31 C33 37 47 45 59 55 C49 55 39 57 29 61 C43 64 57 70 69 78 C61 80 53 84 47 90 C61 88 76 88 88 92 C96 85 102 75 106 64 Z"/>
         <path d="M114 38 C134 31 162 27 200 31 C187 37 173 45 161 55 C171 55 181 57 191 61 C177 64 163 70 151 78 C159 80 167 84 173 90 C159 88 144 88 132 92 C124 85 118 75 114 64 Z"/>
       </g></g>
-      <g transform="translate(90 120) scale(0.55)"><g fill="#0d1117" opacity="0.4" transform="scale(1)">
+      <g transform="translate(90 120) scale(0.55)"><g fill="#0d1117" opacity="0.6" transform="scale(1)">
         <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
         <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
         <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
         <path d="M106 38 C86 31 58 27 20 31 C33 37 47 45 59 55 C49 55 39 57 29 61 C43 64 57 70 69 78 C61 80 53 84 47 90 C61 88 76 88 88 92 C96 85 102 75 106 64 Z"/>
         <path d="M114 38 C134 31 162 27 200 31 C187 37 173 45 161 55 C171 55 181 57 191 61 C177 64 163 70 151 78 C159 80 167 84 173 90 C159 88 144 88 132 92 C124 85 118 75 114 64 Z"/>
       </g></g>
-      <g transform="translate(400 210) scale(0.38)"><g fill="#0d1117" opacity="0.3" transform="scale(1)">
+      <g transform="translate(400 210) scale(0.38)"><g fill="#0d1117" opacity="0.5" transform="scale(1)">
         <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
         <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
         <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
         <path d="M106 38 C86 31 58 27 20 31 C33 37 47 45 59 55 C49 55 39 57 29 61 C43 64 57 70 69 78 C61 80 53 84 47 90 C61 88 76 88 88 92 C96 85 102 75 106 64 Z"/>
         <path d="M114 38 C134 31 162 27 200 31 C187 37 173 45 161 55 C171 55 181 57 191 61 C177 64 163 70 151 78 C159 80 167 84 173 90 C159 88 144 88 132 92 C124 85 118 75 114 64 Z"/>
       </g></g>
-      <g transform="translate(210 290) scale(0.22)"><g fill="#0d1117" opacity="0.22" transform="scale(1)">
+      <g transform="translate(210 290) scale(0.22)"><g fill="#0d1117" opacity="0.35" transform="scale(1)">
         <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
         <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
         <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
@@ -348,7 +368,7 @@
   <!-- lone dragon banking, left -->
   <div class="plx" data-speed="0.2" style="top:62vh; left:-2vw;">
     <svg viewBox="0 0 240 170" style="width:34vmin;height:auto;min-width:200px;">
-      <g transform="rotate(-14 110 80)"><g fill="#0e1218" opacity="0.42" transform="scale(1)">
+      <g transform="rotate(-14 110 80)"><g fill="#0e1218" opacity="0.6" transform="scale(1)">
         <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
         <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
         <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
@@ -420,8 +440,8 @@
   <div class="eyebrow">The Empyrean</div>
   <h1>Fourth Wing</h1>
   <div class="subtitle">The Character Guide</div>
-  <p class="sub">Every rider, dragon, and traitor at Basgiath War College — book by book, spoiler-safe.</p>
-  <div class="ornament"><span class="gem"></span></div>
+  <p class="sub">Where dragons choose their riders — and secrets choose their moment.</p>
+  <div class="ornament"><span class="gem"></span><span class="gem"></span><span class="gem"></span></div>
 </header>
 
 <div class="controls">
