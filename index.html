@@ -460,6 +460,7 @@
   </div>
 </div>
 
+<script src="avatars.js"></script>
 <script>
 /* =========================================================
    DATA
@@ -1016,6 +1017,9 @@ const EMBEDDED = {};
 function portraitHTML(ch){
   if (EMBEDDED[ch.id]) {
     return `<span class="pic-wrap"><span class="pic"><img class="custom" src="${EMBEDDED[ch.id]}" alt=""></span></span>`;
+  }
+  if (AVATARS[ch.id]) {
+    return `<span class="pic-wrap"><span class="pic">${AVATARS[ch.id]}</span></span>`;
   }
   return `<span class="pic-wrap"><span class="pic">${monogramSVG(ch)}</span></span>`;
 }
