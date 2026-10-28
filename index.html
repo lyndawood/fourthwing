@@ -47,6 +47,83 @@
     min-height: 100vh;
   }
 
+
+
+  /* ---------- Stars Background ---------- */
+  .stars-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+  }
+  
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+  
+  .star:nth-child(1) { animation-delay: 0s; }
+  .star:nth-child(2) { animation-delay: 0.5s; }
+  .star:nth-child(3) { animation-delay: 1s; }
+  .star:nth-child(4) { animation-delay: 1.5s; }
+  .star:nth-child(5) { animation-delay: 2s; }
+  .star:nth-child(6) { animation-delay: 0.3s; }
+  .star:nth-child(7) { animation-delay: 0.8s; }
+  .star:nth-child(8) { animation-delay: 1.3s; }
+  .star:nth-child(9) { animation-delay: 1.8s; }
+  .star:nth-child(10) { animation-delay: 2.5s; }
+  .star:nth-child(11) { animation-delay: 0.2s; }
+  .star:nth-child(12) { animation-delay: 0.7s; }
+  .star:nth-child(13) { animation-delay: 1.2s; }
+  .star:nth-child(14) { animation-delay: 1.7s; }
+  .star:nth-child(15) { animation-delay: 2.3s; }
+  .star:nth-child(16) { animation-delay: 0.4s; }
+  .star:nth-child(17) { animation-delay: 0.9s; }
+  .star:nth-child(18) { animation-delay: 1.4s; }
+  .star:nth-child(19) { animation-delay: 1.9s; }
+  .star:nth-child(20) { animation-delay: 2.7s; }
+  
+  /* ---------- Clouds Background ---------- */
+  .clouds-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+  }
+  
+  .cloud {
+    position: absolute;
+    opacity: 0.08;
+    animation: float-cloud linear infinite;
+  }
+  
+  @keyframes float-cloud {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100vw); }
+  }
+  
+  .cloud:nth-child(1) { top: 10%; animation-duration: 25s; animation-delay: 0s; }
+  .cloud:nth-child(2) { top: 25%; animation-duration: 30s; animation-delay: -5s; }
+  .cloud:nth-child(3) { top: 40%; animation-duration: 35s; animation-delay: -10s; }
+  .cloud:nth-child(4) { top: 55%; animation-duration: 28s; animation-delay: -8s; }
+  .cloud:nth-child(5) { top: 70%; animation-duration: 32s; animation-delay: -15s; }
   /* ---------- Header ---------- */
   header { text-align: center; padding: 5rem 1rem 2.2rem; }
   .mark { margin-bottom: 1.5rem; }
@@ -309,6 +386,11 @@
 </style>
 </head>
 <body class="shield-on">
+  <!-- Stars Background -->
+  <div class="stars-bg" id="starsContainer"></div>
+  
+  <!-- Clouds Background -->
+  <div class="clouds-bg" id="cloudsContainer"></div>
 
 
 <div id="parallax" aria-hidden="true">
@@ -1254,5 +1336,36 @@ render();
   update();
 })();
 </script>
+
+  <script>
+    // Generate random stars
+    const starsContainer = document.getElementById('starsContainer');
+    const starCount = 80;
+    
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 60 + '%'; // Keep stars in upper 60% of sky
+      star.style.width = (Math.random() * 2 + 1) + 'px';
+      star.style.height = star.style.width;
+      star.style.opacity = Math.random() * 0.7 + 0.3;
+      starsContainer.appendChild(star);
+    }
+    
+    // Generate clouds
+    const cloudsContainer = document.getElementById('cloudsContainer');
+    const cloudCount = 5;
+    const cloudSVG = `<svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg" style="width: 200px; height: 100px;">
+      <path d="M 50 80 Q 30 80 30 60 Q 30 40 50 40 Q 60 20 80 20 Q 100 20 110 40 Q 130 40 130 60 Q 130 80 110 80 Z" fill="white"/>
+    </svg>`;
+    
+    for (let i = 0; i < cloudCount; i++) {
+      const cloud = document.createElement('div');
+      cloud.className = 'cloud';
+      cloud.innerHTML = cloudSVG;
+      cloudsContainer.appendChild(cloud);
+    }
+  </script>
 </body>
 </html>
