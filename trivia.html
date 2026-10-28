@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fourth Wing Trivia — Test Your Knowledge</title>
+<meta name="description" content="Challenge yourself with Fourth Wing trivia! Test your knowledge of characters, dragons, and the Empyrean series.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Marcellus+SC&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07080a;
+    --panel: #11141a;
+    --panel2: #0a0c10;
+    --edge: rgba(190,202,218,.11);
+    --edge-str: rgba(190,202,218,.26);
+    --stone: #8d98a8;
+    --bone: #e2dccf;
+    --bone-dim: #a9a394;
+    --amber: #c08a2e;
+    --amber-b: #e3b662;
+    --steel: #7d91a6;
+    --ink: #dce2ea;
+    --muted: #767f8c;
+    --crimson: #8b1a1a;
+    --gold: #d4af37;
+    --dragon-purple: #4a1a6f;
+    --display: 'Cinzel', Georgia, serif;
+    --body: 'Spectral', Georgia, serif;
+    --label: 'Marcellus SC', Georgia, serif;
+    font-size: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { overflow-x: clip; }
+  body {
+    overflow-x: clip;
+    background:
+      radial-gradient(1100px 620px at 50% -12%, rgba(150,170,195,.11), transparent 64%),
+      radial-gradient(820px 520px at 88% 22%, rgba(192,138,46,.055), transparent 60%),
+      radial-gradient(900px 600px at 6% 72%, rgba(125,145,166,.07), transparent 62%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 1px, transparent 1px 9px),
+      linear-gradient(180deg, #0a0c10 0%, var(--bg) 42%, #050608 100%);
+    color: var(--ink);
+    font-family: var(--body);
+    min-height: 100vh;
+  }
+
+  /* ---------- Header ---------- */
+  header { text-align: center; padding: 3rem 1rem 1.5rem; }
+  .mark { margin-bottom: 1rem; }
+  .mark svg { width: 96px; height: 50px; filter: drop-shadow(0 6px 22px rgba(0,0,0,.8)); }
+  header .eyebrow {
+    font-family: var(--label);
+    letter-spacing: .46em; text-indent: .46em; text-transform: uppercase;
+    font-size: .64rem; color: var(--amber); margin-bottom: .8rem;
+  }
+  header h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    letter-spacing: .13em; text-transform: uppercase;
+    color: var(--bone); line-height: 1.05;
+    text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(170,185,205,.14), 0 0 80px rgba(212,175,55,.2);
+  }
+  header .subtitle {
+    font-family: var(--label); font-size: .7rem;
+    letter-spacing: .4em; text-indent: .4em; text-transform: uppercase;
+    color: var(--stone); margin-top: .8rem;
+  }
+  .ornament {
+    margin: 1.2rem auto 0; width: min(300px, 70%); height: 2px;
+    background: linear-gradient(90deg, transparent, var(--edge-str) 20%, var(--amber) 50%, var(--edge-str) 80%, transparent);
+    position: relative;
+    box-shadow: 0 0 20px rgba(212,175,55,.3), 0 0 40px rgba(212,175,55,.1);
+  }
+
+  /* ---------- Main Content ---------- */
+  main { max-width: 900px; margin: 0 auto; padding: 2rem 1.2rem 4rem; }
+
+  /* ---------- Game States ---------- */
+  .game-screen { display: none; }
+  .game-screen.active { display: block; }
+
+  /* Start Screen */
+  #start-screen {
+    text-align: center;
+    padding: 2rem 0;
+  }
+  .start-content {
+    max-width: 600px;
+    margin: 0 auto;
+    background: linear-gradient(170deg, var(--panel), var(--panel2));
+    border: 1px solid var(--edge);
+    border-radius: 4px;
+    padding: 3rem 2rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6), inset 0 0 30px rgba(212,175,55,.05);
+  }
+  .start-content h2 {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    color: var(--bone);
+    margin-bottom: 1.2rem;
+    letter-spacing: .1em;
+  }
+  .start-content p {
+    color: var(--muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .difficulty-select {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .difficulty-btn {
+    padding: .8rem 1.6rem;
+    border: 2px solid var(--edge);
+    background: rgba(8,10,14,.9);
+    color: var(--ink);
+    font-family: var(--label);
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all .3s;
+  }
+  .difficulty-btn:hover {
+    border-color: var(--amber);
+    color: var(--amber-b);
+    box-shadow: 0 0 15px rgba(192,138,46,.3);
+  }
+  .difficulty-btn.selected {
+    border-color: var(--amber-b);
+    background: rgba(192,138,46,.2);
+    color: var(--amber-b);
+    box-shadow: 0 0 20px rgba(212,175,55,.4), inset 0 0 15px rgba(212,175,55,.1);
+  }
+  .start-btn {
+    padding: 1rem 2.4rem;
+    background: linear-gradient(135deg, rgba(192,138,46,.3), rgba(212,175,55,.2));
+    border: 2px solid var(--amber);
+    color: var(--amber-b);
+    font-family: var(--display);
+    font-size: 1.1rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all .3s;
+    font-weight: 600;
+  }
+  .start-btn:hover {
+    background: linear-gradient(135deg, rgba(192,138,46,.5), rgba(212,175,55,.4));
+    box-shadow: 0 0 30px rgba(212,175,55,.5), inset 0 0 20px rgba(212,175,55,.2);
+    transform: translateY(-2px);
+  }
+  .start-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+
+  /* Quiz Screen */
+  .quiz-container {
+    background: linear-gradient(170deg, var(--panel), var(--panel2));
+    border: 1px solid var(--edge);
+    border-radius: 4px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6), inset 0 0 30px rgba(212,175,55,.05);
+  }
+  .quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--edge);
+  }
+  .quiz-progress {
+    font-family: var(--label);
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .quiz-score {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--bone);
+    letter-spacing: .1em;
+  }
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(190,202,218,.08);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 1rem;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--amber), var(--amber-b));
+    transition: width .4s ease;
+    box-shadow: 0 0 12px rgba(212,175,55,.6);
+  }
+
+  .question-container {
+    margin-bottom: 2rem;
+  }
+  .question-text {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--bone);
+    margin-bottom: 1.8rem;
+    letter-spacing: .05em;
+    line-height: 1.4;
+  }
+  .question-category {
+    font-family: var(--label);
+    font-size: .6rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: .5rem;
+  }
+
+  .answers {
+    display: grid;
+    gap: 1rem;
+  }
+  .answer-btn {
+    padding: 1.2rem 1.5rem;
+    background: rgba(8,10,14,.9);
+    border: 2px solid var(--edge);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.05rem;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .answer-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(212,175,55,.1), transparent 70%);
+    opacity: 0;
+    transition: opacity .3s;
+    pointer-events: none;
+  }
+  .answer-btn:hover:not(:disabled) {
+    border-color: var(--amber);
+    box-shadow: 0 0 15px rgba(192,138,46,.3), inset 0 0 10px rgba(192,138,46,.05);
+  }
+  .answer-btn:hover:not(:disabled)::before {
+    opacity: 1;
+  }
+  .answer-btn:disabled {
+    cursor: not-allowed;
+  }
+  .answer-btn.correct {
+    border-color: #4ade80;
+    background: rgba(74,222,128,.15);
+    color: #86efac;
+    box-shadow: 0 0 20px rgba(74,222,128,.4), inset 0 0 15px rgba(74,222,128,.1);
+  }
+  .answer-btn.incorrect {
+    border-color: #ef4444;
+    background: rgba(239,68,68,.15);
+    color: #fca5a5;
+    box-shadow: 0 0 20px rgba(239,68,68,.4), inset 0 0 15px rgba(239,68,68,.1);
+  }
+  .answer-feedback {
+    margin-top: 1.5rem;
+    padding: 1rem 1.2rem;
+    border-radius: 3px;
+    border-left: 3px solid;
+    font-size: 1rem;
+    line-height: 1.5;
+    display: none;
+  }
+  .answer-feedback.show {
+    display: block;
+  }
+  .answer-feedback.correct {
+    background: rgba(74,222,128,.1);
+    border-color: #4ade80;
+    color: #86efac;
+  }
+  .answer-feedback.incorrect {
+    background: rgba(239,68,68,.1);
+    border-color: #ef4444;
+    color: #fca5a5;
+  }
+
+  .next-btn {
+    padding: .9rem 2rem;
+    background: linear-gradient(135deg, rgba(192,138,46,.3), rgba(212,175,55,.2));
+    border: 2px solid var(--amber);
+    color: var(--amber-b);
+    font-family: var(--display);
+    font-size: 1rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all .3s;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    display: none;
+  }
+  .next-btn.show {
+    display: inline-block;
+  }
+  .next-btn:hover {
+    background: linear-gradient(135deg, rgba(192,138,46,.5), rgba(212,175,55,.4));
+    box-shadow: 0 0 25px rgba(212,175,55,.4), inset 0 0 15px rgba(212,175,55,.15);
+    transform: translateY(-2px);
+  }
+
+  /* Results Screen */
+  .results-container {
+    text-align: center;
+    background: linear-gradient(170deg, var(--panel), var(--panel2));
+    border: 1px solid var(--edge);
+    border-radius: 4px;
+    padding: 3rem 2rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6), inset 0 0 30px rgba(212,175,55,.05);
+  }
+  .results-score {
+    font-family: var(--display);
+    font-size: 3.2rem;
+    color: var(--amber-b);
+    margin-bottom: .5rem;
+    letter-spacing: .1em;
+    text-shadow: 0 0 30px rgba(212,175,55,.4);
+  }
+  .results-label {
+    font-family: var(--label);
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.5rem;
+  }
+  .results-message {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    color: var(--bone);
+    margin-bottom: 1rem;
+    letter-spacing: .05em;
+  }
+  .results-description {
+    color: var(--muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-style: italic;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .results-breakdown {
+    background: rgba(190,202,218,.05);
+    border: 1px solid var(--edge);
+    border-radius: 3px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    padding: .6rem 0;
+    border-bottom: 1px solid var(--edge);
+  }
+  .breakdown-row:last-child {
+    border-bottom: none;
+  }
+  .breakdown-label {
+    color: var(--muted);
+    font-family: var(--label);
+    font-size: .9rem;
+  }
+  .breakdown-value {
+    color: var(--amber-b);
+    font-family: var(--display);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .results-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .results-btn {
+    padding: .9rem 1.8rem;
+    background: linear-gradient(135deg, rgba(192,138,46,.3), rgba(212,175,55,.2));
+    border: 2px solid var(--amber);
+    color: var(--amber-b);
+    font-family: var(--display);
+    font-size: .95rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all .3s;
+    font-weight: 600;
+  }
+  .results-btn:hover {
+    background: linear-gradient(135deg, rgba(192,138,46,.5), rgba(212,175,55,.4));
+    box-shadow: 0 0 25px rgba(212,175,55,.4), inset 0 0 15px rgba(212,175,55,.15);
+    transform: translateY(-2px);
+  }
+  .results-btn.secondary {
+    background: rgba(8,10,14,.9);
+    border-color: var(--edge);
+    color: var(--ink);
+  }
+  .results-btn.secondary:hover {
+    border-color: var(--amber);
+    color: var(--amber-b);
+    box-shadow: 0 0 15px rgba(192,138,46,.3);
+  }
+
+  /* Navigation */
+  .nav-link {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: .7rem 1.4rem;
+    background: rgba(8,10,14,.9);
+    border: 1px solid var(--edge);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: .95rem;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all .3s;
+  }
+  .nav-link:hover {
+    border-color: var(--amber);
+    color: var(--amber-b);
+    box-shadow: 0 0 15px rgba(192,138,46,.3);
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 2rem 1rem 1rem; }
+    .mark svg { width: 80px; height: 42px; }
+    main { padding: 1.5rem 1rem 3rem; }
+    .quiz-container { padding: 1.8rem 1.2rem; }
+    .start-content { padding: 2rem 1.5rem; }
+    .results-container { padding: 2rem 1.5rem; }
+    .question-text { font-size: 1.2rem; }
+    .results-score { font-size: 2.4rem; }
+    .results-message { font-size: 1.3rem; }
+    .difficulty-select { gap: .6rem; }
+    .difficulty-btn { padding: .6rem 1.2rem; font-size: .65rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mark">
+    <svg viewBox="0 0 128 66" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 64 8 L 80 20 L 88 16 L 96 28 L 88 32 L 96 44 L 80 40 L 72 52 L 64 40 L 56 52 L 48 40 L 32 44 L 40 32 L 32 28 L 40 16 L 48 20 Z" stroke="#c08a2e" fill="rgba(192,138,46,0.1)"/>
+        <path d="M 32 28 Q 48 18 64 8 Q 80 18 96 28" stroke="#e3b662"/>
+        <path d="M 32 44 Q 48 54 64 58 Q 80 54 96 44" stroke="#e3b662"/>
+      </g>
+      <text x="64" y="62" font-family="Cinzel, serif" font-size="8" fill="#c08a2e" text-anchor="middle" letter-spacing="1">TRIVIA</text>
+    </svg>
+  </div>
+  <div class="eyebrow">Test Your Knowledge</div>
+  <h1>Fourth Wing Trivia</h1>
+  <div class="subtitle">Empyrean Series Challenge</div>
+  <div class="ornament"></div>
+</header>
+
+<main>
+  <!-- Start Screen -->
+  <div id="start-screen" class="game-screen active">
+    <div class="start-content">
+      <h2>Welcome, Rider</h2>
+      <p>How well do you know the world of Fourth Wing? Test your knowledge of dragons, characters, and the Empyrean series. Choose your difficulty and begin!</p>
+      
+      <div>
+        <div style="margin-bottom: 1.5rem;">
+          <p style="color: var(--muted); font-size: .95rem; margin-bottom: .8rem; text-transform: uppercase; font-family: var(--label); letter-spacing: .15em;">Select Difficulty</p>
+          <div class="difficulty-select">
+            <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+            <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+            <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="start-btn" id="start-btn" disabled>Start Quiz</button>
+    </div>
+  </div>
+
+  <!-- Quiz Screen -->
+  <div id="quiz-screen" class="game-screen">
+    <div class="quiz-container">
+      <div class="quiz-header">
+        <div class="quiz-progress">
+          Question <span id="current-question">1</span> of <span id="total-questions">10</span>
+        </div>
+        <div class="quiz-score">Score: <span id="quiz-score">0</span></div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <div class="question-container">
+        <div class="question-category" id="question-category"></div>
+        <div class="question-text" id="question-text"></div>
+        <div class="answers" id="answers"></div>
+        <div class="answer-feedback" id="answer-feedback"></div>
+        <button class="next-btn" id="next-btn">Next Question</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Screen -->
+  <div id="results-screen" class="game-screen">
+    <div class="results-container">
+      <div class="results-score" id="final-score">0/10</div>
+      <div class="results-label">Your Score</div>
+      <div class="results-message" id="results-message">Great Effort!</div>
+      <div class="results-description" id="results-description">You've proven yourself a worthy rider of the Empyrean.</div>
+      
+      <div class="results-breakdown">
+        <div class="breakdown-row">
+          <span class="breakdown-label">Correct Answers</span>
+          <span class="breakdown-value" id="correct-count">0</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">Accuracy</span>
+          <span class="breakdown-value" id="accuracy-percent">0%</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">Difficulty</span>
+          <span class="breakdown-value" id="difficulty-display">Medium</span>
+        </div>
+      </div>
+
+      <div class="results-buttons">
+        <button class="results-btn" id="retry-btn">Try Again</button>
+        <a href="index.html" class="results-btn secondary">Back to Guide</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Trivia Questions Database
+  const triviaQuestions = {
+    easy: [
+      {
+        category: "Characters",
+        question: "What is Violet Sorrengail's dragon's name?",
+        answers: ["Tairn", "Codagh", "Lith", "Imogen"],
+        correct: 0,
+        explanation: "Tairn is Violet's bonded dragon, a powerful and protective companion."
+      },
+      {
+        category: "Dragons",
+        question: "What color is Tairn?",
+        answers: ["Silver", "Gold", "Black", "Red"],
+        correct: 2,
+        explanation: "Tairn is a black dragon, one of the most formidable in the Empyrean."
+      },
+      {
+        category: "Characters",
+        question: "Who is Violet's best friend?",
+        answers: ["Imogen", "Jesinia", "Liam", "Xaden"],
+        correct: 0,
+        explanation: "Imogen becomes Violet's closest friend and loyal companion throughout the series."
+      },
+      {
+        category: "Locations",
+        question: "What is the name of the war college?",
+        answers: ["Basgiath Academy", "Basgiath War College", "The Citadel", "Dragon's Keep"],
+        correct: 2,
+        explanation: "The Citadel is the prestigious war college where riders are trained."
+      },
+      {
+        category: "Dragons",
+        question: "What is the name of Xaden's dragon?",
+        answers: ["Tairn", "Codagh", "Lith", "Imogen"],
+        correct: 1,
+        explanation: "Codagh is Xaden's bonded dragon, a fierce and loyal companion."
+      },
+      {
+        category: "Characters",
+        question: "What is Violet's mother's name?",
+        answers: ["Basgiath", "Lilith", "Varrish", "Navarre"],
+        correct: 1,
+        explanation: "Lilith Sorrengail is Violet's mother and a commanding general."
+      },
+      {
+        category: "Plot",
+        question: "What is Violet's main weakness at the start of the series?",
+        answers: ["Fear of dragons", "Fragile health", "Lack of combat training", "Poor magical ability"],
+        correct: 1,
+        explanation: "Violet has a connective tissue condition that makes her physically fragile."
+      },
+      {
+        category: "Dragons",
+        question: "What do dragons feed on?",
+        answers: ["Meat", "Magic", "Gold", "Humans"],
+        correct: 1,
+        explanation: "Dragons are magical creatures that feed on magic and magical energy."
+      },
+      {
+        category: "Characters",
+        question: "Who is the Wingleader of Violet's wing?",
+        answers: ["Xaden", "Imogen", "Liam", "Jesinia"],
+        correct: 0,
+        explanation: "Xaden Riorson is the powerful and commanding Wingleader."
+      },
+      {
+        category: "Plot",
+        question: "What is the main conflict in Fourth Wing?",
+        answers: ["A dragon rebellion", "War with another kingdom", "A hidden threat to the kingdom", "A love triangle"],
+        correct: 2,
+        explanation: "The series reveals a hidden threat that endangers the entire kingdom."
+      }
+    ],
+    medium: [
+      {
+        category: "Dragons",
+        question: "What is the significance of a dragon's color?",
+        answers: ["It determines their size", "It indicates their power level and type", "It shows their age", "It's purely aesthetic"],
+        correct: 1,
+        explanation: "A dragon's color indicates their power level, magical affinity, and type."
+      },
+      {
+        category: "Characters",
+        question: "What is Violet's father's name?",
+        answers: ["Basgiath", "Navarre", "Varrish", "Garrick"],
+        correct: 1,
+        explanation: "Navarre Sorrengail was Violet's father, a legendary dragon rider."
+      },
+      {
+        category: "Plot",
+        question: "What does Violet discover about the kingdom's history?",
+        answers: ["Dragons are immortal", "There's a hidden dragon war", "The kingdom was built on lies", "Magic is fading"],
+        correct: 2,
+        explanation: "Violet uncovers shocking truths about the kingdom's founding and history."
+      },
+      {
+        category: "Dragons",
+        question: "What is a dragon's weakest point?",
+        answers: ["Their wings", "Their eyes", "Their heart", "Their scales"],
+        correct: 2,
+        explanation: "A dragon's heart is their most vulnerable point, protected deep within."
+      },
+      {
+        category: "Characters",
+        question: "What is Xaden's secret?",
+        answers: ["He's half dragon", "He's a spy", "He's from a rebel kingdom", "He can't bond with dragons"],
+        correct: 2,
+        explanation: "Xaden is from Basgiath, a kingdom at war with Navarre."
+      },
+      {
+        category: "Magic",
+        question: "What is the primary magic system in Fourth Wing?",
+        answers: ["Wand magic", "Signet magic", "Rune magic", "Blood magic"],
+        correct: 1,
+        explanation: "Signets are the primary magical abilities that riders develop."
+      },
+      {
+        category: "Locations",
+        question: "What is the name of the rebel kingdom?",
+        answers: ["Basgiath", "Navarre", "Tyrrendor", "Resson"],
+        correct: 0,
+        explanation: "Basgiath is the rebel kingdom led by Xaden's father."
+      },
+      {
+        category: "Dragons",
+        question: "How many dragons are there in the kingdom?",
+        answers: ["Fewer than 100", "Around 200", "Over 500", "Thousands"],
+        correct: 0,
+        explanation: "Dragons are rare and precious, with fewer than 100 in the kingdom."
+      },
+      {
+        category: "Characters",
+        question: "What is Imogen's signet?",
+        answers: ["Telepathy", "Healing", "Strength", "Invisibility"],
+        correct: 0,
+        explanation: "Imogen has telepathic abilities, a rare and powerful signet."
+      },
+      {
+        category: "Plot",
+        question: "What is the main threat revealed in Iron Flame?",
+        answers: ["A dragon plague", "Ancient magic", "Venin", "A civil war"],
+        correct: 2,
+        explanation: "Venin are ancient magical creatures that pose a grave threat."
+      }
+    ],
+    hard: [
+      {
+        category: "Dragons",
+        question: "What is the connection between dragon riders and their dragons?",
+        answers: ["Magical bond", "Telepathic link", "Shared life force", "All of the above"],
+        correct: 3,
+        explanation: "Dragon riders and their dragons share a deep magical connection on multiple levels."
+      },
+      {
+        category: "Plot",
+        question: "What is the true nature of the Codex?",
+        answers: ["A spell book", "A historical record", "A magical artifact", "A dragon's consciousness"],
+        correct: 3,
+        explanation: "The Codex contains the consciousness and knowledge of ancient dragons."
+      },
+      {
+        category: "Characters",
+        question: "What is Violet's unique magical ability?",
+        answers: ["Dragon telepathy", "Signet manipulation", "Channeling", "Healing"],
+        correct: 2,
+        explanation: "Violet can channel magic through others, a rare and dangerous ability."
+      },
+      {
+        category: "Magic",
+        question: "What happens when a rider's dragon dies?",
+        answers: ["The rider becomes powerless", "The rider dies too", "The rider loses their signet", "It varies by individual"],
+        correct: 3,
+        explanation: "The bond between rider and dragon is so strong that the rider's fate varies."
+      },
+      {
+        category: "Lore",
+        question: "What is the origin of the dragon riders?",
+        answers: ["They were chosen by dragons", "They were created by magic", "They bonded with wild dragons", "They were born with the ability"],
+        correct: 2,
+        explanation: "The first riders bonded with wild dragons through magical connection."
+      },
+      {
+        category: "Characters",
+        question: "What is Garrick's role in the story?",
+        answers: ["A traitor", "A loyal soldier", "A rebel spy", "A dragon rider"],
+        correct: 1,
+        explanation: "Garrick is a loyal and skilled soldier who becomes important to the plot."
+      },
+      {
+        category: "Plot",
+        question: "What is the significance of the Scribe Quadrant?",
+        answers: ["It trains historians", "It's a cover for rebels", "It preserves forbidden knowledge", "It's where magic is studied"],
+        correct: 2,
+        explanation: "The Scribe Quadrant preserves historical and magical knowledge."
+      },
+      {
+        category: "Dragons",
+        question: "What is a dragon's greatest fear?",
+        answers: ["Humans", "Other dragons", "Magic", "Venin"],
+        correct: 3,
+        explanation: "Venin are ancient creatures that pose a unique threat to dragons."
+      },
+      {
+        category: "Lore",
+        question: "What caused the original dragon war?",
+        answers: ["Territory disputes", "A magical plague", "Betrayal and lies", "A curse"],
+        correct: 2,
+        explanation: "The dragon war was caused by ancient betrayals and deception."
+      },
+      {
+        category: "Characters",
+        question: "What is Jesinia's secret?",
+        answers: ["She's a spy", "She's a mage", "She's from Basgiath", "She can see the future"],
+        correct: 1,
+        explanation: "Jesinia is a powerful mage with abilities beyond typical riders."
+      }
+    ]
+  };
+
+  // Game State
+  let gameState = {
+    difficulty: null,
+    currentQuestion: 0,
+    score: 0,
+    answered: false,
+    questions: [],
+    selectedAnswer: null
+  };
+
+  // DOM Elements
+  const startScreen = document.getElementById('start-screen');
+  const quizScreen = document.getElementById('quiz-screen');
+  const resultsScreen = document.getElementById('results-screen');
+  const startBtn = document.getElementById('start-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const retryBtn = document.getElementById('retry-btn');
+  const difficultyBtns = document.querySelectorAll('.difficulty-btn');
+
+  // Event Listeners
+  difficultyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      difficultyBtns.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      gameState.difficulty = btn.dataset.difficulty;
+      startBtn.disabled = false;
+    });
+  });
+
+  startBtn.addEventListener('click', startQuiz);
+  nextBtn.addEventListener('click', nextQuestion);
+  retryBtn.addEventListener('click', () => {
+    gameState = {
+      difficulty: null,
+      currentQuestion: 0,
+      score: 0,
+      answered: false,
+      questions: [],
+      selectedAnswer: null
+    };
+    difficultyBtns.forEach(b => b.classList.remove('selected'));
+    startBtn.disabled = true;
+    showScreen('start');
+  });
+
+  function startQuiz() {
+    gameState.questions = [...triviaQuestions[gameState.difficulty]];
+    gameState.currentQuestion = 0;
+    gameState.score = 0;
+    gameState.answered = false;
+    showScreen('quiz');
+    displayQuestion();
+  }
+
+  function displayQuestion() {
+    const question = gameState.questions[gameState.currentQuestion];
+    const progress = ((gameState.currentQuestion + 1) / gameState.questions.length) * 100;
+
+    document.getElementById('current-question').textContent = gameState.currentQuestion + 1;
+    document.getElementById('total-questions').textContent = gameState.questions.length;
+    document.getElementById('quiz-score').textContent = gameState.score;
+    document.getElementById('progress-fill').style.width = progress + '%';
+    document.getElementById('question-category').textContent = question.category;
+    document.getElementById('question-text').textContent = question.question;
+
+    const answersContainer = document.getElementById('answers');
+    answersContainer.innerHTML = '';
+
+    question.answers.forEach((answer, index) => {
+      const btn = document.createElement('button');
+      btn.className = 'answer-btn';
+      btn.textContent = answer;
+      btn.disabled = gameState.answered;
+      btn.addEventListener('click', () => selectAnswer(index));
+      answersContainer.appendChild(btn);
+    });
+
+    document.getElementById('answer-feedback').classList.remove('show', 'correct', 'incorrect');
+    nextBtn.classList.remove('show');
+    gameState.answered = false;
+    gameState.selectedAnswer = null;
+  }
+
+  function selectAnswer(index) {
+    if (gameState.answered) return;
+
+    gameState.answered = true;
+    gameState.selectedAnswer = index;
+    const question = gameState.questions[gameState.currentQuestion];
+    const isCorrect = index === question.correct;
+
+    if (isCorrect) {
+      gameState.score++;
+    }
+
+    const answerBtns = document.querySelectorAll('.answer-btn');
+    answerBtns.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === question.correct) {
+        btn.classList.add('correct');
+      } else if (i === index && !isCorrect) {
+        btn.classList.add('incorrect');
+      }
+    });
+
+    const feedback = document.getElementById('answer-feedback');
+    feedback.classList.add('show', isCorrect ? 'correct' : 'incorrect');
+    feedback.innerHTML = `<strong>${isCorrect ? '✓ Correct!' : '✗ Incorrect'}</strong> ${question.explanation}`;
+
+    nextBtn.classList.add('show');
+  }
+
+  function nextQuestion() {
+    gameState.currentQuestion++;
+
+    if (gameState.currentQuestion < gameState.questions.length) {
+      displayQuestion();
+    } else {
+      showResults();
+    }
+  }
+
+  function showResults() {
+    const totalQuestions = gameState.questions.length;
+    const accuracy = Math.round((gameState.score / totalQuestions) * 100);
+    let message = '';
+    let description = '';
+
+    if (accuracy === 100) {
+      message = 'Perfect Score!';
+      description = 'You are a true master of the Empyrean! Your knowledge is unmatched.';
+    } else if (accuracy >= 80) {
+      message = 'Excellent!';
+      description = 'You have proven yourself a worthy rider of the Empyrean.';
+    } else if (accuracy >= 60) {
+      message = 'Good Job!';
+      description = 'You have solid knowledge of Fourth Wing. Keep reading!';
+    } else if (accuracy >= 40) {
+      message = 'Not Bad!';
+      description = 'You know some of the lore. Time to dive deeper into the series!';
+    } else {
+      message = 'Keep Learning!';
+      description = 'The Empyrean awaits your discovery. Read more and try again!';
+    }
+
+    document.getElementById('final-score').textContent = `${gameState.score}/${totalQuestions}`;
+    document.getElementById('results-message').textContent = message;
+    document.getElementById('results-description').textContent = description;
+    document.getElementById('correct-count').textContent = gameState.score;
+    document.getElementById('accuracy-percent').textContent = accuracy + '%';
+    document.getElementById('difficulty-display').textContent = 
+      gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1);
+
+    showScreen('results');
+  }
+
+  function showScreen(screen) {
+    startScreen.classList.remove('active');
+    quizScreen.classList.remove('active');
+    resultsScreen.classList.remove('active');
+
+    if (screen === 'start') startScreen.classList.add('active');
+    if (screen === 'quiz') quizScreen.classList.add('active');
+    if (screen === 'results') resultsScreen.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
