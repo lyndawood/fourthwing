@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Violet Sorrengail — Fourth Wing Character Profile</title>
+<meta name="description" content="Complete character profile of Violet Sorrengail from Rebecca Yarros's Empyrean series.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Marcellus+SC&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07080a;
+    --panel: #11141a;
+    --panel2: #0a0c10;
+    --edge: rgba(190,202,218,.11);
+    --edge-str: rgba(190,202,218,.26);
+    --stone: #8d98a8;
+    --bone: #e2dccf;
+    --bone-dim: #a9a394;
+    --amber: #c08a2e;
+    --amber-b: #e3b662;
+    --steel: #7d91a6;
+    --ink: #dce2ea;
+    --muted: #767f8c;
+    --crimson: #8b1a1a;
+    --gold: #d4af37;
+    --dragon-purple: #4a1a6f;
+    --violet-glow: #9b59b6;
+    --display: 'Cinzel', Georgia, serif;
+    --body: 'Spectral', Georgia, serif;
+    --label: 'Marcellus SC', Georgia, serif;
+    font-size: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { overflow-x: clip; }
+  body {
+    overflow-x: clip;
+    background:
+      radial-gradient(1100px 620px at 50% -12%, rgba(155,89,182,.15), transparent 64%),
+      radial-gradient(820px 520px at 88% 22%, rgba(192,138,46,.055), transparent 60%),
+      radial-gradient(900px 600px at 6% 72%, rgba(125,145,166,.07), transparent 62%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 1px, transparent 1px 9px),
+      linear-gradient(180deg, #0a0c10 0%, var(--bg) 42%, #050608 100%);
+    color: var(--ink);
+    font-family: var(--body);
+    min-height: 100vh;
+  }
+
+  /* ---------- Header ---------- */
+  header { 
+    text-align: center; 
+    padding: 5rem 1rem 3rem;
+    position: relative;
+  }
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(155,89,182,.2), transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .mark { margin-bottom: 1.5rem; position: relative; z-index: 1; }
+  .mark svg { width: 128px; height: 66px; filter: drop-shadow(0 6px 22px rgba(0,0,0,.8)); }
+  header .eyebrow {
+    font-family: var(--label);
+    letter-spacing: .46em; text-indent: .46em; text-transform: uppercase;
+    font-size: .64rem; color: var(--violet-glow); margin-bottom: 1.15rem;
+  }
+  header h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(2.8rem, 8vw, 5.2rem);
+    letter-spacing: .13em; text-transform: uppercase;
+    color: var(--bone); line-height: 1.05;
+    text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(155,89,182,.3), 0 0 80px rgba(155,89,182,.2);
+    animation: violet-glow 3s ease-in-out infinite;
+    margin-bottom: .5rem;
+  }
+  @keyframes violet-glow {
+    0%, 100% { text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(155,89,182,.3), 0 0 80px rgba(155,89,182,.2); }
+    50% { text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(155,89,182,.5), 0 0 120px rgba(155,89,182,.4); }
+  }
+  header .subtitle {
+    font-family: var(--label); font-size: .75rem;
+    letter-spacing: .4em; text-indent: .4em; text-transform: uppercase;
+    color: var(--stone); margin-top: .5rem;
+  }
+  header p.tagline { 
+    margin-top: 1.5rem; 
+    color: var(--amber-b); 
+    font-size: 1.2rem; 
+    font-style: italic;
+    font-weight: 500;
+  }
+  .ornament {
+    margin: 2rem auto 0; width: min(360px, 70%); height: 2px;
+    background: linear-gradient(90deg, transparent, var(--edge-str) 20%, var(--violet-glow) 50%, var(--edge-str) 80%, transparent);
+    position: relative;
+    box-shadow: 0 0 20px rgba(155,89,182,.3), 0 0 40px rgba(155,89,182,.1);
+  }
+  .ornament .gem { 
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--violet-glow);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 12px rgba(155,89,182,.8);
+  }
+  .ornament .gem:nth-child(1) { left: 15%; }
+  .ornament .gem:nth-child(2) { left: 50%; transform: translateX(-50%) translateY(-50%); }
+  .ornament .gem:nth-child(3) { right: 15%; }
+
+  /* ---------- Main Content ---------- */
+  main { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+  
+  .intro {
+    background: linear-gradient(135deg, rgba(17,20,26,.8), rgba(10,12,16,.9));
+    border: 1px solid var(--edge-str);
+    border-radius: 4px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,.4), inset 0 1px 0 rgba(155,89,182,.1);
+  }
+  .intro p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .intro p:last-child { margin-bottom: 0; }
+
+  section {
+    margin-bottom: 3.5rem;
+  }
+  section h2 {
+    font-family: var(--display);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--bone);
+    margin-bottom: 1.5rem;
+    padding-bottom: .75rem;
+    border-bottom: 2px solid var(--edge);
+    position: relative;
+  }
+  section h2::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--violet-glow), transparent);
+    box-shadow: 0 0 8px rgba(155,89,182,.5);
+  }
+
+  section h3 {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    color: var(--amber-b);
+    margin: 1.5rem 0 1rem;
+  }
+
+  section p {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+
+  ul, ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: var(--ink);
+  }
+  li {
+    font-size: 1.08rem;
+    line-height: 1.7;
+    margin-bottom: .7rem;
+  }
+  li strong {
+    color: var(--amber-b);
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  .stat-card {
+    background: linear-gradient(135deg, rgba(17,20,26,.6), rgba(10,12,16,.8));
+    border: 1px solid var(--edge);
+    border-radius: 4px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,.3);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(155,89,182,.2);
+  }
+  .stat-card h4 {
+    font-family: var(--label);
+    font-size: .7rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--violet-glow);
+    margin-bottom: .75rem;
+  }
+  .stat-card .value {
+    font-size: 1.15rem;
+    color: var(--bone);
+    line-height: 1.5;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(74,26,111,.15), rgba(155,89,182,.08));
+    border-left: 3px solid var(--violet-glow);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  }
+  .highlight-box h3 {
+    margin-top: 0;
+  }
+
+  blockquote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--amber-b);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: rgba(192,138,46,.05);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .abilities-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .ability-item {
+    background: rgba(17,20,26,.5);
+    border: 1px solid var(--edge);
+    padding: 1rem 1.25rem;
+    border-radius: 3px;
+    border-left: 3px solid var(--violet-glow);
+  }
+  .ability-item strong {
+    color: var(--violet-glow);
+    display: block;
+    margin-bottom: .4rem;
+    font-size: 1.1rem;
+  }
+
+  footer {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    border-top: 1px solid var(--edge);
+    margin-top: 4rem;
+  }
+  footer p {
+    color: var(--muted);
+    font-size: .95rem;
+    font-style: italic;
+  }
+  footer a {
+    color: var(--violet-glow);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  footer a:hover {
+    color: var(--amber-b);
+  }
+
+  @media (max-width: 768px) {
+    header { padding: 3rem 1rem 2rem; }
+    header h1 { font-size: 2.2rem; }
+    main { padding: 1.5rem 1rem 3rem; }
+    .intro { padding: 1.5rem; }
+    section h2 { font-size: 1.6rem; }
+    .stat-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mark">
+    <svg viewBox="0 0 128 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M64 2L74 22L96 26L80 42L84 64L64 54L44 64L48 42L32 26L54 22L64 2Z" stroke="#c08a2e" stroke-width="2" fill="rgba(192,138,46,.15)"/>
+      <circle cx="64" cy="33" r="8" fill="#9b59b6" opacity="0.6"/>
+    </svg>
+  </div>
+  <div class="eyebrow">Daughter of the General</div>
+  <h1>Violet Sorrengail</h1>
+  <div class="subtitle">Rider • Strategist • Survivor</div>
+  <p class="tagline">"I may be small, but I'm not weak."</p>
+  <div class="ornament">
+    <span class="gem"></span>
+    <span class="gem"></span>
+    <span class="gem"></span>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <p>Violet Sorrengail is the protagonist of Rebecca Yarros's Empyrean series, beginning with <em>Fourth Wing</em>. Born smaller and frailer than most, with a chronic condition that causes joint pain and weakness, Violet was destined for the Scribe Quadrant—until her mother, General Lilith Sorrengail, commanded her to enter the deadly Riders Quadrant instead.</p>
+    <p>Against all odds, Violet survives Basgiath War College's brutal trials, bonds with not one but two dragons, and discovers she possesses rare and powerful abilities. Her journey transforms her from an underestimated cadet into one of the most formidable riders of her generation.</p>
+  </div>
+
+  <section>
+    <h2>Character Profile</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <h4>Full Name</h4>
+        <div class="value">Violet Sorrengail</div>
+      </div>
+      <div class="stat-card">
+        <h4>Age</h4>
+        <div class="value">20 years old (at series start)</div>
+      </div>
+      <div class="stat-card">
+        <h4>Quadrant</h4>
+        <div class="value">Riders Quadrant</div>
+      </div>
+      <div class="stat-card">
+        <h4>Dragon</h4>
+        <div class="value">Tairn (Black Morningstartail)<br>Andarna (Golden Feathertail)</div>
+      </div>
+      <div class="stat-card">
+        <h4>Signet</h4>
+        <div class="value">Lightning Wielder</div>
+      </div>
+      <div class="stat-card">
+        <h4>Wing</h4>
+        <div class="value">Fourth Wing</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Physical Appearance</h2>
+    <p>Violet is notably smaller and more delicate than her peers, standing shorter than most riders. She has distinctive silver-blonde hair that she often wears in a braid, and striking features that belie her inner strength. Her body bears the marks of her condition—joints that dislocate easily, chronic pain, and a fragility that makes the physical demands of the Riders Quadrant particularly brutal.</p>
+    <p>Despite her physical challenges, Violet's appearance is deceptive. Her determination and intelligence shine through her eyes, and as she progresses through training, she develops a lean, wiry strength that serves her well in combat.</p>
+  </section>
+
+  <section>
+    <h2>Personality & Strengths</h2>
+    <p>Violet's greatest strength lies not in physical prowess but in her brilliant strategic mind. Raised to be a scribe, she possesses an encyclopedic knowledge of dragon and rider history, military tactics, and warfare. She thinks several steps ahead, analyzing situations with a clarity that often saves her life and the lives of those around her.</p>
+    
+    <h3>Key Traits</h3>
+    <ul>
+      <li><strong>Intelligent & Strategic:</strong> Violet's mind is her greatest weapon. She outthinks her opponents and finds creative solutions to seemingly impossible problems.</li>
+      <li><strong>Determined & Resilient:</strong> Despite her physical limitations, Violet refuses to give up. She pushes through pain and fear with unwavering resolve.</li>
+      <li><strong>Loyal & Protective:</strong> She fiercely protects those she loves, willing to risk everything for her friends and dragon.</li>
+      <li><strong>Observant & Analytical:</strong> Years of training as a scribe taught her to notice details others miss and to question what she's told.</li>
+      <li><strong>Courageous:</strong> Violet faces her fears head-on, whether it's crossing the parapet, bonding with dragons, or standing up to authority.</li>
+      <li><strong>Adaptable:</strong> She learns quickly and adjusts her strategies based on new information and changing circumstances.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Background & Family</h2>
+    <p>Violet is the youngest daughter of General Lilith Sorrengail, one of the most powerful and feared military leaders in Navarre. Her father died when she was young, and her mother's expectations have shaped much of her life. Violet has two siblings:</p>
+    <ul>
+      <li><strong>Mira Sorrengail:</strong> Her older sister, a successful rider who serves as both protector and mentor to Violet.</li>
+      <li><strong>Brennan Sorrengail:</strong> Her older brother, believed to have died during the Battle of Aretia years before the series begins.</li>
+    </ul>
+    <p>Growing up in the shadow of her mother's military legacy and her siblings' achievements, Violet always felt like the weak link in the family. Her chronic condition made her mother's decision to send her to the Riders Quadrant seem like a death sentence—or perhaps a test Violet was never meant to pass.</p>
+  </section>
+
+  <section>
+    <h2>Dragons & Bonding</h2>
+    <div class="highlight-box">
+      <h3>Tairn - The Black Morningstartail</h3>
+      <p>Tairn is an ancient and powerful black dragon, one of the largest and most formidable in existence. He is over 200 years old and has bonded with multiple riders throughout his long life. Tairn chose Violet during Threshing, shocking everyone—including Violet herself. Their bond is deep and complex, with Tairn serving as both protector and mentor. He is fiercely protective of Violet and respects her intelligence and courage.</p>
+      <p>Tairn's previous rider was Violet's father, creating an additional layer of connection between dragon and rider.</p>
+    </div>
+
+    <div class="highlight-box">
+      <h3>Andarna - The Golden Feathertail</h3>
+      <p>Andarna is a young golden dragon, the first of her kind to be seen in centuries. She bonds with Violet in an unprecedented second bonding, making Violet one of the only riders in history to be bonded to two dragons simultaneously. Andarna is playful, curious, and still learning, but she possesses unique abilities that prove crucial to Violet's survival and success.</p>
+      <p>The dual bond gives Violet access to abilities and power that no other rider possesses, though it also comes with unique challenges and dangers.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Signet & Abilities</h2>
+    <p>Violet's signet manifests as <strong>lightning wielding</strong>—the ability to summon and control lightning with devastating precision. This rare and powerful signet makes her a formidable force in combat, capable of striking down multiple enemies at once or channeling lightning through her weapons.</p>
+    
+    <div class="abilities-list">
+      <div class="ability-item">
+        <strong>Lightning Wielding</strong>
+        Can summon and direct lightning strikes with precision and power
+      </div>
+      <div class="ability-item">
+        <strong>Strategic Genius</strong>
+        Exceptional tactical mind and knowledge of military history
+      </div>
+      <div class="ability-item">
+        <strong>Dual Dragon Bond</strong>
+        Unprecedented connection to two dragons simultaneously
+      </div>
+      <div class="ability-item">
+        <strong>Enhanced Perception</strong>
+        Heightened awareness through dragon bonds
+      </div>
+      <div class="ability-item">
+        <strong>Combat Skills</strong>
+        Trained in hand-to-hand combat and weapons despite physical limitations
+      </div>
+      <div class="ability-item">
+        <strong>Scholarly Knowledge</strong>
+        Extensive understanding of history, dragons, and warfare
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Relationships</h2>
+    
+    <h3>Xaden Riorson</h3>
+    <p>Xaden is Violet's primary love interest and one of the most complex relationships in the series. As the son of the leader of the rebellion that Violet's mother crushed, Xaden and Violet begin as enemies. He is a powerful rider, Wingleader of Fourth Wing, and bonded to the dragon Sgaeyl. Their relationship evolves from mutual distrust to a deep, passionate connection built on trust, respect, and shared secrets.</p>
+    <p>Xaden is protective of Violet while also respecting her strength and independence. Their bond is tested by secrets, political intrigue, and the weight of their families' histories.</p>
+
+    <h3>Rhiannon Matthias</h3>
+    <p>Rhiannon becomes Violet's closest friend and squadmate. She is loyal, fierce, and stands by Violet through the deadliest challenges of the Riders Quadrant. Their friendship is built on mutual respect and trust.</p>
+
+    <h3>Dain Aetos</h3>
+    <p>Dain is Violet's childhood friend and initial love interest. The son of a high-ranking military officer, Dain is protective of Violet but often underestimates her abilities. Their relationship becomes complicated as Violet grows stronger and Dain's loyalty to his father and the military conflicts with his feelings for her.</p>
+
+    <h3>Liam Mairi</h3>
+    <p>Liam is assigned to protect Violet and becomes a trusted friend and ally. His loyalty and sacrifice have a profound impact on Violet's journey.</p>
+  </section>
+
+  <section>
+    <h2>Character Development</h2>
+    <p>Violet's journey is one of the most compelling aspects of the Empyrean series. She begins as someone who sees herself as weak and unsuited for the Riders Quadrant, constantly fighting against her physical limitations and the expectations placed upon her.</p>
+    
+    <p>Throughout the series, Violet transforms into a powerful rider who learns to leverage her unique strengths. She discovers that her intelligence, strategic thinking, and determination are just as valuable as physical strength. Her dual dragon bond and lightning signet make her one of the most powerful riders of her generation.</p>
+
+    <p>More importantly, Violet learns to question authority and the narratives she's been taught. She uncovers secrets about Navarre's history, her family, and the true nature of the war her country is fighting. This journey from blind loyalty to critical thinking mirrors her physical journey from fragile cadet to formidable warrior.</p>
+
+    <blockquote>
+      "The strongest riders aren't always the biggest or the fastest. Sometimes they're the ones who refuse to quit, who think their way through problems, and who protect what matters most."
+    </blockquote>
+  </section>
+
+  <section>
+    <h2>Legacy & Impact</h2>
+    <p>Violet Sorrengail represents a new kind of hero in fantasy literature—one whose strength comes not from physical prowess but from intelligence, resilience, and the courage to question everything. Her story resonates with readers who have felt underestimated or who have had to overcome physical limitations.</p>
+    
+    <p>As the series progresses, Violet becomes a symbol of change within Navarre's rigid military structure. Her unique abilities, dual dragon bond, and willingness to challenge authority position her as a potential catalyst for transformation in her world.</p>
+
+    <p>Her relationship with Xaden, her friendships, and her complex family dynamics add depth to her character, making her more than just a powerful rider—she's a fully realized person navigating love, loyalty, duty, and the weight of secrets that could change everything.</p>
+  </section>
+</main>
+
+<footer>
+  <p>Violet Sorrengail is a character from Rebecca Yarros's <em>Empyrean</em> series.</p>
+  <p><a href="index.html">← Back to Character Guide</a></p>
+</footer>
+
+</body>
+</html>
