@@ -1172,6 +1172,7 @@ function startGame(difficulty) {
   gameState.streak = 0;
   gameState.bestStreak = 0;
   gameState.usedQuestions = new Set();
+  gameState.answerSelected = false;
   
   // Filter questions by difficulty
   const difficultyMap = { cadet: 'easy', rider: 'medium', wingleader: 'hard' };
