@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brennan Sorrengail — Fourth Wing Character Profile</title>
+<meta name="description" content="Complete character profile of Brennan Sorrengail from Rebecca Yarros's Empyrean series.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Marcellus+SC&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07080a;
+    --panel: #11141a;
+    --panel2: #0a0c10;
+    --edge: rgba(190,202,218,.11);
+    --edge-str: rgba(190,202,218,.26);
+    --stone: #8d98a8;
+    --bone: #e2dccf;
+    --bone-dim: #a9a394;
+    --amber: #c08a2e;
+    --amber-b: #e3b662;
+    --steel: #7d91a6;
+    --ink: #dce2ea;
+    --muted: #767f8c;
+    --crimson: #8b1a1a;
+    --gold: #d4af37;
+    --dragon-purple: #4a1a6f;
+    --brennan-teal: #2d7a7a;
+    --brennan-glow: #4db8b8;
+    --display: 'Cinzel', Georgia, serif;
+    --body: 'Spectral', Georgia, serif;
+    --label: 'Marcellus SC', Georgia, serif;
+    font-size: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { overflow-x: clip; }
+  body {
+    overflow-x: clip;
+    background:
+      radial-gradient(1100px 620px at 50% -12%, rgba(45,122,122,.15), transparent 64%),
+      radial-gradient(820px 520px at 88% 22%, rgba(192,138,46,.055), transparent 60%),
+      radial-gradient(900px 600px at 6% 72%, rgba(125,145,166,.07), transparent 62%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 1px, transparent 1px 9px),
+      linear-gradient(180deg, #0a0c10 0%, var(--bg) 42%, #050608 100%);
+    color: var(--ink);
+    font-family: var(--body);
+    min-height: 100vh;
+  }
+
+  /* ---------- Header ---------- */
+  header { 
+    text-align: center; 
+    padding: 5rem 1rem 3rem;
+    position: relative;
+  }
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(45,122,122,.2), transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .mark { margin-bottom: 1.5rem; position: relative; z-index: 1; }
+  .mark svg { width: 128px; height: 66px; filter: drop-shadow(0 6px 22px rgba(0,0,0,.8)); }
+  header .eyebrow {
+    font-family: var(--label);
+    letter-spacing: .46em; text-indent: .46em; text-transform: uppercase;
+    font-size: .64rem; color: var(--brennan-glow); margin-bottom: 1.15rem;
+  }
+  header h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(2.8rem, 8vw, 5.2rem);
+    letter-spacing: .13em; text-transform: uppercase;
+    color: var(--bone); line-height: 1.05;
+    text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(45,122,122,.3), 0 0 80px rgba(45,122,122,.2);
+    animation: brennan-glow 3s ease-in-out infinite;
+    margin-bottom: .5rem;
+  }
+  @keyframes brennan-glow {
+    0%, 100% { text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(45,122,122,.3), 0 0 80px rgba(45,122,122,.2); }
+    50% { text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(45,122,122,.5), 0 0 120px rgba(45,122,122,.4); }
+  }
+  header .subtitle {
+    font-family: var(--label); font-size: .75rem;
+    letter-spacing: .4em; text-indent: .4em; text-transform: uppercase;
+    color: var(--stone); margin-top: .5rem;
+  }
+  header p.tagline { 
+    margin-top: 1.5rem; 
+    color: var(--amber-b); 
+    font-size: 1.2rem; 
+    font-style: italic;
+    font-weight: 500;
+  }
+  .ornament {
+    margin: 2rem auto 0; width: min(360px, 70%); height: 2px;
+    background: linear-gradient(90deg, transparent, var(--edge-str) 20%, var(--brennan-glow) 50%, var(--edge-str) 80%, transparent);
+    position: relative;
+    box-shadow: 0 0 20px rgba(45,122,122,.3), 0 0 40px rgba(45,122,122,.1);
+  }
+  .ornament .gem { 
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--brennan-glow);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 12px rgba(45,122,122,.8);
+  }
+  .ornament .gem:nth-child(1) { left: 15%; }
+  .ornament .gem:nth-child(2) { left: 50%; transform: translateX(-50%) translateY(-50%); }
+  .ornament .gem:nth-child(3) { right: 15%; }
+
+  /* ---------- Main Content ---------- */
+  main { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+  
+  .intro {
+    background: linear-gradient(135deg, rgba(17,20,26,.8), rgba(10,12,16,.9));
+    border: 1px solid var(--edge-str);
+    border-radius: 4px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,.4), inset 0 1px 0 rgba(45,122,122,.1);
+  }
+  .intro p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .intro p:last-child { margin-bottom: 0; }
+
+  section {
+    margin-bottom: 3.5rem;
+  }
+  section h2 {
+    font-family: var(--display);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--bone);
+    margin-bottom: 1.5rem;
+    padding-bottom: .75rem;
+    border-bottom: 2px solid var(--edge);
+    position: relative;
+  }
+  section h2::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--brennan-glow), transparent);
+    box-shadow: 0 0 8px rgba(45,122,122,.5);
+  }
+
+  section h3 {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    color: var(--amber-b);
+    margin: 1.5rem 0 1rem;
+  }
+
+  section p {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+
+  ul, ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: var(--ink);
+  }
+  li {
+    font-size: 1.08rem;
+    line-height: 1.7;
+    margin-bottom: .7rem;
+  }
+  li strong {
+    color: var(--amber-b);
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  .stat-card {
+    background: linear-gradient(135deg, rgba(17,20,26,.6), rgba(10,12,16,.8));
+    border: 1px solid var(--edge);
+    border-radius: 4px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,.3);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(45,122,122,.2);
+  }
+  .stat-card h4 {
+    font-family: var(--label);
+    font-size: .7rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--brennan-glow);
+    margin-bottom: .75rem;
+  }
+  .stat-card .value {
+    font-size: 1.15rem;
+    color: var(--bone);
+    line-height: 1.5;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(45,122,122,.15), rgba(45,122,122,.08));
+    border-left: 3px solid var(--brennan-glow);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  }
+  .highlight-box h3 {
+    margin-top: 0;
+  }
+
+  blockquote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--amber-b);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: rgba(192,138,46,.05);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .abilities-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .ability-item {
+    background: rgba(17,20,26,.5);
+    border: 1px solid var(--edge);
+    padding: 1rem 1.25rem;
+    border-radius: 3px;
+    border-left: 3px solid var(--brennan-glow);
+  }
+  .ability-item strong {
+    color: var(--brennan-glow);
+    display: block;
+    margin-bottom: .4rem;
+    font-size: 1.1rem;
+  }
+
+  .spoiler-box {
+    background: linear-gradient(135deg, rgba(139,26,26,.12), rgba(139,26,26,.06));
+    border-left: 3px solid var(--crimson);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  }
+  .spoiler-box h3 {
+    color: #d66;
+    margin-top: 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    border-top: 1px solid var(--edge);
+    margin-top: 4rem;
+  }
+  footer p {
+    color: var(--muted);
+    font-size: .95rem;
+    font-style: italic;
+  }
+  footer a {
+    color: var(--brennan-glow);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  footer a:hover {
+    color: var(--amber-b);
+  }
+
+  @media (max-width: 768px) {
+    header { padding: 3rem 1rem 2rem; }
+    header h1 { font-size: 2.2rem; }
+    main { padding: 1.5rem 1rem 3rem; }
+    .intro { padding: 1.5rem; }
+    section h2 { font-size: 1.6rem; }
+    .stat-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mark">
+    <svg viewBox="0 0 128 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M64 2L74 22L96 26L80 42L84 64L64 54L44 64L48 42L32 26L54 22L64 2Z" stroke="#2d7a7a" stroke-width="2" fill="rgba(45,122,122,.15)"/>
+      <circle cx="64" cy="33" r="8" fill="#4db8b8" opacity="0.6"/>
+    </svg>
+  </div>
+  <div class="eyebrow">The Rebel Leader</div>
+  <h1>Brennan Sorrengail</h1>
+  <div class="subtitle">Strategist • Survivor • Liberator</div>
+  <p class="tagline">"Some things are worth dying for. Freedom is one of them."</p>
+  <div class="ornament">
+    <span class="gem"></span>
+    <span class="gem"></span>
+    <span class="gem"></span>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <p>Brennan Sorrengail is Violet's older brother and a pivotal character in Rebecca Yarros's Empyrean series. Believed dead for years after the Battle of Aretia, Brennan is revealed to be alive and working as a key leader in the rebellion against Navarre's oppressive regime. His survival and secret activities form a crucial part of the series' larger conflict.</p>
+    <p>As a skilled strategist and dragon rider, Brennan operates from Aretia, coordinating resistance efforts alongside Xaden Riorson and other rebels. His resurrection—both literal and metaphorical—challenges everything Violet believes about her family, her country, and the war she's been told to fight.</p>
+  </div>
+
+  <section>
+    <h2>Character Profile</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <h4>Full Name</h4>
+        <div class="value">Brennan Sorrengail</div>
+      </div>
+      <div class="stat-card">
+        <h4>Age</h4>
+        <div class="value">Mid-to-late 20s</div>
+      </div>
+      <div class="stat-card">
+        <h4>Status</h4>
+        <div class="value">Rebel Leader at Aretia</div>
+      </div>
+      <div class="stat-card">
+        <h4>Dragon</h4>
+        <div class="value">Tairn's Previous Rider</div>
+      </div>
+      <div class="stat-card">
+        <h4>Signet</h4>
+        <div class="value">Unknown / Undisclosed</div>
+      </div>
+      <div class="stat-card">
+        <h4>Affiliation</h4>
+        <div class="value">Aretia Rebellion</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Physical Appearance</h2>
+    <p>Brennan bears a striking resemblance to his sister Violet, with similar delicate features and the distinctive Sorrengail silver-blonde hair. However, years of living in hiding and fighting for the rebellion have hardened him. He carries himself with the confidence of a seasoned warrior and strategist, his bearing marked by the weight of leadership and the burden of secrets he's carried.</p>
+    <p>His appearance reflects his dual life—he maintains the polish of a trained rider when necessary, but also bears the marks of someone who has lived outside the structured world of Basgiath War College. There's a weariness to him that speaks of years spent fighting an invisible war.</p>
+  </section>
+
+  <section>
+    <h2>Personality & Strengths</h2>
+    <p>Brennan is intelligent, strategic, and driven by a deep commitment to justice and freedom. Unlike his mother, General Lilith Sorrengail, Brennan has chosen to fight against the system rather than perpetuate it. He is thoughtful, measured in his decisions, and carries the weight of leadership with quiet determination.</p>
+    
+    <h3>Key Traits</h3>
+    <ul>
+      <li><strong>Strategic Visionary:</strong> Brennan thinks in terms of long-term goals and systemic change, not just immediate victories.</li>
+      <li><strong>Principled:</strong> He is driven by a genuine belief in freedom and justice, willing to sacrifice everything for these ideals.</li>
+      <li><strong>Protective:</strong> Despite his years away, Brennan cares deeply for his family, particularly Violet, and works to protect her even from a distance.</li>
+      <li><strong>Resilient:</strong> Surviving years in hiding and leading a rebellion requires extraordinary resilience and adaptability.</li>
+      <li><strong>Secretive:</strong> Brennan has learned to keep his own counsel and maintain operational security, revealing information only when necessary.</li>
+      <li><strong>Diplomatic:</strong> As a rebel leader, he must balance the needs and perspectives of different factions and allies.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Background & The Battle of Aretia</h2>
+    <p>Brennan was a rider at Basgiath War College and bonded with Tairn, one of the most powerful dragons in existence. During the Battle of Aretia six years before the events of <em>Fourth Wing</em>, Brennan was believed to have died in combat. His death was a defining tragedy for the Sorrengail family and shaped much of Violet's childhood.</p>
+    
+    <p>In reality, Brennan survived the battle and went into hiding. Rather than returning to Navarre and his mother's military hierarchy, he chose to work with the resistance, eventually becoming a key leader in the rebellion based at Aretia. His survival and his choice to fight against Navarre's regime represent a fundamental rejection of his mother's values and the system she represents.</p>
+
+    <p>For years, Brennan has worked in secret, coordinating with other rebels and gathering intelligence about Navarre's true nature and the threats it faces. His existence is known only to a select few, and his reunion with Violet becomes a pivotal moment in her journey of discovery and awakening.</p>
+  </section>
+
+  <section>
+    <h2>Role in the Rebellion</h2>
+    <div class="highlight-box">
+      <h3>Leadership at Aretia</h3>
+      <p>Brennan serves as a strategic leader within the rebellion based at Aretia. He works alongside Xaden Riorson and other resistance fighters to coordinate efforts against Navarre's oppressive regime. His knowledge of military strategy, combined with his understanding of Navarre's inner workings from his time at Basgiath, makes him invaluable to the rebellion's cause.</p>
+      <p>His leadership style emphasizes long-term planning and systemic change rather than short-term victories. He believes in building a better future, not just tearing down the old system.</p>
+    </div>
+
+    <div class="highlight-box">
+      <h3>Connection to Xaden</h3>
+      <p>Brennan and Xaden work closely together in the rebellion. Their partnership is built on mutual respect and shared commitment to freedom. Brennan's strategic mind complements Xaden's tactical prowess, and together they form a formidable leadership team. Their alliance is crucial to the rebellion's operations and survival.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Abilities & Skills</h2>
+    <p>Brennan is a skilled dragon rider and strategist, trained at Basgiath War College before his supposed death. His years in the rebellion have only honed these skills further.</p>
+    
+    <div class="abilities-list">
+      <div class="ability-item">
+        <strong>Dragon Bonding</strong>
+        Previously bonded to Tairn, one of the most powerful dragons in existence
+      </div>
+      <div class="ability-item">
+        <strong>Military Strategy</strong>
+        Expert in tactical planning and large-scale military operations
+      </div>
+      <div class="ability-item">
+        <strong>Combat Skills</strong>
+        Trained rider with extensive combat experience
+      </div>
+      <div class="ability-item">
+        <strong>Leadership</strong>
+        Capable of leading complex resistance operations and coordinating multiple factions
+      </div>
+      <div class="ability-item">
+        <strong>Intelligence Gathering</strong>
+        Years of covert operations have made him skilled at espionage and information collection
+      </div>
+      <div class="ability-item">
+        <strong>Signet Abilities</strong>
+        Specific signet abilities remain largely undisclosed in the series
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Relationships</h2>
+    
+    <h3>Violet Sorrengail</h3>
+    <p>Brennan's relationship with his younger sister is complex and deeply emotional. He has watched her from afar through the rebellion's intelligence networks, knowing she was alive but unable to reveal himself. When they finally reunite, it becomes a transformative moment for Violet, challenging everything she believed about her family and her brother's supposed death.</p>
+    <p>Brennan is protective of Violet and proud of her strength and resilience. He works to help her understand the truth about Navarre and their mother, though he must do so carefully to protect both her and the rebellion's operations.</p>
+
+    <h3>Xaden Riorson</h3>
+    <p>Brennan and Xaden are close allies and strategic partners in the rebellion. They work together to coordinate resistance efforts and plan for a future beyond Navarre's current regime. Their partnership is built on mutual respect, shared values, and a commitment to freedom.</p>
+
+    <h3>General Lilith Sorrengail</h3>
+    <p>Brennan's relationship with his mother is fundamentally broken. His choice to join the rebellion and fight against Navarre represents a complete rejection of her values and the system she represents. While he may still care for her as his mother, his commitment to the rebellion's cause takes precedence.</p>
+
+    <h3>Mira Sorrengail</h3>
+    <p>Brennan's relationship with his other sister, Mira, is complicated by the secrets he has kept and the rebellion's operations. Mira's loyalty to Navarre and her position within the military structure create tension, though there remains familial love beneath the conflict.</p>
+  </section>
+
+  <section>
+    <h2>Character Development & Arc</h2>
+    <p>Brennan's arc is one of sacrifice and principled resistance. He represents what Violet could become if she fully embraces the rebellion's cause—a person willing to give up everything, including family connections and a comfortable life, for the sake of freedom and justice.</p>
+    
+    <p>His survival and revelation in <em>Iron Flame</em> marks a turning point in the series. Brennan becomes a bridge between Violet's old life and the new world she's discovering. His presence validates her growing doubts about Navarre and her mother, and his leadership in the rebellion offers a model of resistance and hope.</p>
+
+    <p>Throughout the series, Brennan must navigate the tension between his role as a rebel leader and his identity as Violet's brother. He must protect the rebellion's secrets while also helping Violet understand the truth. This balance becomes increasingly difficult as events unfold and stakes rise.</p>
+
+    <div class="spoiler-box">
+      <h3>⚠️ Major Spoiler Warning - Iron Flame & Beyond</h3>
+      <p>Brennan's revelation as alive and leading the rebellion from Aretia is one of the major plot twists of <em>Iron Flame</em>. His survival changes everything Violet thought she knew about her family and the war. His role in the rebellion becomes increasingly central to the series' larger conflict, and his relationship with Violet becomes a crucial emotional anchor as she navigates her growing understanding of Navarre's true nature.</p>
+    </div>
+
+    <blockquote>
+      "The truth is worth fighting for, even when it costs everything. Especially then."
+    </blockquote>
+  </section>
+
+  <section>
+    <h2>Themes & Symbolism</h2>
+    <p>Brennan embodies several key themes in the Empyrean series:</p>
+    
+    <ul>
+      <li><strong>Resistance & Rebellion:</strong> Brennan represents the possibility of standing against systemic oppression, even at great personal cost.</li>
+      <li><strong>Truth vs. Lies:</strong> His survival and the revelation of his activities challenge the official narratives Violet has been taught.</li>
+      <li><strong>Family & Loyalty:</strong> Brennan's story explores the tension between family bonds and commitment to larger causes.</li>
+      <li><strong>Redemption & Choice:</strong> He demonstrates that people can choose their own path, separate from their family's legacy.</li>
+      <li><strong>Hope & Sacrifice:</strong> Brennan's continued fight for freedom, despite years of hardship, represents hope for a better future.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Legacy & Impact</h2>
+    <p>Brennan Sorrengail represents the possibility of change and resistance within the Empyrean series. His survival and his choice to fight for freedom rather than perpetuate Navarre's system make him a symbol of hope for readers who believe in the power of individual choice and collective action.</p>
+    
+    <p>His relationship with Violet becomes increasingly important as the series progresses. Through him, Violet learns that her family is more complex than she believed, and that love and loyalty can coexist with fundamental disagreement about right and wrong. Brennan's presence in the rebellion validates Violet's growing doubts and gives her a model of principled resistance.</p>
+
+    <p>As a character, Brennan bridges the gap between the military world of Basgiath and the resistance world of Aretia. He understands both systems and can navigate between them, making him invaluable to the rebellion's cause and to Violet's journey of discovery and transformation.</p>
+  </section>
+</main>
+
+<footer>
+  <p>Brennan Sorrengail is a character from Rebecca Yarros's <em>Empyrean</em> series.</p>
+  <p><a href="index.html">← Back to Character Guide</a> | <a href="violet.html">Violet Sorrengail →</a> | <a href="xaden.html">Xaden Riorson →</a></p>
+</footer>
+
+</body>
+</html>
