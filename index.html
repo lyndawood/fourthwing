@@ -875,7 +875,7 @@ function bustAccessory(acc){
 
 function humanBust(av){
   const hair = HAIR_SIL[av.hs] !== undefined ? HAIR_SIL[av.hs] : HAIR_SIL.short;
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Character portrait">
   <defs>${MARBLE}</defs>
   <rect width="100" height="120" fill="url(#plinth)"/>
   <g fill="url(#marble)">
@@ -888,7 +888,7 @@ function humanBust(av){
 }
 
 function wyvernBust(){
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dragon portrait">
   <defs>${MARBLE}</defs>
   <rect width="100" height="120" fill="url(#plinth)"/>
   <g fill="url(#marble)">
@@ -903,7 +903,7 @@ function wyvernBust(){
 }
 
 function dogBust(){
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dog portrait">
   <defs>${MARBLE}</defs>
   <rect width="100" height="120" fill="url(#plinth)"/>
   <g fill="url(#marble)">
@@ -946,7 +946,7 @@ function monogramSVG(ch){
   const gid = 'mono-'+ch.id;
   const ini = esc(initialsFor(nameFor(ch)));
   const fs = ini.length > 1 ? 32 : 44;
-  return `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Character initials ${ini}">
   <defs><radialGradient id="${gid}" cx="50%" cy="36%" r="75%">
     <stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/>
   </radialGradient></defs>
