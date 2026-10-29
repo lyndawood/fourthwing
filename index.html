@@ -133,6 +133,30 @@
   .toggle input:checked + .track { background: rgba(192,138,46,.26); }
   .toggle input:checked + .track::after { transform: translateX(21px); background: var(--amber-b); }
   .toggle .tlabel { font-size: 1rem; color: var(--muted); font-style: italic; }
+  .trivia-btn {
+    background: linear-gradient(135deg, rgba(192,138,46,.18), rgba(192,138,46,.08));
+    border: 1px solid var(--amber);
+    border-radius: 3px;
+    color: var(--amber-b);
+    font-family: var(--label);
+    font-size: .62rem;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    transition: all .2s;
+    box-shadow: 0 0 12px rgba(192,138,46,.2);
+  }
+  .trivia-btn:hover {
+    background: linear-gradient(135deg, rgba(192,138,46,.28), rgba(192,138,46,.15));
+    border-color: var(--amber-b);
+    box-shadow: 0 0 20px rgba(192,138,46,.4), inset 0 0 15px rgba(192,138,46,.1);
+    transform: translateY(-2px);
+  }
+  .trivia-btn svg { flex: none; }
   .note-bar { text-align: center; font-size: .96rem; color: var(--muted); padding: .7rem 1rem 0; font-style: italic; }
 
   /* ---------- Book sections ---------- */
@@ -290,6 +314,113 @@
   .modal .conn[data-id]:hover { border-color: var(--amber); color: var(--amber-b); }
   .modal .conn .rel { color: var(--muted); font-style: italic; }
 
+  /* ---------- Trivia Game ---------- */
+  #trivia-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(3,4,6,.95); display: none; align-items: center; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
+  #trivia-overlay.open { display: flex; }
+  .trivia-modal {
+    background: linear-gradient(172deg, #141821, #080a0e);
+    border: 2px solid var(--edge-str); border-radius: 4px;
+    max-width: 900px; width: 100%; padding: 2rem 1.9rem 2.1rem; position: relative;
+    box-shadow: 0 28px 80px rgba(0,0,0,.85), 0 0 40px rgba(212,175,55,.15), inset 0 0 30px rgba(212,175,55,.05);
+  }
+  .trivia-modal .close { position: absolute; top: 1rem; right: 1.1rem; background: none; border: none; color: var(--muted); font-size: 1.3rem; cursor: pointer; font-family: var(--body); }
+  .trivia-modal .close:hover { color: var(--amber-b); }
+  .trivia-header { text-align: center; margin-bottom: 2rem; }
+  .trivia-header h2 { font-family: var(--display); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--bone); font-size: 1.8rem; margin-bottom: .5rem; }
+  .trivia-header .subtitle { font-family: var(--label); color: var(--amber); font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; }
+  .trivia-score { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; font-family: var(--label); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; }
+  .trivia-score > div { color: var(--stone); }
+  .trivia-score .value { color: var(--amber-b); font-size: 1.2rem; display: block; margin-top: .3rem; }
+  .trivia-game { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+  .trivia-column h3 { font-family: var(--label); font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; color: var(--amber); text-align: center; margin-bottom: 1rem; }
+  .trivia-items { display: flex; flex-direction: column; gap: .8rem; }
+  .trivia-item {
+    background: linear-gradient(170deg, var(--panel), var(--panel2));
+    border: 2px solid var(--edge);
+    border-radius: 3px;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    transition: all .2s;
+    position: relative;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .trivia-item:hover:not(.matched):not(.incorrect) {
+    border-color: var(--amber);
+    box-shadow: 0 0 20px rgba(192,138,46,.25), inset 0 0 15px rgba(192,138,46,.05);
+    transform: translateY(-2px);
+  }
+  .trivia-item.selected {
+    border-color: var(--amber-b);
+    background: linear-gradient(170deg, rgba(192,138,46,.15), rgba(192,138,46,.08));
+    box-shadow: 0 0 25px rgba(212,175,55,.4), inset 0 0 20px rgba(212,175,55,.1);
+  }
+  .trivia-item.matched {
+    border-color: #4a7c59;
+    background: linear-gradient(170deg, rgba(74,124,89,.15), rgba(74,124,89,.08));
+    opacity: 0.6;
+    cursor: default;
+  }
+  .trivia-item.incorrect {
+    border-color: var(--crimson);
+    background: linear-gradient(170deg, rgba(139,26,26,.15), rgba(139,26,26,.08));
+    animation: shake .4s;
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+  }
+  .trivia-item .text { font-family: var(--body); font-size: 1.05rem; color: var(--ink); line-height: 1.4; }
+  .trivia-item.matched .text { color: var(--stone); }
+  .trivia-result {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .trivia-result h3 { font-family: var(--display); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--bone); font-size: 1.6rem; margin-bottom: 1rem; }
+  .trivia-result .score-display { font-family: var(--body); font-size: 1.3rem; color: var(--amber-b); margin-bottom: 1.5rem; }
+  .trivia-result .message { font-family: var(--body); font-style: italic; color: var(--stone); font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; }
+  .trivia-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .trivia-btn-primary, .trivia-btn-secondary {
+    font-family: var(--label);
+    font-size: .64rem;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    padding: .7rem 1.5rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .2s;
+    border: 1px solid;
+  }
+  .trivia-btn-primary {
+    background: linear-gradient(135deg, rgba(192,138,46,.25), rgba(192,138,46,.12));
+    border-color: var(--amber);
+    color: var(--amber-b);
+    box-shadow: 0 0 15px rgba(192,138,46,.25);
+  }
+  .trivia-btn-primary:hover {
+    background: linear-gradient(135deg, rgba(192,138,46,.35), rgba(192,138,46,.18));
+    box-shadow: 0 0 25px rgba(192,138,46,.4), inset 0 0 15px rgba(192,138,46,.1);
+    transform: translateY(-2px);
+  }
+  .trivia-btn-secondary {
+    background: linear-gradient(170deg, var(--panel), var(--panel2));
+    border-color: var(--edge-str);
+    color: var(--stone);
+  }
+  .trivia-btn-secondary:hover {
+    border-color: var(--amber);
+    color: var(--amber-b);
+    transform: translateY(-2px);
+  }
+  @media (max-width: 768px) {
+    .trivia-game { grid-template-columns: 1fr; gap: 1.5rem; }
+    .trivia-score { gap: 1rem; font-size: .6rem; }
+  }
+
   .empty-msg { text-align: center; color: var(--muted); padding: 3rem 1rem; display: none; font-size: 1.1rem; font-style: italic; }
   footer { text-align: center; color: #5a626e; font-size: .95rem; font-family: var(--body); font-style: italic; padding: 2.6rem 1rem 3.4rem; line-height: 1.75; }
   footer em { color: var(--amber); font-style: normal; }
@@ -439,6 +570,13 @@
       <span class="track"></span>
       <span class="tlabel">Blur twists &amp; deaths</span>
     </label>
+    <button id="trivia-btn" class="trivia-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 11l3 3L22 4"/>
+        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+      </svg>
+      Play Trivia
+    </button>
   </div>
   <div class="note-bar">Showing one book at a time. Names, titles, and notes stay spoiler-safe for the selected book — some characters aren't who they first appear to be…</div>
 </div>
@@ -457,6 +595,33 @@
   <div class="modal" role="dialog" aria-modal="true">
     <button class="close" aria-label="Close">✕</button>
     <div id="modal-content"></div>
+  </div>
+</div>
+
+<div id="trivia-overlay">
+  <div class="trivia-modal" role="dialog" aria-modal="true">
+    <button class="close" aria-label="Close">✕</button>
+    <div id="trivia-content">
+      <div class="trivia-header">
+        <h2>Character Trivia</h2>
+        <div class="subtitle">Match the characters to their clues</div>
+      </div>
+      <div class="trivia-score">
+        <div>Matched <span class="value" id="trivia-matched">0</span></div>
+        <div>Remaining <span class="value" id="trivia-remaining">0</span></div>
+        <div>Attempts <span class="value" id="trivia-attempts">0</span></div>
+      </div>
+      <div class="trivia-game">
+        <div class="trivia-column">
+          <h3>Characters</h3>
+          <div class="trivia-items" id="trivia-characters"></div>
+        </div>
+        <div class="trivia-column">
+          <h3>Clues</h3>
+          <div class="trivia-items" id="trivia-clues"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1253,6 +1418,271 @@ render();
   addEventListener('scroll', update, { passive: true });
   update();
 })();
+
+/* =========================================================
+   TRIVIA GAME
+   ========================================================= */
+const triviaState = {
+  questions: [],
+  selectedChar: null,
+  selectedClue: null,
+  matched: 0,
+  attempts: 0,
+  gameActive: false
+};
+
+function generateTriviaQuestions() {
+  const currentBook = BOOKS[state.progress];
+  const availableChars = CHARACTERS
+    .filter(ch => ch.books[currentBook.id])
+    .filter(ch => firstBookIdx(ch) <= state.progress);
+  
+  // Shuffle and take up to 8 characters
+  const shuffled = availableChars.sort(() => Math.random() - 0.5);
+  const selected = shuffled.slice(0, Math.min(8, shuffled.length));
+  
+  // Generate clues for each character
+  const questions = selected.map(ch => {
+    const clues = [];
+    
+    // Dragon clue
+    if (ch.links) {
+      const dragonLink = ch.links.find(l => l.rel && (l.rel.includes('dragon') || l.rel.includes('her dragon') || l.rel.includes('his dragon')));
+      if (dragonLink && dragonLink.id) {
+        const dragon = CHARACTERS.find(c => c.id === dragonLink.id);
+        if (dragon) {
+          clues.push(`Bonded to ${nameFor(dragon)}`);
+        }
+      }
+    }
+    
+    // Role/affiliation clue
+    if (ch.role && ch.aff) {
+      clues.push(`${roleFor(ch)} from ${ch.aff.split('—')[0].trim()}`);
+    }
+    
+    // Relationship clue
+    if (ch.links && ch.links.length > 0) {
+      const visibleLinks = ch.links.filter(l => !l.from || state.progress >= IDX[l.from]);
+      if (visibleLinks.length > 0) {
+        const link = visibleLinks[Math.floor(Math.random() * visibleLinks.length)];
+        if (link.id) {
+          const related = CHARACTERS.find(c => c.id === link.id);
+          if (related) {
+            clues.push(`${link.rel} ${nameFor(related)}`);
+          }
+        }
+      }
+    }
+    
+    // Description snippet clue
+    if (ch.desc) {
+      const words = ch.desc.split(' ');
+      if (words.length > 10) {
+        const snippet = words.slice(0, 12).join(' ') + '...';
+        clues.push(snippet);
+      }
+    }
+    
+    // Quote clue (if available and not spoiler-gated)
+    if (ch.quote && (!ch.quote.from || state.progress >= IDX[ch.quote.from])) {
+      if (!ch.quote.spoiler || !state.shield) {
+        clues.push(`"${ch.quote.t.slice(0, 60)}..."`);
+      }
+    }
+    
+    // Pick the best clue
+    let chosenClue = clues[0] || roleFor(ch);
+    
+    // Prefer dragon or relationship clues for variety
+    if (clues.length > 1) {
+      const preferred = clues.find(c => c.includes('Bonded to') || c.includes('dragon'));
+      if (preferred) {
+        chosenClue = preferred;
+      } else if (clues.length > 2) {
+        chosenClue = clues[1]; // Use second clue for variety
+      }
+    }
+    
+    return {
+      id: ch.id,
+      name: nameFor(ch),
+      clue: chosenClue
+    };
+  });
+  
+  return questions;
+}
+
+function startTrivia() {
+  triviaState.questions = generateTriviaQuestions();
+  triviaState.matched = 0;
+  triviaState.attempts = 0;
+  triviaState.selectedChar = null;
+  triviaState.selectedClue = null;
+  triviaState.gameActive = true;
+  
+  if (triviaState.questions.length < 3) {
+    alert('Not enough characters available for trivia. Try selecting a different book or adjusting your spoiler settings.');
+    return;
+  }
+  
+  renderTrivia();
+  document.getElementById('trivia-overlay').classList.add('open');
+}
+
+function renderTrivia() {
+  const charContainer = document.getElementById('trivia-characters');
+  const clueContainer = document.getElementById('trivia-clues');
+  
+  // Shuffle clues separately from characters
+  const shuffledClues = [...triviaState.questions].sort(() => Math.random() - 0.5);
+  
+  // Render characters
+  charContainer.innerHTML = triviaState.questions.map(q => {
+    const matched = triviaState.matched > 0 && !document.querySelector(`[data-char-id="${q.id}"]:not(.matched)`);
+    return `<div class="trivia-item ${matched ? 'matched' : ''}" data-char-id="${q.id}">
+      <div class="text">${esc(q.name)}</div>
+    </div>`;
+  }).join('');
+  
+  // Render clues
+  clueContainer.innerHTML = shuffledClues.map(q => {
+    const matched = triviaState.matched > 0 && !document.querySelector(`[data-clue-id="${q.id}"]:not(.matched)`);
+    return `<div class="trivia-item ${matched ? 'matched' : ''}" data-clue-id="${q.id}">
+      <div class="text">${esc(q.clue)}</div>
+    </div>`;
+  }).join('');
+  
+  // Update score
+  document.getElementById('trivia-matched').textContent = triviaState.matched;
+  document.getElementById('trivia-remaining').textContent = triviaState.questions.length - triviaState.matched;
+  document.getElementById('trivia-attempts').textContent = triviaState.attempts;
+  
+  // Add click handlers
+  charContainer.querySelectorAll('.trivia-item:not(.matched)').forEach(el => {
+    el.addEventListener('click', () => selectCharacter(el.dataset.charId));
+  });
+  
+  clueContainer.querySelectorAll('.trivia-item:not(.matched)').forEach(el => {
+    el.addEventListener('click', () => selectClue(el.dataset.clueId));
+  });
+}
+
+function selectCharacter(charId) {
+  // Clear previous selection
+  document.querySelectorAll('[data-char-id]').forEach(el => {
+    el.classList.remove('selected', 'incorrect');
+  });
+  
+  triviaState.selectedChar = charId;
+  document.querySelector(`[data-char-id="${charId}"]`).classList.add('selected');
+  
+  // Check if we have both selections
+  if (triviaState.selectedClue) {
+    checkMatch();
+  }
+}
+
+function selectClue(clueId) {
+  // Clear previous selection
+  document.querySelectorAll('[data-clue-id]').forEach(el => {
+    el.classList.remove('selected', 'incorrect');
+  });
+  
+  triviaState.selectedClue = clueId;
+  document.querySelector(`[data-clue-id="${clueId}"]`).classList.add('selected');
+  
+  // Check if we have both selections
+  if (triviaState.selectedChar) {
+    checkMatch();
+  }
+}
+
+function checkMatch() {
+  triviaState.attempts++;
+  
+  const charEl = document.querySelector(`[data-char-id="${triviaState.selectedChar}"]`);
+  const clueEl = document.querySelector(`[data-clue-id="${triviaState.selectedClue}"]`);
+  
+  if (triviaState.selectedChar === triviaState.selectedClue) {
+    // Correct match!
+    charEl.classList.remove('selected');
+    clueEl.classList.remove('selected');
+    charEl.classList.add('matched');
+    clueEl.classList.add('matched');
+    
+    triviaState.matched++;
+    
+    // Check if game is complete
+    if (triviaState.matched === triviaState.questions.length) {
+      setTimeout(() => showResults(), 600);
+    }
+  } else {
+    // Incorrect match
+    charEl.classList.add('incorrect');
+    clueEl.classList.add('incorrect');
+    
+    setTimeout(() => {
+      charEl.classList.remove('incorrect', 'selected');
+      clueEl.classList.remove('incorrect', 'selected');
+    }, 600);
+  }
+  
+  // Clear selections
+  triviaState.selectedChar = null;
+  triviaState.selectedClue = null;
+  
+  // Update score display
+  document.getElementById('trivia-matched').textContent = triviaState.matched;
+  document.getElementById('trivia-remaining').textContent = triviaState.questions.length - triviaState.matched;
+  document.getElementById('trivia-attempts').textContent = triviaState.attempts;
+}
+
+function showResults() {
+  const accuracy = Math.round((triviaState.matched / triviaState.attempts) * 100);
+  let message = '';
+  
+  if (accuracy === 100) {
+    message = 'Perfect! You know these characters as well as Violet knows her poisons. A flawless performance worthy of the Fourth Wing.';
+  } else if (accuracy >= 80) {
+    message = 'Excellent work! You survived the trivia with the skill of a seasoned rider. Only a few missteps on the parapet.';
+  } else if (accuracy >= 60) {
+    message = 'Well done! You made it through, though a few more trips to the archives might serve you well.';
+  } else {
+    message = 'You survived, which is more than many can say. Perhaps another round of study before Threshing?';
+  }
+  
+  const content = document.getElementById('trivia-content');
+  content.innerHTML = `
+    <div class="trivia-result">
+      <h3>Quest Complete</h3>
+      <div class="score-display">
+        ${triviaState.matched} matched in ${triviaState.attempts} attempts
+        <br>
+        ${accuracy}% accuracy
+      </div>
+      <div class="message">${message}</div>
+      <div class="trivia-actions">
+        <button class="trivia-btn-primary" onclick="startTrivia()">Play Again</button>
+        <button class="trivia-btn-secondary" onclick="closeTrivia()">Return to Guide</button>
+      </div>
+    </div>
+  `;
+}
+
+function closeTrivia() {
+  document.getElementById('trivia-overlay').classList.remove('open');
+  triviaState.gameActive = false;
+}
+
+// Event listeners
+document.getElementById('trivia-btn').addEventListener('click', startTrivia);
+document.querySelector('#trivia-overlay .close').addEventListener('click', closeTrivia);
+document.getElementById('trivia-overlay').addEventListener('click', e => {
+  if (e.target.id === 'trivia-overlay') closeTrivia();
+});
+
 </script>
 </body>
 </html>
