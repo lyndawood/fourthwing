@@ -1445,33 +1445,45 @@ function generateTriviaQuestions() {
   const questions = selected.map(ch => {
     const clues = [];
     
-    // Dragon clue
+    // Dragon clue (most distinctive)
     if (ch.links) {
       const dragonLink = ch.links.find(l => l.rel && (l.rel.includes('dragon') || l.rel.includes('her dragon') || l.rel.includes('his dragon')));
       if (dragonLink && dragonLink.id) {
         const dragon = CHARACTERS.find(c => c.id === dragonLink.id);
         if (dragon) {
-          clues.push(`Bonded to ${nameFor(dragon)}`);
+          clues.push({
+            text: `Bonded to ${nameFor(dragon)}`,
+            weight: 10
+          });
         }
       }
     }
     
     // Role/affiliation clue
     if (ch.role && ch.aff) {
-      clues.push(`${roleFor(ch)} from ${ch.aff.split('—')[0].trim()}`);
+      clues.push({
+        text: `${roleFor(ch)} from ${ch.aff.split('—')[0].trim()}`,
+        weight: 8
+      });
     }
     
-    // Relationship clue
+    // Relationship clues (multiple for variety)
     if (ch.links && ch.links.length > 0) {
       const visibleLinks = ch.links.filter(l => !l.from || state.progress >= IDX[l.from]);
       if (visibleLinks.length > 0) {
-        const link = visibleLinks[Math.floor(Math.random() * visibleLinks.length)];
-        if (link.id) {
-          const related = CHARACTERS.find(c => c.id === link.id);
-          if (related) {
-            clues.push(`${link.rel} ${nameFor(related)}`);
+        // Add up to 2 relationship clues
+        const relLinks = visibleLinks.slice(0, 2);
+        relLinks.forEach(link => {
+          if (link.id) {
+            const related = CHARACTERS.find(c => c.id === link.id);
+            if (related) {
+              clues.push({
+                text: `${link.rel} ${nameFor(related)}`,
+                weight: 7
+              });
+            }
           }
-        }
+        });
       }
     }
     
@@ -1479,30 +1491,63 @@ function generateTriviaQuestions() {
     if (ch.desc) {
       const words = ch.desc.split(' ');
       if (words.length > 10) {
-        const snippet = words.slice(0, 12).join(' ') + '...';
-        clues.push(snippet);
+        const snippet = words.slice(0, 14).join(' ') + '...';
+        clues.push({
+          text: snippet,
+          weight: 6
+        });
       }
     }
     
     // Quote clue (if available and not spoiler-gated)
     if (ch.quote && (!ch.quote.from || state.progress >= IDX[ch.quote.from])) {
       if (!ch.quote.spoiler || !state.shield) {
-        clues.push(`"${ch.quote.t.slice(0, 60)}..."`);
+        const quoteText = ch.quote.t.slice(0, 55);
+        clues.push({
+          text: `"${quoteText}${quoteText.length < ch.quote.t.length ? '...' : ''}"`,
+          weight: 9
+        });
       }
     }
     
-    // Pick the best clue
-    let chosenClue = clues[0] || roleFor(ch);
-    
-    // Prefer dragon or relationship clues for variety
-    if (clues.length > 1) {
-      const preferred = clues.find(c => c.includes('Bonded to') || c.includes('dragon'));
-      if (preferred) {
-        chosenClue = preferred;
-      } else if (clues.length > 2) {
-        chosenClue = clues[1]; // Use second clue for variety
+    // Personality/trait clue (extract from description)
+    if (ch.desc) {
+      const traits = [];
+      if (ch.desc.toLowerCase().includes('fierce')) traits.push('fierce');
+      if (ch.desc.toLowerCase().includes('clever')) traits.push('clever');
+      if (ch.desc.toLowerCase().includes('brave')) traits.push('brave');
+      if (ch.desc.toLowerCase().includes('cunning')) traits.push('cunning');
+      if (ch.desc.toLowerCase().includes('loyal')) traits.push('loyal');
+      if (ch.desc.toLowerCase().includes('mysterious')) traits.push('mysterious');
+      if (ch.desc.toLowerCase().includes('charming')) traits.push('charming');
+      if (ch.desc.toLowerCase().includes('dangerous')) traits.push('dangerous');
+      if (traits.length > 0) {
+        clues.push({
+          text: `Known for being ${traits[0]}`,
+          weight: 5
+        });
       }
     }
+    
+    // Pick diverse clues (weighted random selection)
+    const selectedClues = [];
+    const cluesCopy = [...clues];
+    
+    // Always include the highest weight clue if available
+    if (cluesCopy.length > 0) {
+      cluesCopy.sort((a, b) => b.weight - a.weight);
+      selectedClues.push(cluesCopy[0].text);
+      cluesCopy.shift();
+    }
+    
+    // Add one more random clue for variety
+    if (cluesCopy.length > 0) {
+      const randomIdx = Math.floor(Math.random() * Math.min(3, cluesCopy.length));
+      selectedClues.push(cluesCopy[randomIdx].text);
+    }
+    
+    // Use the first selected clue, or fall back to role
+    const chosenClue = selectedClues[0] || roleFor(ch);
     
     return {
       id: ch.id,
