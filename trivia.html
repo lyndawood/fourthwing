@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fourth Wing — Intense Trivia Challenge</title>
+<meta name="description" content="Test your knowledge of the Empyrean series with this intense trivia challenge. How well do you know Fourth Wing and Iron Flame?">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Marcellus+SC&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07080a;
+    --panel: #11141a;
+    --panel2: #0a0c10;
+    --edge: rgba(190,202,218,.11);
+    --edge-str: rgba(190,202,218,.26);
+    --stone: #8d98a8;
+    --bone: #e2dccf;
+    --bone-dim: #a9a394;
+    --amber: #c08a2e;
+    --amber-b: #e3b662;
+    --steel: #7d91a6;
+    --ink: #dce2ea;
+    --muted: #767f8c;
+    --crimson: #8b1a1a;
+    --crimson-bright: #c92a2a;
+    --gold: #d4af37;
+    --dragon-purple: #4a1a6f;
+    --success: #2d7a3e;
+    --success-bright: #3fa855;
+    --display: 'Cinzel', Georgia, serif;
+    --body: 'Spectral', Georgia, serif;
+    --label: 'Marcellus SC', Georgia, serif;
+    font-size: 16px;
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  html { overflow-x: clip; }
+  
+  body {
+    overflow-x: clip;
+    background:
+      radial-gradient(1100px 620px at 50% -12%, rgba(150,170,195,.11), transparent 64%),
+      radial-gradient(820px 520px at 88% 22%, rgba(192,138,46,.055), transparent 60%),
+      radial-gradient(900px 600px at 6% 72%, rgba(125,145,166,.07), transparent 62%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 1px, transparent 1px 9px),
+      linear-gradient(180deg, #0a0c10 0%, var(--bg) 42%, #050608 100%);
+    color: var(--ink);
+    font-family: var(--body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { 
+      text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(170,185,205,.14), 0 0 80px rgba(212,175,55,.2); 
+    }
+    50% { 
+      text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(170,185,205,.14), 0 0 120px rgba(212,175,55,.35); 
+    }
+  }
+
+  @keyframes dragon-fly {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+    50% { transform: translate(-20px, -10px) rotate(-5deg); opacity: 0.5; }
+    100% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+  }
+
+  @keyframes correct-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  /* Dragon background decoration */
+  .dragon-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .dragon-silhouette {
+    position: absolute;
+    opacity: 0.3;
+    animation: dragon-fly 8s ease-in-out infinite;
+  }
+
+  .dragon-silhouette:nth-child(1) {
+    top: 10%;
+    right: 5%;
+    width: 180px;
+    animation-delay: 0s;
+  }
+
+  .dragon-silhouette:nth-child(2) {
+    bottom: 15%;
+    left: 8%;
+    width: 140px;
+    animation-delay: 3s;
+  }
+
+  /* Main container */
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .mark {
+    margin-bottom: 1.5rem;
+  }
+
+  .mark svg {
+    width: 96px;
+    height: 50px;
+    filter: drop-shadow(0 6px 22px rgba(0,0,0,.8));
+  }
+
+  .eyebrow {
+    font-family: var(--label);
+    letter-spacing: .46em;
+    text-indent: .46em;
+    text-transform: uppercase;
+    font-size: .64rem;
+    color: var(--amber);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--bone);
+    line-height: 1.1;
+    text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(170,185,205,.14), 0 0 80px rgba(212,175,55,.2);
+    animation: glow-pulse 3s ease-in-out infinite;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-family: var(--label);
+    font-size: .7rem;
+    letter-spacing: .4em;
+    text-indent: .4em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+
+  /* Game container */
+  .game-box {
+    background: linear-gradient(172deg, #141821, #080a0e);
+    border: 2px solid var(--edge-str);
+    border-radius: 6px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 28px 80px rgba(0,0,0,.85), 0 0 40px rgba(212,175,55,.15), inset 0 0 30px rgba(212,175,55,.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .game-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    border-top: 2px solid var(--amber);
+    border-left: 2px solid var(--amber);
+    opacity: .5;
+  }
+
+  .game-box::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    border-bottom: 2px solid var(--amber);
+    border-right: 2px solid var(--amber);
+    opacity: .5;
+  }
+
+  /* Screen states */
+  .screen {
+    display: none;
+  }
+
+  .screen.active {
+    display: block;
+  }
+
+  /* Start screen */
+  .start-content {
+    text-align: center;
+  }
+
+  .start-content h2 {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    color: var(--bone);
+    margin-bottom: 1.5rem;
+    letter-spacing: .08em;
+  }
+
+  .start-content p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .difficulty-select {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .difficulty-btn {
+    background: linear-gradient(170deg, var(--panel), var(--panel2));
+    border: 2px solid var(--edge);
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all .3s;
+    text-align: left;
+    position: relative;
+  }
+
+  .difficulty-btn:hover {
+    border-color: var(--amber);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.5), 0 0 20px rgba(212,175,55,.2);
+  }
+
+  .difficulty-btn .diff-name {
+    font-family: var(--display);
+    font-size: 1.3rem;
+    color: var(--amber-b);
+    letter-spacing: .08em;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .difficulty-btn .diff-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--amber), #a67324);
+    border: 2px solid var(--amber-b);
+    border-radius: 4px;
+    padding: 1rem 2.5rem;
+    color: var(--bg);
+    font-family: var(--display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .3s;
+    box-shadow: 0 4px 12px rgba(192,138,46,.4);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(192,138,46,.6);
+    background: linear-gradient(135deg, var(--amber-b), var(--amber));
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid var(--edge-str);
+    border-radius: 4px;
+    padding: 0.8rem 2rem;
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all .3s;
+    margin-top: 1rem;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--amber);
+    color: var(--amber-b);
+  }
+
+  /* Game screen */
+  .game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .stat-label {
+    font-family: var(--label);
+    font-size: 0.6rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  .stat-value {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    color: var(--bone);
+  }
+
+  .timer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .timer-bar {
+    width: 120px;
+    height: 8px;
+    background: rgba(190,202,218,.08);
+    border: 1px solid var(--edge);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .timer-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--success-bright), var(--success));
+    transition: width 0.1s linear;
+    border-radius: 3px;
+  }
+
+  .timer-fill.warning {
+    background: linear-gradient(90deg, var(--amber-b), var(--amber));
+  }
+
+  .timer-fill.danger {
+    background: linear-gradient(90deg, var(--crimson-bright), var(--crimson));
+    animation: pulse-danger 0.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-danger {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(190,202,218,.08);
+    border: 1px solid var(--edge);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--amber), var(--gold));
+    transition: width .3s;
+    border-radius: 2px;
+  }
+
+  .question-box {
+    margin-bottom: 2rem;
+  }
+
+  .question-number {
+    font-family: var(--label);
+    font-size: 0.65rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .question-text {
+    font-family: var(--body);
+    font-size: 1.3rem;
+    color: var(--bone);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+
+  .answers {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .answer-btn {
+    background: linear-gradient(170deg, var(--panel), var(--panel2));
+    border: 2px solid var(--edge);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all .3s;
+    text-align: left;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .answer-btn:hover:not(:disabled) {
+    border-color: var(--amber);
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(0,0,0,.4);
+  }
+
+  .answer-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .answer-btn.correct {
+    border-color: var(--success-bright);
+    background: linear-gradient(170deg, rgba(45,122,62,.2), rgba(45,122,62,.1));
+    animation: correct-pulse 0.5s ease-out;
+  }
+
+  .answer-btn.incorrect {
+    border-color: var(--crimson-bright);
+    background: linear-gradient(170deg, rgba(139,26,26,.2), rgba(139,26,26,.1));
+    animation: shake 0.5s ease-out;
+  }
+
+  .answer-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: transparent;
+    transition: background .3s;
+  }
+
+  .answer-btn.correct::before {
+    background: var(--success-bright);
+  }
+
+  .answer-btn.incorrect::before {
+    background: var(--crimson-bright);
+  }
+
+  /* Results screen */
+  .results-content {
+    text-align: center;
+  }
+
+  .results-content h2 {
+    font-family: var(--display);
+    font-size: 2rem;
+    color: var(--bone);
+    margin-bottom: 1rem;
+    letter-spacing: .08em;
+  }
+
+  .final-score {
+    font-size: 4rem;
+    font-family: var(--display);
+    color: var(--amber-b);
+    margin: 1.5rem 0;
+    text-shadow: 0 0 30px rgba(227,182,98,.5);
+  }
+
+  .rank {
+    font-family: var(--label);
+    font-size: 1.2rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .stat-box {
+    background: rgba(190,202,218,.03);
+    border: 1px solid var(--edge);
+    border-radius: 4px;
+    padding: 1.2rem 1rem;
+  }
+
+  .stat-box-label {
+    font-family: var(--label);
+    font-size: 0.6rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-box-value {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    color: var(--amber-b);
+  }
+
+  .message {
+    font-size: 1.1rem;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.6;
+    margin: 2rem 0;
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  /* Streak indicator */
+  .streak-indicator {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(212,175,55,.15);
+    border: 1px solid var(--amber);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-family: var(--label);
+    font-size: 0.7rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--amber-b);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all .3s;
+  }
+
+  .streak-indicator.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .streak-indicator .flame {
+    display: inline-block;
+    margin-right: 0.3rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .game-box {
+      padding: 1.5rem 1.2rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .game-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .timer-bar {
+      width: 100%;
+    }
+
+    .question-text {
+      font-size: 1.15rem;
+    }
+
+    .final-score {
+      font-size: 3rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+
+  footer a {
+    color: var(--amber);
+    text-decoration: none;
+    transition: color .2s;
+  }
+
+  footer a:hover {
+    color: var(--amber-b);
+  }
+</style>
+</head>
+<body>
+
+<div class="dragon-bg" aria-hidden="true">
+  <svg class="dragon-silhouette" viewBox="0 0 220 150" fill="none">
+    <g fill="#0d1117" opacity="0.6">
+      <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
+      <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
+      <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
+      <path d="M106 38 C86 31 58 27 20 31 C33 37 47 45 59 55 C49 55 39 57 29 61 C43 64 57 70 69 78 C61 80 53 84 47 90 C61 88 76 88 88 92 C96 85 102 75 106 64 Z"/>
+      <path d="M114 38 C134 31 162 27 200 31 C187 37 173 45 161 55 C171 55 181 57 191 61 C177 64 163 70 151 78 C159 80 167 84 173 90 C159 88 144 88 132 92 C124 85 118 75 114 64 Z"/>
+    </g>
+  </svg>
+  <svg class="dragon-silhouette" viewBox="0 0 220 150" fill="none">
+    <g fill="#0d1117" opacity="0.6">
+      <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
+      <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
+      <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
+      <path d="M106 38 C86 31 58 27 20 31 C33 37 47 45 59 55 C49 55 39 57 29 61 C43 64 57 70 69 78 C61 80 53 84 47 90 C61 88 76 88 88 92 C96 85 102 75 106 64 Z"/>
+      <path d="M114 38 C134 31 162 27 200 31 C187 37 173 45 161 55 C171 55 181 57 191 61 C177 64 163 70 151 78 C159 80 167 84 173 90 C159 88 144 88 132 92 C124 85 118 75 114 64 Z"/>
+    </g>
+  </svg>
+</div>
+
+<div class="container">
+  <header>
+    <div class="mark">
+      <svg viewBox="0 0 128 66" fill="none">
+        <path d="M64 2 L68 14 L80 14 L70 22 L74 34 L64 26 L54 34 L58 22 L48 14 L60 14 Z" fill="#c08a2e" opacity="0.8"/>
+        <path d="M20 30 L64 10 L108 30" stroke="#c08a2e" stroke-width="2" fill="none"/>
+        <path d="M30 35 L64 50 L98 35" stroke="#c08a2e" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <circle cx="64" cy="50" r="3" fill="#e3b662"/>
+      </svg>
+    </div>
+    <div class="eyebrow">The Empyrean Series</div>
+    <h1>Trivia Challenge</h1>
+    <div class="subtitle">Test Your Knowledge</div>
+  </header>
+
+  <div class="game-box">
+    <!-- Start Screen -->
+    <div id="start-screen" class="screen active">
+      <div class="start-content">
+        <h2>Welcome, Rider</h2>
+        <p>Think you know the world of Basgiath War College? The dragons, the riders, the deadly challenges?</p>
+        <p>Prove your worth in this intense trivia challenge.</p>
+        
+        <div class="difficulty-select">
+          <button class="difficulty-btn" data-difficulty="cadet">
+            <span class="diff-name">Cadet</span>
+            <span class="diff-desc">15 questions • 30 seconds each • For new recruits</span>
+          </button>
+          <button class="difficulty-btn" data-difficulty="rider">
+            <span class="diff-name">Rider</span>
+            <span class="diff-desc">20 questions • 20 seconds each • For seasoned riders</span>
+          </button>
+          <button class="difficulty-btn" data-difficulty="wingleader">
+            <span class="diff-name">Wingleader</span>
+            <span class="diff-desc">25 questions • 15 seconds each • For the elite</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+      <div class="streak-indicator" id="streak-indicator">
+        <span class="flame">🔥</span>
+        <span id="streak-text">Streak: 0</span>
+      </div>
+
+      <div class="game-header">
+        <div class="stat">
+          <div class="stat-label">Score</div>
+          <div class="stat-value" id="score">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Question</div>
+          <div class="stat-value"><span id="current-q">1</span>/<span id="total-q">15</span></div>
+        </div>
+        <div class="timer">
+          <div class="stat-label">Time</div>
+          <div class="timer-bar">
+            <div class="timer-fill" id="timer-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <div class="question-box">
+        <div class="question-number" id="question-category">Dragon Lore</div>
+        <div class="question-text" id="question-text">Loading question...</div>
+      </div>
+
+      <div class="answers" id="answers">
+        <!-- Answer buttons will be inserted here -->
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+      <div class="results-content">
+        <h2 id="results-title">Challenge Complete</h2>
+        <div class="final-score" id="final-score">0</div>
+        <div class="rank" id="rank">Cadet</div>
+        
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-box-label">Correct</div>
+            <div class="stat-box-value" id="correct-count">0</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">Accuracy</div>
+            <div class="stat-box-value" id="accuracy">0%</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">Best Streak</div>
+            <div class="stat-box-value" id="best-streak">0</div>
+          </div>
+        </div>
+
+        <p class="message" id="results-message">Well done, rider.</p>
+
+        <div class="btn-group">
+          <button class="btn-primary" id="play-again">Play Again</button>
+          <button class="btn-secondary" id="change-difficulty">Change Difficulty</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Based on the Empyrean series by Rebecca Yarros • <a href="index.html">Character Guide</a></p>
+  </footer>
+</div>
+
+<script>
+// Game state
+const gameState = {
+  difficulty: 'cadet',
+  currentQuestion: 0,
+  score: 0,
+  correctAnswers: 0,
+  streak: 0,
+  bestStreak: 0,
+  timePerQuestion: 30,
+  totalQuestions: 15,
+  timer: null,
+  timeLeft: 30,
+  questions: [],
+  usedQuestions: new Set()
+};
+
+// Question bank
+const questionBank = [
+  // Easy questions (Cadet level)
+  {
+    category: "Characters",
+    difficulty: "easy",
+    question: "What is Violet Sorrengail's signet power?",
+    answers: ["Lightning wielding", "Mind reading", "Fire wielding", "Shielding"],
+    correct: 0
+  },
+  {
+    category: "Dragons",
+    difficulty: "easy",
+    question: "What is the name of Violet's dragon?",
+    answers: ["Tairn", "Sgaeyl", "Andarna", "Codagh"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "easy",
+    question: "Who is Xaden Riorson's dragon?",
+    answers: ["Sgaeyl", "Tairn", "Andarna", "Codagh"],
+    correct: 0
+  },
+  {
+    category: "Plot",
+    difficulty: "easy",
+    question: "What college do the riders attend?",
+    answers: ["Basgiath War College", "Aretia Academy", "Navarre Institute", "Dragon's Keep"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "easy",
+    question: "What is Violet's mother's position?",
+    answers: ["General", "Colonel", "Wingleader", "Professor"],
+    correct: 0
+  },
+  {
+    category: "Dragons",
+    difficulty: "easy",
+    question: "What color is Tairn?",
+    answers: ["Black", "Red", "Gold", "Blue"],
+    correct: 0
+  },
+  {
+    category: "World",
+    difficulty: "easy",
+    question: "What is the name of the rebellion's stronghold?",
+    answers: ["Aretia", "Basgiath", "Navarre", "Tyrrendor"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "easy",
+    question: "Who is Violet's best friend from the Scribe Quadrant?",
+    answers: ["Dain Aetos", "Rhiannon Matthias", "Sawyer Henrick", "Ridoc Gamlyn"],
+    correct: 0
+  },
+  {
+    category: "Plot",
+    difficulty: "easy",
+    question: "What quadrant was Violet originally supposed to enter?",
+    answers: ["Scribe Quadrant", "Rider Quadrant", "Infantry Quadrant", "Healer Quadrant"],
+    correct: 0
+  },
+  {
+    category: "Dragons",
+    difficulty: "easy",
+    question: "What makes Andarna special?",
+    answers: ["She's a rare golden feathertail", "She's the largest dragon", "She can speak to all riders", "She has two signets"],
+    correct: 0
+  },
+
+  // Medium questions (Rider level)
+  {
+    category: "Characters",
+    difficulty: "medium",
+    question: "What is Xaden Riorson's signet?",
+    answers: ["Shadow wielding", "Ice wielding", "Distance wielding", "Mind reading"],
+    correct: 0
+  },
+  {
+    category: "Plot",
+    difficulty: "medium",
+    question: "What is the name of the deadly obstacle course at Basgiath?",
+    answers: ["The Gauntlet", "The Parapet", "The Crucible", "The Trial"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "medium",
+    question: "What is Dain Aetos's signet power?",
+    answers: ["Memory reading through touch", "Shielding", "Fire wielding", "Healing"],
+    correct: 0
+  },
+  {
+    category: "World",
+    difficulty: "medium",
+    question: "What are the creatures that attack from beyond the wards?",
+    answers: ["Venin", "Wyvern", "Gryphons", "Darklings"],
+    correct: 0
+  },
+  {
+    category: "Dragons",
+    difficulty: "medium",
+    question: "What is the name of the dragon who bonds with Rhiannon?",
+    answers: ["Feirge", "Tairn", "Sgaeyl", "Marbh"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "medium",
+    question: "Who is the ruthless wingleader of Fourth Wing?",
+    answers: ["Xaden Riorson", "Dain Aetos", "Garrick Tavis", "Bodhi Durran"],
+    correct: 0
+  },
+  {
+    category: "Plot",
+    difficulty: "medium",
+    question: "What condition does Violet have that makes her physically weaker?",
+    answers: ["Ehlers-Danlos Syndrome", "Chronic fatigue", "Brittle bone disease", "Muscle atrophy"],
+    correct: 0
+  },
+  {
+    category: "World",
+    difficulty: "medium",
+    question: "What is the name of the kingdom where the story takes place?",
+    answers: ["Navarre", "Poromiel", "Tyrrendor", "Aretia"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "medium",
+    question: "Who is Violet's older sister who died?",
+    answers: ["Mira", "Brennan", "Lilith", "Sloane"],
+    correct: 1
+  },
+  {
+    category: "Dragons",
+    difficulty: "medium",
+    question: "How do dragons choose their riders?",
+    answers: ["During Threshing", "At birth", "Through combat", "By lottery"],
+    correct: 0
+  },
+  {
+    category: "Plot",
+    difficulty: "medium",
+    question: "What is the narrow stone bridge that first-years must cross?",
+    answers: ["The Parapet", "The Gauntlet", "The Bridge of Souls", "Death's Walk"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "medium",
+    question: "What is the name of Violet's squad?",
+    answers: ["Flame Section, Fourth Wing", "Second Squad, Tail Section", "First Squad, Fourth Wing", "Dragon Section, Second Wing"],
+    correct: 2
+  },
+  {
+    category: "World",
+    difficulty: "medium",
+    question: "What protects Navarre from venin attacks?",
+    answers: ["The wards", "Dragon fire", "Magic barriers", "Mountain ranges"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "medium",
+    question: "Who is Xaden's cousin and close friend?",
+    answers: ["Bodhi Durran", "Garrick Tavis", "Liam Mairi", "Imogen Cardulo"],
+    correct: 0
+  },
+  {
+    category: "Dragons",
+    difficulty: "medium",
+    question: "What happens if a dragon's rider dies?",
+    answers: ["The dragon often dies too", "The dragon chooses a new rider immediately", "The dragon returns to the wild", "The dragon becomes feral"],
+    correct: 0
+  },
+
+  // Hard questions (Wingleader level)
+  {
+    category: "Lore",
+    difficulty: "hard",
+    question: "What is the second signet that Violet manifests?",
+    answers: ["Distance wielding", "Shielding", "Mind reading", "Time manipulation"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "hard",
+    question: "What is the name of Liam Mairi's dragon?",
+    answers: ["Deigh", "Marbh", "Feirge", "Chradh"],
+    correct: 0
+  },
+  {
+    category: "Plot",
+    difficulty: "hard",
+    question: "What is Jack Barlowe's signet?",
+    answers: ["Ice wielding", "Fire wielding", "Stone shaping", "Metal manipulation"],
+    correct: 0
+  },
+  {
+    category: "World",
+    difficulty: "hard",
+    question: "What are the dark wielders of magic called who drain the land?",
+    answers: ["Venin", "Darklings", "Wyvern riders", "Shadow mages"],
+    correct: 0
+  },
+  {
+    category: "Dragons",
+    difficulty: "hard",
+    question: "What is unique about Andarna's maturation?",
+    answers: ["She bonds before her first sleep", "She grows faster than normal", "She has two signets", "She can speak all languages"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "hard",
+    question: "Who is the scribe that helps Violet research?",
+    answers: ["Jesinia", "Mira", "Sloane", "Imogen"],
+    correct: 0
+  },
+  {
+    category: "Lore",
+    difficulty: "hard",
+    question: "What is the name of the ancient language dragons speak?",
+    answers: ["The Old Language", "Draconic", "Tyrrish", "Ancient Navarrian"],
+    correct: 0
+  },
+  {
+    category: "Plot",
+    difficulty: "hard",
+    question: "What is the name of the professor who teaches Battle Brief?",
+    answers: ["Professor Devera", "Professor Kaori", "Professor Carr", "Professor Markham"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "hard",
+    question: "What is Imogen Cardulo's signet?",
+    answers: ["Dream manipulation", "Shielding", "Fire wielding", "Mind reading"],
+    correct: 0
+  },
+  {
+    category: "World",
+    difficulty: "hard",
+    question: "What is the name of the neighboring kingdom that Navarre is at war with?",
+    answers: ["Poromiel", "Tyrrendor", "Aretia", "Braevick"],
+    correct: 0
+  },
+  {
+    category: "Dragons",
+    difficulty: "hard",
+    question: "What is the name of the dragon who bonds with Sawyer?",
+    answers: ["Aotrom", "Sliseag", "Cath", "Gleann"],
+    correct: 0
+  },
+  {
+    category: "Lore",
+    difficulty: "hard",
+    question: "What happens during the Threshing ceremony?",
+    answers: ["Dragons choose their riders", "Riders receive their signets", "Cadets graduate", "Dragons are born"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "hard",
+    question: "What is Ridoc Gamlyn's signet?",
+    answers: ["Shielding", "Fire wielding", "Ice wielding", "Metal manipulation"],
+    correct: 0
+  },
+  {
+    category: "Plot",
+    difficulty: "hard",
+    question: "What is the name of the rebellion that Xaden's father led?",
+    answers: ["The Tyrrish Rebellion", "The Dragon Uprising", "The Rider's Revolt", "The Aretian Revolution"],
+    correct: 0
+  },
+  {
+    category: "World",
+    difficulty: "hard",
+    question: "What are the creatures that venin ride?",
+    answers: ["Wyvern", "Gryphons", "Dark dragons", "Basilisks"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "hard",
+    question: "Who is the commandant of Basgiath War College?",
+    answers: ["General Sorrengail", "Colonel Aetos", "General Melgren", "Commandant Panchek"],
+    correct: 3
+  },
+  {
+    category: "Lore",
+    difficulty: "hard",
+    question: "What is the name of the bond between dragon and rider?",
+    answers: ["The sacred bond", "The soul bond", "The dragon bond", "The eternal link"],
+    correct: 0
+  },
+  {
+    category: "Dragons",
+    difficulty: "hard",
+    question: "What color is Sgaeyl?",
+    answers: ["Blue", "Black", "Green", "Silver"],
+    correct: 0
+  },
+  {
+    category: "Plot",
+    difficulty: "hard",
+    question: "What is Professor Carr's signet?",
+    answers: ["Fire wielding", "Lightning wielding", "Ice wielding", "Storm summoning"],
+    correct: 0
+  },
+  {
+    category: "Characters",
+    difficulty: "hard",
+    question: "What is the name of Mira's dragon?",
+    answers: ["Teine", "Feirge", "Marbh", "Aimsir"],
+    correct: 0
+  }
+];
+
+// Difficulty settings
+const difficultySettings = {
+  cadet: { questions: 15, time: 30, pointsPerCorrect: 10 },
+  rider: { questions: 20, time: 20, pointsPerCorrect: 15 },
+  wingleader: { questions: 25, time: 15, pointsPerCorrect: 20 }
+};
+
+// DOM elements
+const screens = {
+  start: document.getElementById('start-screen'),
+  game: document.getElementById('game-screen'),
+  results: document.getElementById('results-screen')
+};
+
+// Initialize game
+document.querySelectorAll('.difficulty-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const difficulty = btn.dataset.difficulty;
+    startGame(difficulty);
+  });
+});
+
+document.getElementById('play-again').addEventListener('click', () => {
+  startGame(gameState.difficulty);
+});
+
+document.getElementById('change-difficulty').addEventListener('click', () => {
+  showScreen('start');
+  resetGame();
+});
+
+function startGame(difficulty) {
+  gameState.difficulty = difficulty;
+  const settings = difficultySettings[difficulty];
+  gameState.totalQuestions = settings.questions;
+  gameState.timePerQuestion = settings.time;
+  gameState.currentQuestion = 0;
+  gameState.score = 0;
+  gameState.correctAnswers = 0;
+  gameState.streak = 0;
+  gameState.bestStreak = 0;
+  gameState.usedQuestions = new Set();
+  
+  // Filter questions by difficulty
+  const difficultyMap = { cadet: 'easy', rider: 'medium', wingleader: 'hard' };
+  const targetDifficulty = difficultyMap[difficulty];
+  
+  // Get questions of appropriate difficulty and some from easier levels
+  let availableQuestions = questionBank.filter(q => {
+    if (difficulty === 'cadet') return q.difficulty === 'easy';
+    if (difficulty === 'rider') return q.difficulty === 'easy' || q.difficulty === 'medium';
+    return true; // wingleader gets all questions
+  });
+  
+  // Shuffle and select questions
+  gameState.questions = shuffleArray(availableQuestions).slice(0, settings.questions);
+  
+  showScreen('game');
+  loadQuestion();
+}
+
+function loadQuestion() {
+  if (gameState.currentQuestion >= gameState.totalQuestions) {
+    endGame();
+    return;
+  }
+  
+  const question = gameState.questions[gameState.currentQuestion];
+  
+  // Update UI
+  document.getElementById('current-q').textContent = gameState.currentQuestion + 1;
+  document.getElementById('total-q').textContent = gameState.totalQuestions;
+  document.getElementById('question-category').textContent = question.category;
+  document.getElementById('question-text').textContent = question.question;
+  
+  // Update progress bar
+  const progress = ((gameState.currentQuestion) / gameState.totalQuestions) * 100;
+  document.getElementById('progress-fill').style.width = progress + '%';
+  
+  // Create answer buttons
+  const answersContainer = document.getElementById('answers');
+  answersContainer.innerHTML = '';
+  
+  question.answers.forEach((answer, index) => {
+    const btn = document.createElement('button');
+    btn.className = 'answer-btn';
+    btn.textContent = answer;
+    btn.addEventListener('click', () => selectAnswer(index, question.correct));
+    answersContainer.appendChild(btn);
+  });
+  
+  // Start timer
+  startTimer();
+}
+
+function startTimer() {
+  gameState.timeLeft = gameState.timePerQuestion;
+  updateTimerDisplay();
+  
+  if (gameState.timer) clearInterval(gameState.timer);
+  
+  gameState.timer = setInterval(() => {
+    gameState.timeLeft--;
+    updateTimerDisplay();
+    
+    if (gameState.timeLeft <= 0) {
+      clearInterval(gameState.timer);
+      selectAnswer(-1, -1); // Time's up, wrong answer
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const percentage = (gameState.timeLeft / gameState.timePerQuestion) * 100;
+  const timerFill = document.getElementById('timer-fill');
+  timerFill.style.width = percentage + '%';
+  
+  // Change color based on time left
+  timerFill.classList.remove('warning', 'danger');
+  if (percentage <= 30) {
+    timerFill.classList.add('danger');
+  } else if (percentage <= 50) {
+    timerFill.classList.add('warning');
+  }
+}
+
+function selectAnswer(selectedIndex, correctIndex) {
+  clearInterval(gameState.timer);
+  
+  const buttons = document.querySelectorAll('.answer-btn');
+  buttons.forEach(btn => btn.disabled = true);
+  
+  const isCorrect = selectedIndex === correctIndex;
+  
+  // Visual feedback
+  if (selectedIndex >= 0) {
+    buttons[selectedIndex].classList.add(isCorrect ? 'correct' : 'incorrect');
+  }
+  if (!isCorrect && correctIndex >= 0) {
+    buttons[correctIndex].classList.add('correct');
+  }
+  
+  // Update score and streak
+  if (isCorrect) {
+    gameState.correctAnswers++;
+    gameState.streak++;
+    gameState.bestStreak = Math.max(gameState.bestStreak, gameState.streak);
+    
+    const settings = difficultySettings[gameState.difficulty];
+    const basePoints = settings.pointsPerCorrect;
+    const streakBonus = Math.floor(gameState.streak / 3) * 5;
+    const timeBonus = Math.floor((gameState.timeLeft / gameState.timePerQuestion) * 10);
+    
+    gameState.score += basePoints + streakBonus + timeBonus;
+    
+    // Show streak indicator
+    if (gameState.streak >= 3) {
+      const streakIndicator = document.getElementById('streak-indicator');
+      document.getElementById('streak-text').textContent = `Streak: ${gameState.streak}`;
+      streakIndicator.classList.add('show');
+      setTimeout(() => streakIndicator.classList.remove('show'), 2000);
+    }
+  } else {
+    gameState.streak = 0;
+  }
+  
+  // Update score display
+  document.getElementById('score').textContent = gameState.score;
+  
+  // Move to next question
+  setTimeout(() => {
+    gameState.currentQuestion++;
+    loadQuestion();
+  }, 1500);
+}
+
+function endGame() {
+  showScreen('results');
+  
+  const accuracy = Math.round((gameState.correctAnswers / gameState.totalQuestions) * 100);
+  
+  // Determine rank
+  let rank = 'Cadet';
+  let message = 'Keep training, rider. You have potential.';
+  
+  if (accuracy >= 90) {
+    rank = 'Elite Wingleader';
+    message = 'Outstanding! You have mastered the lore of the Empyrean. Tairn himself would be impressed.';
+  } else if (accuracy >= 75) {
+    rank = 'Wingleader';
+    message = 'Excellent work! Your knowledge of dragons and riders is formidable.';
+  } else if (accuracy >= 60) {
+    rank = 'Squad Leader';
+    message = 'Well done! You know your way around Basgiath War College.';
+  } else if (accuracy >= 40) {
+    rank = 'Rider';
+    message = 'Not bad! You survived the Parapet, but there\'s more to learn.';
+  }
+  
+  // Update results display
+  document.getElementById('results-title').textContent = rank;
+  document.getElementById('final-score').textContent = gameState.score;
+  document.getElementById('rank').textContent = rank;
+  document.getElementById('correct-count').textContent = gameState.correctAnswers;
+  document.getElementById('accuracy').textContent = accuracy + '%';
+  document.getElementById('best-streak').textContent = gameState.bestStreak;
+  document.getElementById('results-message').textContent = message;
+}
+
+function showScreen(screenName) {
+  Object.values(screens).forEach(screen => screen.classList.remove('active'));
+  screens[screenName].classList.add('active');
+}
+
+function resetGame() {
+  if (gameState.timer) clearInterval(gameState.timer);
+  gameState.currentQuestion = 0;
+  gameState.score = 0;
+  gameState.correctAnswers = 0;
+  gameState.streak = 0;
+  gameState.bestStreak = 0;
+}
+
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+</script>
+
+</body>
+</html>
