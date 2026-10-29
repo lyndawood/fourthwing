@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fourth Wing — Character Guide</title>
+<meta name="description" content="A spoiler-safe character guide to Rebecca Yarros's Empyrean series — Fourth Wing, Iron Flame, and Onyx Storm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Marcellus+SC&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navh: 0px;
+    --bg: #07080a;
+    --panel: #11141a;
+    --panel2: #0a0c10;
+    --edge: rgba(190,202,218,.11);
+    --edge-str: rgba(190,202,218,.26);
+    --stone: #8d98a8;
+    --bone: #e2dccf;
+    --bone-dim: #a9a394;
+    --amber: #c08a2e;
+    --amber-b: #e3b662;
+    --steel: #7d91a6;
+    --ink: #dce2ea;
+    --muted: #767f8c;
+    --crimson: #8b1a1a;
+    --gold: #d4af37;
+    --dragon-purple: #4a1a6f;
+    --display: 'Cinzel', Georgia, serif;
+    --body: 'Spectral', Georgia, serif;
+    --label: 'Marcellus SC', Georgia, serif;
+    font-size: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { overflow-x: clip; }
+  body {
+    overflow-x: clip;
+    background:
+      radial-gradient(1100px 620px at 50% -12%, rgba(150,170,195,.11), transparent 64%),
+      radial-gradient(820px 520px at 88% 22%, rgba(192,138,46,.055), transparent 60%),
+      radial-gradient(900px 600px at 6% 72%, rgba(125,145,166,.07), transparent 62%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 1px, transparent 1px 9px),
+      linear-gradient(180deg, #0a0c10 0%, var(--bg) 42%, #050608 100%);
+    color: var(--ink);
+    font-family: var(--body);
+    min-height: 100vh;
+  }
+
+  /* ---------- Header ---------- */
+  header { text-align: center; padding: 5rem 1rem 2.2rem; }
+  .mark { margin-bottom: 1.5rem; }
+  .mark svg { width: 128px; height: 66px; filter: drop-shadow(0 6px 22px rgba(0,0,0,.8)); }
+  header .eyebrow {
+    font-family: var(--label);
+    letter-spacing: .46em; text-indent: .46em; text-transform: uppercase;
+    font-size: .64rem; color: var(--amber); margin-bottom: 1.15rem;
+  }
+  header h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(2.3rem, 7vw, 4.4rem);
+    letter-spacing: .13em; text-transform: uppercase;
+    color: var(--bone); line-height: 1.05;
+    text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(170,185,205,.14), 0 0 80px rgba(212,175,55,.2);
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  @keyframes glow-pulse {
+    0%, 100% { text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(170,185,205,.14), 0 0 80px rgba(212,175,55,.2); }
+    50% { text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(170,185,205,.14), 0 0 120px rgba(212,175,55,.35); }
+  }
+  header .subtitle {
+    font-family: var(--label); font-size: .7rem;
+    letter-spacing: .4em; text-indent: .4em; text-transform: uppercase;
+    color: var(--stone); margin-top: 1rem;
+  }
+  header p.sub { margin-top: 1.25rem; color: var(--muted); font-size: 1.14rem; font-style: italic; }
+  .ornament {
+    margin: 1.9rem auto 0; width: min(360px, 70%); height: 2px;
+    background: linear-gradient(90deg, transparent, var(--edge-str) 20%, var(--amber) 50%, var(--edge-str) 80%, transparent);
+    position: relative;
+    box-shadow: 0 0 20px rgba(212,175,55,.3), 0 0 40px rgba(212,175,55,.1);
+  }
+  .ornament .gem { 
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--amber-b);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 12px rgba(227,182,98,.8);
+  }
+  .ornament .gem:nth-child(1) { left: 15%; }
+  .ornament .gem:nth-child(2) { left: 50%; transform: translateX(-50%) translateY(-50%); }
+  .ornament .gem:nth-child(3) { right: 15%; }
+
+  /* ---------- Controls ---------- */
+  .controls {
+    position: sticky; top: var(--navh); z-index: 50;
+    background: rgba(6,8,11,.97);
+    border-top: 1px solid var(--edge); 
+    border-bottom: 2px solid var(--edge);
+    padding: .95rem 1rem .85rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,.5), inset 0 1px 0 rgba(212,175,55,.1);
+  }
+  .controls-inner { max-width: 1140px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: .9rem 2.2rem; align-items: center; justify-content: center; }
+  .ctl { display: flex; align-items: center; gap: .65rem; }
+  .ctl label { font-family: var(--label); font-size: .62rem; letter-spacing: .24em; text-transform: uppercase; color: var(--amber); white-space: nowrap; }
+  #search {
+    background: rgba(8,10,14,.9); border: 1px solid var(--edge); border-radius: 2px;
+    color: var(--ink); font-family: var(--body); font-size: 1.04rem;
+    padding: .45rem .8rem; width: min(290px, 64vw); outline: none; transition: border-color .2s;
+  }
+  #search:focus { 
+    border-color: var(--amber); 
+    box-shadow: 0 0 12px rgba(192,138,46,.3), inset 0 0 8px rgba(192,138,46,.1);
+  }
+  #search::placeholder { color: #5a626e; font-style: italic; }
+  select#progress {
+    background: rgba(8,10,14,.9); border: 1px solid var(--edge); border-radius: 2px;
+    color: var(--ink); font-family: var(--body); font-size: 1rem; padding: .42rem .6rem; outline: none; max-width: 62vw;
+  }
+  select#progress:focus { 
+    border-color: var(--amber); 
+    box-shadow: 0 0 12px rgba(192,138,46,.3), inset 0 0 8px rgba(192,138,46,.1);
+  }
+  select#progress option { background: #11141a; }
+  .toggle { display: inline-flex; align-items: center; gap: .6rem; cursor: pointer; user-select: none; }
+  .toggle input { display: none; }
+  .toggle .track { width: 42px; height: 21px; border-radius: 999px; background: rgba(190,202,218,.08); border: 1px solid var(--edge); position: relative; transition: background .2s; flex: none; }
+  .toggle .track::after { content: ""; position: absolute; top: 2px; left: 2px; width: 15px; height: 15px; border-radius: 50%; background: var(--muted); transition: transform .2s, background .2s; }
+  .toggle input:checked + .track { background: rgba(192,138,46,.26); }
+  .toggle input:checked + .track::after { transform: translateX(21px); background: var(--amber-b); }
+  .toggle .tlabel { font-size: 1rem; color: var(--muted); font-style: italic; }
+  .note-bar { text-align: center; font-size: .96rem; color: var(--muted); padding: .7rem 1rem 0; font-style: italic; }
+
+  /* ---------- Book sections ---------- */
+  main { max-width: 1140px; margin: 0 auto; padding: 1.6rem 1.2rem 5rem; }
+  section.book { margin-top: 4rem; }
+  .book-head { 
+    display: flex; 
+    align-items: baseline; 
+    gap: 1.2rem; 
+    flex-wrap: wrap; 
+    border-bottom: 2px solid var(--edge); 
+    padding-bottom: 1rem;
+    position: relative;
+  }
+  .book-head::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--amber) 20%, var(--amber) 80%, transparent);
+    opacity: 0.6;
+  }
+  .book-idx { font-family: var(--display); font-size: 1.3rem; color: var(--amber); line-height: 1; }
+  .book-head h2 { font-family: var(--display); font-weight: 700; font-size: clamp(1.35rem, 3.2vw, 2rem); letter-spacing: .1em; text-transform: uppercase; color: var(--bone); flex: 1; line-height: 1.12; }
+  .book-head .year { font-family: var(--label); color: var(--muted); font-size: .64rem; letter-spacing: .2em; }
+  .book-blurb { color: var(--muted); font-size: 1.14rem; font-style: italic; margin: 1.1rem 0 1.6rem; max-width: 66ch; line-height: 1.55; }
+
+  .book-synopsis { 
+    max-width:72ch; 
+    margin:0 0 2rem; 
+    text-align:left; 
+    border:1px solid var(--edge); 
+    border-radius:3px; 
+    background:rgba(190,202,218,.025); 
+    overflow:hidden;
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .book-synopsis:hover {
+    border-color: var(--amber);
+    box-shadow: 0 0 20px rgba(192,138,46,.15), inset 0 0 15px rgba(192,138,46,.05);
+  }
+  .book-synopsis summary { cursor:pointer; list-style:none; padding:.9rem 1.2rem; display:flex; align-items:baseline; gap:.7rem; }
+  .book-synopsis summary::-webkit-details-marker { display:none; }
+  .book-synopsis summary::before { content:"\25B8"; color:var(--amber); transition:transform .2s; align-self:center; }
+  .book-synopsis[open] summary::before { transform:rotate(90deg); }
+  .book-synopsis .syn-title { font-family:var(--label); font-size:.64rem; letter-spacing:.2em; text-transform:uppercase; color:var(--amber-b); }
+  .book-synopsis .syn-hint { font-family:var(--body); font-style:italic; font-size:1rem; color:var(--muted); margin-left:auto; }
+  .book-synopsis .syn-body { padding:0 1.4rem 1.2rem; border-top:1px solid var(--edge); }
+  .book-synopsis .syn-body p { color:var(--ink); font-size:1.1rem; line-height:1.64; margin-top:.9rem; }
+  @media (max-width:520px){ .book-synopsis .syn-hint { display:none; } }
+  .book-recap { max-width:66ch; margin:0 0 2rem; font-size:1.04rem; line-height:1.5; }
+  .book-recap .recap-label { font-family:var(--label); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--amber-b); margin-right:.55rem; }
+
+  /* awaiting-details state for a brand-new book */
+  .book-pending {
+    max-width:72ch; margin:.4rem 0 1rem; padding:1.15rem 1.3rem;
+    border:1px dashed var(--edge-str); border-radius:3px; background:rgba(190,202,218,.02);
+    color:var(--muted); font-size:1.06rem; line-height:1.6; font-style:italic;
+  }
+  .book-pending strong { font-family:var(--label); font-style:normal; font-size:.64rem; letter-spacing:.2em; text-transform:uppercase; color:var(--amber-b); display:block; margin-bottom:.45rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(186px, 1fr)); gap: 1.15rem; }
+
+  /* ---------- Cards ---------- */
+  .card {
+    position: relative;
+    background: linear-gradient(170deg, var(--panel), var(--panel2));
+    border: 1px solid var(--edge); border-radius: 3px;
+    padding: 2rem 1rem 1.5rem; text-align: center; cursor: pointer;
+    transition: transform .18s, border-color .25s, box-shadow .25s, background .3s;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(212,175,55,.1), transparent 70%);
+    opacity: 0;
+    transition: opacity .3s;
+    pointer-events: none;
+  }
+  .card::after { content: ""; position: absolute; top: 0; left: 0; width: 15px; height: 15px; border-top: 1px solid var(--amber); border-left: 1px solid var(--amber); opacity: .35; transition: opacity .25s; }
+  .card:hover { transform: translateY(-6px); border-color: var(--amber-b); box-shadow: 0 18px 44px rgba(0,0,0,.7), 0 0 30px rgba(212,175,55,.25), inset 0 0 20px rgba(212,175,55,.08); }
+  .card:hover::before { opacity: 1; }
+  .card:hover::after { opacity: 1; }
+  .card .idx { position: absolute; top: .8rem; right: 1rem; font-family: var(--display); font-size: .8rem; color: var(--amber); opacity: .7; }
+  .pic-wrap { display: block; width: fit-content; margin: 0 auto 1.15rem; position: relative; }
+  .pic-wrap::before { 
+    content: ""; 
+    position: absolute; 
+    inset: -7px; 
+    border-radius: 50%; 
+    border: 2px solid rgba(192,138,46,.22); 
+    transition: border-color .25s, box-shadow .25s;
+    box-shadow: 0 0 0 1px rgba(212,175,55,.1);
+  }
+  .card:hover .pic-wrap::before { 
+    border-color: rgba(227,182,98,.8); 
+    box-shadow: 0 0 20px rgba(212,175,55,.4), inset 0 0 15px rgba(212,175,55,.15);
+  }
+  .pic { display: block; width: 128px; height: 128px; border-radius: 50%; overflow: hidden; border: 1px solid var(--edge-str); position: relative; background: #0a0c10; }
+  .pic svg { width: 100%; height: 100%; display: block; }
+  .pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s; filter: grayscale(.25) contrast(1.05); }
+  .pic img.custom { opacity: 1; }
+  .card h3 { font-family: var(--display); font-weight: 600; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bone); line-height: 1.55; overflow-wrap: break-word; }
+  .card h3 mark { background: rgba(192,138,46,.3); color: var(--amber-b); border-radius: 2px; padding: 0 2px; }
+  .card .role { font-family: var(--body); font-size: 1.02rem; color: var(--stone); font-style: italic; margin-top: .3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* ---------- Spoiler ---------- */
+  .spoiler { position: relative; cursor: pointer; }
+  body.shield-on .spoiler:not(.revealed) {
+    display: inline-block; color: transparent;
+    background: repeating-linear-gradient(45deg, #171b22, #171b22 6px, #12161c 6px, #12161c 12px);
+    border-radius: 2px; user-select: none;
+  }
+  body.shield-on .spoiler:not(.revealed)::after {
+    content: "spoiler \2014 tap to reveal";
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: var(--amber-b); font-family: var(--body); font-style: italic; font-size: .84rem; white-space: nowrap;
+  }
+
+  /* ---------- Modal ---------- */
+  #overlay { position: fixed; inset: 0; z-index: 100; background: rgba(3,4,6,.9); display: none; align-items: flex-start; justify-content: center; padding: 4vh 1rem; overflow-y: auto; }
+  #overlay.open { display: flex; }
+  .modal {
+    background: linear-gradient(172deg, #141821, #080a0e);
+    border: 2px solid var(--edge-str); border-radius: 4px;
+    max-width: 640px; width: 100%; padding: 2rem 1.9rem 2.1rem; position: relative;
+    box-shadow: 0 28px 80px rgba(0,0,0,.85), 0 0 40px rgba(212,175,55,.15), inset 0 0 30px rgba(212,175,55,.05);
+  }
+  .modal .close { position: absolute; top: 1rem; right: 1.1rem; background: none; border: none; color: var(--muted); font-size: 1.3rem; cursor: pointer; font-family: var(--body); }
+  .modal .close:hover { color: var(--amber-b); }
+  .modal-head { display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; }
+  .modal-head .pic-wrap { margin: 0; }
+  .modal-head .pic { width: 116px; height: 116px; }
+  .modal-head h2 { font-family: var(--display); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--bone); font-size: 1.38rem; line-height: 1.2; }
+  .modal .say { font-family: var(--body); font-style: italic; color: var(--stone); font-size: 1rem; margin-top: .3rem; }
+  .modal-head .aka { color: var(--muted); font-style: italic; font-size: 1rem; margin-top: .35rem; }
+  .modal-head .aff { font-family: var(--label); color: var(--amber-b); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; margin-top: .5rem; }
+  .modal .desc { margin-top: 1.25rem; line-height: 1.62; color: var(--ink); font-size: 1.14rem; }
+  .modal blockquote.quote { margin:1.3rem 0 0; padding:.3rem 0 .3rem 1.1rem; border-left:2px solid var(--amber); color:var(--amber-b); font-style:italic; font-size:1.16rem; line-height:1.5; }
+  .modal blockquote.quote cite { display:block; margin-top:.5rem; font-style:normal; font-family:var(--label); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+  .modal h4 { margin-top: 1.6rem; font-family: var(--label); font-weight: 400; font-size: .62rem; letter-spacing: .26em; text-indent: .26em; text-transform: uppercase; color: var(--amber); text-align: center; }
+  .h4-divider { margin: .6rem auto 1.05rem; width: 66%; height: 1px; background: linear-gradient(90deg, transparent, var(--edge-str), transparent); font-size: 0; color: transparent; }
+  .modal .app-row { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
+  .modal .app-row::before { content: "\2756"; position: absolute; left: 0; top: .1rem; color: var(--amber); font-size: .7rem; }
+  .modal .app-book { font-family: var(--label); font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bone-dim); }
+  .modal .app-note { font-size: 1.08rem; color: var(--muted); margin-top: .25rem; line-height: 1.55; }
+  .modal .hidden-note { margin-top: 1.1rem; color: var(--muted); font-size: .96rem; text-align: center; font-style: italic; }
+  .modal .connections { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .modal .conn { font-family: var(--body); font-size: 1rem; color: var(--ink); background: rgba(190,202,218,.04); border: 1px solid var(--edge); border-radius: 2px; padding: .32rem .8rem; transition: border-color .2s, color .2s; }
+  .modal .conn[data-id] { cursor: pointer; }
+  .modal .conn[data-id]:hover { border-color: var(--amber); color: var(--amber-b); }
+  .modal .conn .rel { color: var(--muted); font-style: italic; }
+
+  .empty-msg { text-align: center; color: var(--muted); padding: 3rem 1rem; display: none; font-size: 1.1rem; font-style: italic; }
+  footer { text-align: center; color: #5a626e; font-size: .95rem; font-family: var(--body); font-style: italic; padding: 2.6rem 1rem 3.4rem; line-height: 1.75; }
+  footer em { color: var(--amber); font-style: normal; }
+
+  /* ---------- Parallax ---------- */
+  #parallax { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  #parallax .plx { position: absolute; will-change: transform; }
+  #parallax svg { display: block; }
+  header, main, .empty-msg, footer { position: relative; z-index: 1; }
+  @media (prefers-reduced-motion: reduce) { #parallax .plx { transform: none !important; } }
+
+  @media (max-width: 430px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+    .pic { width: 104px; height: 104px; }
+    .card { padding: 1.6rem .6rem 1.2rem; }
+  }
+</style>
+</head>
+<body class="shield-on">
+
+
+<div id="parallax" aria-hidden="true">
+  <!-- wing of dragons, upper right -->
+  <div class="plx" data-speed="0.07" style="top:4vh; right:2vw;">
+    <svg viewBox="0 0 620 420" style="width:58vmin;height:auto;min-width:320px;">
+      <g transform="translate(300 10) scale(0.85)"><g fill="#0d1117" opacity="0.55" transform="scale(1)">
+        <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
+        <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
+        <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
+        <path d="M106 38 C86 31 58 27 20 31 C33 37 47 45 59 55 C49 55 39 57 29 61 C43 64 57 70 69 78 C61 80 53 84 47 90 C61 88 76 88 88 92 C96 85 102 75 106 64 Z"/>
+        <path d="M114 38 C134 31 162 27 200 31 C187 37 173 45 161 55 C171 55 181 57 191 61 C177 64 163 70 151 78 C159 80 167 84 173 90 C159 88 144 88 132 92 C124 85 118 75 114 64 Z"/>
+      </g></g>
+      <g transform="translate(90 120) scale(0.55)"><g fill="#0d1117" opacity="0.4" transform="scale(1)">
+        <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
+        <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
+        <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
+        <path d="M106 38 C86 31 58 27 20 31 C33 37 47 45 59 55 C49 55 39 57 29 61 C43 64 57 70 69 78 C61 80 53 84 47 90 C61 88 76 88 88 92 C96 85 102 75 106 64 Z"/>
+        <path d="M114 38 C134 31 162 27 200 31 C187 37 173 45 161 55 C171 55 181 57 191 61 C177 64 163 70 151 78 C159 80 167 84 173 90 C159 88 144 88 132 92 C124 85 118 75 114 64 Z"/>
+      </g></g>
+      <g transform="translate(400 210) scale(0.38)"><g fill="#0d1117" opacity="0.3" transform="scale(1)">
+        <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
+        <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
+        <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
+        <path d="M106 38 C86 31 58 27 20 31 C33 37 47 45 59 55 C49 55 39 57 29 61 C43 64 57 70 69 78 C61 80 53 84 47 90 C61 88 76 88 88 92 C96 85 102 75 106 64 Z"/>
+        <path d="M114 38 C134 31 162 27 200 31 C187 37 173 45 161 55 C171 55 181 57 191 61 C177 64 163 70 151 78 C159 80 167 84 173 90 C159 88 144 88 132 92 C124 85 118 75 114 64 Z"/>
+      </g></g>
+      <g transform="translate(210 290) scale(0.22)"><g fill="#0d1117" opacity="0.22" transform="scale(1)">
+        <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
+        <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
+        <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
+        <path d="M106 38 C86 31 58 27 20 31 C33 37 47 45 59 55 C49 55 39 57 29 61 C43 64 57 70 69 78 C61 80 53 84 47 90 C61 88 76 88 88 92 C96 85 102 75 106 64 Z"/>
+        <path d="M114 38 C134 31 162 27 200 31 C187 37 173 45 161 55 C171 55 181 57 191 61 C177 64 163 70 151 78 C159 80 167 84 173 90 C159 88 144 88 132 92 C124 85 118 75 114 64 Z"/>
+      </g></g>
+    </svg>
+  </div>
+  <!-- lone dragon banking, left -->
+  <div class="plx" data-speed="0.2" style="top:62vh; left:-2vw;">
+    <svg viewBox="0 0 240 170" style="width:34vmin;height:auto;min-width:200px;">
+      <g transform="rotate(-14 110 80)"><g fill="#0e1218" opacity="0.42" transform="scale(1)">
+        <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
+        <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
+        <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
+        <path d="M106 38 C86 31 58 27 20 31 C33 37 47 45 59 55 C49 55 39 57 29 61 C43 64 57 70 69 78 C61 80 53 84 47 90 C61 88 76 88 88 92 C96 85 102 75 106 64 Z"/>
+        <path d="M114 38 C134 31 162 27 200 31 C187 37 173 45 161 55 C171 55 181 57 191 61 C177 64 163 70 151 78 C159 80 167 84 173 90 C159 88 144 88 132 92 C124 85 118 75 114 64 Z"/>
+      </g></g>
+    </svg>
+  </div>
+  <!-- mist band -->
+  <div class="plx" data-speed="0.12" style="top:118vh; left:0; width:100%;">
+    <svg viewBox="0 0 1200 180" preserveAspectRatio="none" style="width:100%;height:22vmin;">
+      <defs><linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#9fb0c4" stop-opacity="0"/>
+        <stop offset="55%" stop-color="#9fb0c4" stop-opacity=".07"/>
+        <stop offset="100%" stop-color="#9fb0c4" stop-opacity="0"/>
+      </linearGradient></defs>
+      <rect width="1200" height="180" fill="url(#mist)"/>
+    </svg>
+  </div>
+  <!-- the citadel and the parapet, lower band -->
+  <div class="plx" data-speed="0.3" style="top:150vh; left:0; width:100%;">
+    <svg viewBox="0 0 1200 340" preserveAspectRatio="xMidYMax meet" style="width:100%;height:auto;">
+      <g fill="#0b0e13" opacity=".92">
+        <!-- left cliff -->
+        <path d="M0 340 L0 150 L58 136 L104 158 L150 142 L196 178 L228 212 L250 340 Z"/>
+        <!-- right cliff -->
+        <path d="M980 340 L962 196 L1004 164 L1054 182 L1104 150 L1158 168 L1200 150 L1200 340 Z"/>
+      </g>
+      <!-- towers on the left cliff -->
+      <g fill="#0b0e13" opacity=".95">
+        <path d="M44 140 L44 74 L52 58 L60 74 L60 140 Z"/>
+        <path d="M74 150 L74 96 L82 82 L90 96 L90 150 Z"/>
+        <path d="M112 160 L112 60 L122 42 L132 60 L132 160 Z"/>
+        <rect x="96" y="112" width="52" height="54"/>
+      </g>
+      <!-- towers on the right cliff -->
+      <g fill="#0b0e13" opacity=".95">
+        <path d="M1032 170 L1032 104 L1040 88 L1048 104 L1048 170 Z"/>
+        <path d="M1094 156 L1094 100 L1102 84 L1110 100 L1110 156 Z"/>
+        <rect x="1046" y="128" width="48" height="48"/>
+      </g>
+      <!-- the parapet bridge -->
+      <g stroke="#0b0e13" fill="none" stroke-width="7" opacity=".95">
+        <path d="M250 206 L980 206"/>
+      </g>
+      <g stroke="#131922" fill="none" stroke-width="3" opacity=".9">
+        <path d="M280 208 Q615 288 950 208"/>
+        <path d="M360 214 L360 238 M470 222 L470 254 M615 228 L615 262 M760 222 L760 254 M870 214 L870 238"/>
+      </g>
+      <!-- candle glow -->
+      <g fill="#c08a2e" opacity=".5">
+        <circle cx="121" cy="128" r="1.7"/><circle cx="83" cy="124" r="1.4"/>
+        <circle cx="1040" cy="146" r="1.5"/><circle cx="1101" cy="140" r="1.3"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<header>
+  <div class="mark">
+    <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#e2dccf" opacity="0.95" transform="scale(1)">
+        <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
+        <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
+        <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
+        <path d="M106 38 C86 31 58 27 20 31 C33 37 47 45 59 55 C49 55 39 57 29 61 C43 64 57 70 69 78 C61 80 53 84 47 90 C61 88 76 88 88 92 C96 85 102 75 106 64 Z"/>
+        <path d="M114 38 C134 31 162 27 200 31 C187 37 173 45 161 55 C171 55 181 57 191 61 C177 64 163 70 151 78 C159 80 167 84 173 90 C159 88 144 88 132 92 C124 85 118 75 114 64 Z"/>
+      </g></svg>
+  </div>
+  <div class="eyebrow">The Empyrean</div>
+  <h1>Fourth Wing</h1>
+  <div class="subtitle">The Character Guide</div>
+  <p class="sub">Every rider, dragon, and traitor at Basgiath War College — book by book, spoiler-safe.</p>
+  <div class="ornament"><span class="gem"></span></div>
+</header>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="ctl">
+      <label for="search">Search</label>
+      <input id="search" type="search" placeholder="Name, dragon, signet, quadrant…">
+    </div>
+    <div class="ctl">
+      <label for="progress">Book</label>
+      <select id="progress"></select>
+    </div>
+    <label class="toggle ctl">
+      <input type="checkbox" id="shield" checked>
+      <span class="track"></span>
+      <span class="tlabel">Blur twists &amp; deaths</span>
+    </label>
+  </div>
+  <div class="note-bar">Showing one book at a time. Names, titles, and notes stay spoiler-safe for the selected book — some characters aren't who they first appear to be…</div>
+</div>
+
+<main id="main"></main>
+<div class="empty-msg" id="empty">No characters match your search in this book.</div>
+
+<footer>
+  Within each book, characters are ordered by how much of the story they appear in.<br>
+  Click any character for their full profile, connections, and story-by-story appearances.<br>
+  Pronunciations are approximations, not official.<br>
+  A fan-made guide — The Empyrean © Rebecca Yarros / Entangled Publishing.
+</footer>
+
+<div id="overlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="close" aria-label="Close">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   DATA
+   ========================================================= */
+const BOOKS = [
+  { id:'fw', num:'#1', title:'Fourth Wing', year:2023,
+    blurb:"Twenty-year-old Violet Sorrengail was raised to be a scribe — until her general mother ordered her into the deadliest quadrant at Basgiath War College, where cadets who fail to bond a dragon don’t wash out. They die." },
+  { id:'ironflame', num:'#2', title:'Iron Flame', year:2023,
+    blurb:"Violet survived her first year and the secrets that came with it. Now a brutal new regime runs Basgiath, every lesson is a trap, and the war Navarre swore didn’t exist is pressing in from every border." },
+  { id:'onyx', num:'#3', title:'Onyx Storm', year:2025,
+    blurb:"With the wards failing and the venin spreading, Violet must cross unmapped seas in search of allies, answers, and a power old enough to matter — and decide what she will spend to save everyone she loves." },
+  { id:'threshing', num:'#4', title:'Threshing Day', year:2026,
+    blurb:"The fourth book in Rebecca Yarros’s Empyrean series.",
+    pending:"Synopsis and character entries for Threshing Day are still being written — this section will fill in like the others." },
+];
+const IDX = Object.fromEntries(BOOKS.map((b,i)=>[b.id,i]));
+
+/* Character records. Portraits fall back to a monogram; drop images/<id>.jpg beside this page to override. */
+const CHARACTERS = [
+  {
+    id:'violet', name:'Violet Sorrengail',
+    aliases:[{t:'Violence', from:'fw'}],
+    role:'Rider Cadet', roleReveal:{ from:'fw', role:'Lightning Wielder' },
+    aff:'Navarre — Fourth Wing',
+    desc:'Twenty years old, raised among the scribes and built like glass — hypermobile joints, chronic pain, a body nobody believes can survive the Riders Quadrant. What she has instead is an encyclopedic memory, a genius for poisons, and a flat refusal to die on anyone else’s schedule.',
+    descSpoiler:{ from:'fw', text:'Violet bonds not one dragon but two — the enormous black Tairneanach and the golden feathertail Andarna — and her signet is lightning, the first wielder Navarre has seen in generations.'},
+    books:{
+      fw:{ p:99, n:'Ordered onto the parapet by her own mother, Violet spends a year outlasting cadets twice her size — and pulling at the threads of what Navarre has been hiding about its war.', s:'She bonds Tairn and Andarna, manifests lightning, and at Resson learns the truth: venin and wyvern are real, the leadership has been lying for generations, and her brother Brennan is alive at Aretia.' },
+      ironflame:{ p:99, n:'Back at Basgiath under a vicious new command, Violet trains, lies, and steals her way toward the proof the leadership is burying — at a brutal personal cost.', s:'She survives Varrish’s interrogations, exposes the wardstone scheme, and ends the book pouring her own power into re-forging the wards as Basgiath falls under attack.' },
+      onyx:{ p:99, n:'With the wards failing and allies scarce, Violet sails past the edge of the map hunting the power — and the people — who might actually turn this war.', s:'The search for allies among the isles brings revelations about the dragons’ oldest history, and costs her far more than she budgeted for.' },
+    }
+  },
+  {
+    id:'xaden', name:'Xaden Riorson',
+    role:'Wingleader', aff:'Navarre — Fourth Wing / Tyrrendor',
+    desc:'Son of the executed rebel leader Fen Riorson, the rebellion’s relic inked across his back, wingleader of the Fourth Wing. Lethal, unreadable, and bound by oaths he never explains — least of all to the daughter of the general who executed his father.',
+    descSpoiler:{ from:'fw', text:'Behind the threats and the shadows, Xaden has been quietly running a rebellion out of Aretia — and his dragon’s mating bond with Tairn chains him to Violet whether either of them wants it.'},
+    books:{
+      fw:{ p:84, n:'The wingleader with every reason to want a Sorrengail dead — who keeps, inexplicably, refusing to let her die.', s:'He reveals the rebellion at Aretia, his shadow signet, and that protecting Violet has been his assignment and his choice both.' },
+      ironflame:{ p:84, n:'Separated from Violet by distance, duty, and a mating bond that affords them no privacy, Xaden fights the war on fronts she cannot see.', s:'To save her and hold the line, he channels — and confesses in the closing pages that he is turning venin, the book’s gut-punch ending.' },
+      onyx:{ p:82, n:'Living with what he did to survive, Xaden hides the cost from almost everyone while the war demands more of him.', s:'Concealing his turning strains every bond he has left, and the price of that secret keeps climbing.' },
+    }
+  },
+  {
+    id:'tairn', name:'Tairneanach', aliases:[{t:'Tairn'}],
+    role:'Black Morningstartail', aff:'The Empyrean',
+    desc:'An enormous, ancient black dragon with a temper like a thunderhead and no patience whatsoever for human drama. Mated to Sgaeyl — a fact that makes his rider’s life considerably more complicated than she would like.',
+    books:{
+      fw:{ p:60, n:'The dragon no one expected to bond again chooses the smallest cadet on the field, and spends the year growling her through it.' },
+      ironflame:{ p:52, n:'Tairn carries Violet through a year of impossible flights, and makes his opinion of her commanders very clear.' },
+      onyx:{ p:52, n:'Across unknown seas, Tairn is the one constant at Violet’s back.' },
+    }
+  },
+  {
+    id:'andarna', name:'Andarna',
+    role:'Feathertail Dragon', aff:'The Empyrean',
+    desc:'A golden feathertail far too young to bond by every law the dragons keep — who chooses Violet anyway. Small, imperious, endlessly curious, and able to stop time itself for a handful of heartbeats.',
+    descSpoiler:{ from:'onyx', text:'Andarna is no ordinary feathertail. She is the last of an older kind of dragon, and what she grows into rewrites what Navarre thought it knew about the Empyrean.'},
+    books:{
+      fw:{ p:40, n:'The impossible second bond — a feathertail who shouldn’t have chosen anyone, least of all a dying girl on a cliffside.' },
+      ironflame:{ p:30, n:'Sleeping through a growth no one can explain, Andarna is changing in ways the dragons won’t discuss.' },
+      onyx:{ p:46, n:'Andarna comes into her inheritance, and it changes the shape of the war.', s:'Revealed as the last of the irids, she can take forms no living dragon can — and her kind’s absence is its own buried history.' },
+    }
+  },
+  {
+    id:'sgaeyl', name:'Sgaeyl',
+    role:'Blue Daggertail', aff:'The Empyrean',
+    desc:'Xaden’s blue daggertail — faster and meaner than almost anything in the sky, and mated to Tairn, a bond that drags their riders into each other’s orbit whether or not they can stand it.',
+    books:{
+      fw:{ p:26, n:'The mating bond between Sgaeyl and Tairn forces Violet and Xaden together from the first week.' },
+      ironflame:{ p:30, n:'Separation strains the mated pair — and through them, their riders.' },
+      onyx:{ p:26, n:'Sgaeyl flies at the center of every fight that matters.' },
+    }
+  },
+  {
+    id:'rhiannon', name:'Rhiannon Matthias',
+    role:'Rider Cadet', aff:'Navarre — Fourth Wing',
+    desc:'Violet’s first real friend in the quadrant and the steadiest head in their squad — a natural leader who treats loyalty as a decision she makes every day, bonded to the dragon Feirge.',
+    books:{
+      fw:{ p:36, n:'The friend who decides on day one that Violet is worth keeping alive, and never wavers.' },
+      ironflame:{ p:36, n:'Rhiannon steps into real command, and proves she was always built for it.' },
+      onyx:{ p:34, n:'One of the few people Violet can tell the whole truth to.' },
+    }
+  },
+  {
+    id:'ridoc', name:'Ridoc Gamlyn',
+    role:'Rider Cadet', aff:'Navarre — Fourth Wing',
+    desc:'The squad’s relentless comedian, who jokes hardest when things are at their worst — and is a far better rider than he will ever admit out loud.',
+    books:{
+      fw:{ p:28, n:'Comic relief with a blade, and one of the squad’s most quietly capable fliers.' },
+      ironflame:{ p:28, n:'The humor gets darker as the year does, but he keeps the squad standing.' },
+      onyx:{ p:26, n:'Still cracking jokes somewhere over open water.' },
+    }
+  },
+  {
+    id:'sawyer', name:'Sawyer Henrick',
+    role:'Rider Cadet', aff:'Navarre — Fourth Wing',
+    desc:'A steady, red-haired rider in Violet’s squad whose signet bends metal — iron, steel, and anything else that will listen — to his will.',
+    books:{
+      fw:{ p:22, n:'Squadmate and friend, with a signet for moving metal.' },
+      ironflame:{ p:22, n:'A hard year leaves its mark on him as much as anyone.' },
+      onyx:{ p:18, n:'Still flying with the squad that started it all.' },
+    }
+  },
+  {
+    id:'liam', name:'Liam Mairi',
+    role:'Rider Cadet', aff:'Navarre — Fourth Wing',
+    desc:'A golden, impossibly good-natured marked one assigned to keep Violet breathing — and the closest thing to an unconditional friend she finds inside the quadrant.',
+    books:{
+      fw:{ p:34, n:'Assigned to shadow Violet, Liam becomes the friend she never expected and trusts most.', s:'He is killed at Resson shielding her from the wyvern — the loss that hardens Violet and haunts every book after.' },
+      ironflame:{ p:6, n:'Gone, and everywhere: in Violet’s guilt, and in the sister he left behind.' },
+    }
+  },
+  {
+    id:'dain', name:'Dain Aetos',
+    role:'Squad Leader', aff:'Navarre — Fourth Wing',
+    desc:'Violet’s childhood best friend and her squad leader — rule-bound, relentlessly protective, and able to read a person’s memories with a touch of his hands.',
+    descSpoiler:{ from:'fw', text:'Dain’s protectiveness curdles into control: he uses his signet on Violet without consent and takes what he learns to command, a betrayal that costs lives.'},
+    books:{
+      fw:{ p:34, n:'The friend who wants Violet out of the quadrant at any price — including her own choices.', s:'He reads her memories and reports to his father, setting the disaster at Resson in motion.' },
+      ironflame:{ p:24, n:'Dain begins the slow, uncomfortable work of seeing what he has been part of.' },
+      onyx:{ p:20, n:'Changed, and still trying to earn back ground he gave away.' },
+    }
+  },
+  {
+    id:'mira', name:'Mira Sorrengail',
+    role:'Rider — Eastern Wing', aff:'Navarre',
+    desc:'Violet’s fierce older sister, a seasoned rider posted to the front, who taught her that armor and leathers can be made to fit even a body like hers — and that surviving is a craft.',
+    books:{
+      fw:{ p:20, n:'Mira outfits her sister for the quadrant and tells her the truths their mother won’t.' },
+      ironflame:{ p:22, n:'Pulled into the widening war, Mira has to choose between Navarre’s orders and her family.' },
+      onyx:{ p:20, n:'Fighting the war on her own front, and done taking the official version on faith.' },
+    }
+  },
+  {
+    id:'brennan', name:'Brennan Sorrengail',
+    role:'The Dead Sorrengail', roleReveal:{ from:'fw', role:'Mender of Aretia' },
+    aff:'Aretia — the revolution',
+    desc:'The Sorrengail brother, killed six years ago at Aretia — or so Navarre has told everyone, including his own family, ever since.',
+    descSpoiler:{ from:'fw', text:'Brennan is alive: a mender strong enough to have survived his own death, running the revolution out of Aretia alongside Xaden while his mother mourns a lie.'},
+    books:{
+      fw:{ p:14, n:'A dead brother whose name the Sorrengails no longer say aloud.', s:'He is alive at Aretia — the book’s final, world-tilting reveal.' },
+      ironflame:{ p:26, n:'Brennan works to keep the revolution and his sister alive, usually in that order.' },
+      onyx:{ p:22, n:'A mender, a leader, and the sibling Violet can actually argue with.' },
+    }
+  },
+  {
+    id:'lilith', name:'General Lilith Sorrengail',
+    role:'Commanding General', aff:'Navarre — Basgiath',
+    desc:'Commanding general of Basgiath and Violet’s mother — a woman who sent her fragile daughter onto the parapet and called it love, and who has spent a career enforcing the story Navarre needs told.',
+    books:{
+      fw:{ p:20, n:'The mother who orders her scribe-raised daughter into the Riders Quadrant and refuses to explain why.' },
+      ironflame:{ p:22, n:'Lilith’s loyalties to Navarre and to her children finally collide.' },
+      onyx:{ p:16, n:'What she chose, and what it cost, sits over everything.' },
+    }
+  },
+  {
+    id:'imogen', name:'Imogen Cardulo',
+    role:'Rider — Marked One', aff:'Navarre — Fourth Wing / Tyrrendor',
+    desc:'A pink-haired marked one with a short fuse and a very long memory, ferociously loyal to the rebellion’s orphaned children and deeply unimpressed by Violet at the start.',
+    books:{
+      fw:{ p:16, n:'One of the marked ones who would rather Violet had never crossed the parapet.' },
+      ironflame:{ p:20, n:'Hostility thaws into something like fierce, prickly friendship.' },
+      onyx:{ p:18, n:'Still furious, still loyal, still exactly who you want in a fight.' },
+    }
+  },
+  {
+    id:'bodhi', name:'Bodhi Durran',
+    role:'Rider — Marked One', aff:'Navarre / Tyrrendor',
+    desc:'Xaden’s cousin and one of the marked ones — watchful, steady, and shoulder-deep in the rebellion’s business long before anyone asks Violet’s opinion of it.',
+    books:{
+      fw:{ p:12, n:'One of Xaden’s inner circle among the marked ones.' },
+      ironflame:{ p:16, n:'Bodhi carries more of the rebellion’s weight as the war widens.' },
+      onyx:{ p:16, n:'Family, and one of the few Xaden trusts without qualification.' },
+    }
+  },
+  {
+    id:'garrick', name:'Garrick Tavis',
+    role:'Rider', aff:'Navarre — Fourth Wing / Tyrrendor',
+    desc:'Xaden’s closest friend and one of the deadliest riders at Basgiath — as loyal as he is laconic, and far funnier than his reputation suggests.',
+    books:{
+      fw:{ p:14, n:'Xaden’s right hand, and an instructor Violet learns not to underestimate.' },
+      ironflame:{ p:18, n:'Garrick stays at Xaden’s shoulder through every bad decision the year offers.' },
+      onyx:{ p:18, n:'Still there, still steady.' },
+    }
+  },
+  {
+    id:'jesinia', name:'Jesinia Neilwart',
+    role:'Scribe', aff:'Navarre — the Archives',
+    desc:'A scribe of the archives and Violet’s friend since childhood, deaf and fluent in sign — and far braver with forbidden books than her quadrant’s rules allow.',
+    books:{
+      fw:{ p:10, n:'The friend in the archives who starts quietly finding Violet the texts she shouldn’t have.' },
+      ironflame:{ p:18, n:'Jesinia risks her place — and more — to get Violet the truth in writing.' },
+      onyx:{ p:16, n:'The archives’ conscience, and one of the war’s unlikeliest assets.' },
+    }
+  },
+  {
+    id:'sloane', name:'Sloane Mairi',
+    role:'Rider Cadet — Marked One', aff:'Navarre — Fourth Wing',
+    desc:'Liam’s younger sister, who arrives at Basgiath carrying grief, fury, and a grudge against the girl her brother died protecting.',
+    books:{
+      ironflame:{ p:20, n:'Sloane crosses the parapet in her brother’s shadow, and makes Violet earn every inch of forgiveness.' },
+      onyx:{ p:18, n:'Growing into her own power, and her own grief.' },
+    }
+  },
+  {
+    id:'cat', name:'Catriona Cordella', aliases:[{t:'Cat'}],
+    role:'Gryphon Flier', aff:'Poromiel',
+    desc:'A gryphon flier of Poromiel with a glacial manner and a prior claim on Xaden — proud, prickly, and not wrong about as much as Violet would like her to be.',
+    books:{
+      ironflame:{ p:22, n:'Xaden’s former betrothed arrives among the fliers, and the ground shifts.' },
+      onyx:{ p:18, n:'An ally of necessity who keeps proving more complicated than her introduction.' },
+    }
+  },
+  {
+    id:'aaric', name:'Aaric Graycastle',
+    role:'Rider Cadet', roleReveal:{ from:'ironflame', role:'Prince of Navarre' },
+    aff:'Navarre',
+    desc:'A cadet who keeps his head down, his marks respectable, and his family name firmly out of his mouth.',
+    descSpoiler:{ from:'ironflame', text:'He is the king’s youngest son, hiding in the quadrant under half a name rather than accept the throne’s protection — and he has his own reasons for wanting the truth about the war.'},
+    books:{
+      ironflame:{ p:14, n:'The quiet cadet whose identity turns out to matter enormously.', s:'Revealed as a prince of Navarre, choosing the quadrant over the palace.' },
+      onyx:{ p:18, n:'A royal with a rider’s loyalties, which makes him useful and dangerous in equal measure.' },
+    }
+  },
+  {
+    id:'jack', name:'Jack Barlowe',
+    role:'Rider Cadet', aff:'Navarre',
+    desc:'A vicious cadet who decides within a day of Violet’s arrival that she shouldn’t live out the year, and keeps applying himself to the problem.',
+    descSpoiler:{ from:'ironflame', text:'Jack doesn’t stay dead. He returns as venin — living proof of what Navarre’s enemies can make of a rider, and of how much the leadership has hidden.'},
+    books:{
+      fw:{ p:16, n:'Violet’s most committed would-be murderer among her own classmates.' },
+      ironflame:{ p:14, n:'He comes back wrong.', s:'Revealed as venin, he becomes a recurring nightmare rather than a dead bully.' },
+      onyx:{ p:10, n:'Still out there, still wearing a face Violet knows.' },
+    }
+  },
+  {
+    id:'varrish', name:'Major Varrish',
+    role:'Commandant of Riders', aff:'Navarre — Basgiath',
+    desc:'The smiling new authority over Basgiath’s riders, who runs a war college like an interrogation room and enjoys the work far too much.',
+    books:{
+      ironflame:{ p:24, n:'Varrish turns the quadrant into a cage, with Violet as his particular project.', s:'Violet kills him during the assault on Basgiath — one of the year’s few clean satisfactions.' },
+    }
+  },
+  {
+    id:'amber', name:'Amber Mavis',
+    role:'Wingleader', aff:'Navarre — Basgiath',
+    desc:'A wingleader with a grudge, a mean streak, and no intention of letting a Sorrengail finish the year upright.',
+    books:{
+      fw:{ p:10, n:'A senior rider happy to make Violet’s year shorter.' },
+      ironflame:{ p:8, n:'Her hostility finds new and official outlets under the new regime.' },
+    }
+  },
+  {
+    id:'devera', name:'Professor Devera',
+    role:'Rider Instructor', aff:'Navarre — Basgiath',
+    desc:'One of the few professors who appears to want cadets to actually survive — sharp, fair, and quietly standing where the decent people stand.',
+    books:{
+      fw:{ p:10, n:'An instructor who gives Violet a fair shot when few others will.' },
+      ironflame:{ p:12, n:'Devera’s decency gets harder, and more dangerous, to practise.' },
+      onyx:{ p:8, n:'Still one of the good ones.' },
+    }
+  },
+  {
+    id:'carr', name:'Professor Carr',
+    role:'Signet Instructor', aff:'Navarre — Basgiath',
+    desc:'The instructor charged with signets and their limits — fascinated by power, and careless with the cadets he pushes past where they should stop.',
+    books:{
+      fw:{ p:10, n:'The professor who trains Violet’s lightning, with more interest in the signet than the girl.' },
+      ironflame:{ p:12, n:'His appetite for what Violet can do keeps outrunning his concern for what it costs her.' },
+      onyx:{ p:6, n:'Still chasing the limits of other people’s power.' },
+    }
+  },
+  {
+    id:'markham', name:'Professor Markham',
+    role:'Scribe Professor', aff:'Navarre — the Archives',
+    desc:'The scribe who shaped Violet’s education and her understanding of her own history — and who helped write the version of it Navarre wanted her to believe.',
+    books:{
+      fw:{ p:10, n:'Violet’s old mentor from the life she was supposed to have.', s:'He is complicit in the archives’ great lie about the venin and the war.' },
+      ironflame:{ p:10, n:'The cost of a lifetime spent curating the official truth.' },
+    }
+  },
+  {
+    id:'aetos', name:'Colonel Aetos',
+    role:'Colonel — War Council', aff:'Navarre — Basgiath',
+    desc:'Dain’s father and a colonel on the war council: a career spent enforcing the official version of events, and raising a son to do the same.',
+    books:{
+      fw:{ p:10, n:'The colonel whose orders shape — and endanger — Violet’s year.' },
+      ironflame:{ p:12, n:'Deep in the leadership’s decisions as the lies get harder to hold.' },
+      onyx:{ p:6, n:'Still defending the story he helped build.' },
+    }
+  },
+  {
+    id:'nolon', name:'Nolon',
+    role:'Mender', aff:'Navarre — Basgiath',
+    desc:'Basgiath’s senior mender, who has spent decades stitching riders back together and knows better than anyone what this war actually costs.',
+    books:{
+      fw:{ p:8, n:'The mender who keeps putting Violet back together.' },
+      ironflame:{ p:10, n:'His knowledge of menders and their limits matters more than anyone expected.' },
+    }
+  },
+  {
+    id:'feirge', name:'Feirge',
+    role:'Dragon', aff:'The Empyrean',
+    desc:'Rhiannon’s dragon — bonded to one of the steadiest riders in the quadrant, and every bit as formidable.',
+    books:{
+      fw:{ p:10, n:'Bonded to Rhiannon at Threshing.' },
+      ironflame:{ p:10, n:'Flying with Rhiannon through a year of impossible orders.' },
+      onyx:{ p:8, n:'Still in the air beside Tairn.' },
+    }
+  },
+  {
+    id:'aotrom', name:'Aotrom',
+    role:'Dragon', aff:'The Empyrean',
+    desc:'Ridoc’s dragon, who has to put up with rather a lot of jokes.',
+    books:{
+      fw:{ p:8, n:'Bonded to Ridoc at Threshing.' },
+      ironflame:{ p:8, n:'Carrying Ridoc through the year.' },
+      onyx:{ p:6, n:'Still flying with the squad.' },
+    }
+  },
+  {
+    id:'fen', name:'Fen Riorson',
+    role:'Leader of the Rebellion', aff:'Tyrrendor',
+    desc:'Xaden’s father and the leader of the Tyrrish separatist rebellion, executed with the other traitors — the reason the marked ones wear their relics and the reason Riorson is a curse in Navarre.',
+    books:{
+      fw:{ p:8, n:'A dead rebel whose name defines his son’s life.', s:'He was executed by Violet’s mother — the blood between the Sorrengails and the Riorsons.' },
+      ironflame:{ p:6, n:'What he actually believed, and what he actually did, keep getting more complicated.' },
+      onyx:{ p:6, n:'His choices still shaping Tyrrendor’s.' },
+    }
+  },
+  {
+    id:'naolin', name:'Naolin',
+    role:'Rider — Mender', aff:'Navarre',
+    desc:'The rider who burned out his own life channeling to drag Brennan Sorrengail back from death — a cautionary tale told in the quadrant in whispers.',
+    books:{
+      fw:{ p:6, n:'A name attached to the worst thing menders can do.' },
+      ironflame:{ p:6, n:'His end explains more about the war than anyone at Basgiath admits.' },
+    }
+  },
+  {
+    id:'halden', name:'Prince Halden',
+    role:'Crown Prince of Navarre', aff:'Navarre',
+    desc:'The crown prince: raised to the throne, comfortable in it, and rather more invested in Navarre’s official story than in what is actually happening at its borders.',
+    books:{
+      fw:{ p:6, n:'A prince with a history with Mira Sorrengail.' },
+      ironflame:{ p:8, n:'The crown’s priorities and the riders’ survival do not align.' },
+      onyx:{ p:8, n:'Royal politics complicate every alliance Violet tries to build.' },
+    }
+  },
+  {
+    id:'tauri', name:'King Tauri',
+    role:'King of Navarre', aff:'Navarre',
+    desc:'Navarre’s king, who has presided over a century of comfortable silence about what lies beyond the wards.',
+    books:{
+      fw:{ p:5, n:'The distant crown above Basgiath’s chain of command.' },
+      ironflame:{ p:8, n:'The throne’s complicity in the great lie comes into focus.' },
+      onyx:{ p:6, n:'A monarch whose choices keep narrowing everyone else’s.' },
+    }
+  },
+  {
+    id:'theophanie', name:'Theophanie',
+    role:'Venin', aff:'The Barrens',
+    desc:'A venin of terrible age and appetite, who has been draining the world long enough to be patient about it — and who takes a personal interest in Violet.',
+    books:{
+      onyx:{ p:22, n:'The venin who turns the war personal, with an agenda older than Navarre.', s:'Her pursuit of Violet and the Sorrengails drives the book’s worst losses.' },
+    }
+  },
+];
+
+/* =========================================================
+   PORTRAITS — marble-bust cameo silhouettes.
+   Drop a photo at images/<id>.jpg (or .png) and it will
+   automatically replace the silhouette for that character.
+   ========================================================= */
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+const MARBLE = `<linearGradient id="marble" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#f2ece1"/><stop offset="62%" stop-color="#ded5c4"/><stop offset="100%" stop-color="#bdb3a0"/>
+  </linearGradient>
+  <linearGradient id="gilt" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#dcc491"/><stop offset="100%" stop-color="#b3945e"/>
+  </linearGradient>
+  <radialGradient id="plinth" cx="50%" cy="32%" r="80%">
+    <stop offset="0%" stop-color="#242b26"/><stop offset="100%" stop-color="#0c0f0d"/>
+  </radialGradient>`;
+
+const HAIR_SIL = {
+  long:  '<path d="M48 12 Q20 14 18 46 Q17 76 22 104 Q31 95 40 97 L38 62 Q33 58 33 46 Q33 28 48 22 Q59 18 63 26 Q64 16 48 12 Z"/>',
+  wavy:  '<path d="M48 12 Q20 14 18 46 Q17 64 21 82 Q30 74 38 77 L37 60 Q33 56 33 46 Q33 28 48 22 Q59 18 63 26 Q64 16 48 12 Z"/>',
+  short: '<path d="M46 12 Q23 16 23 42 Q27 25 46 22 Q59 18 63 27 Q64 15 46 12 Z"/>',
+  shaved:'',
+  braid: '<path d="M46 12 Q23 16 23 42 Q27 25 46 22 Q59 18 63 27 Q64 15 46 12 Z"/><path d="M27 48 Q20 76 25 106 L35 106 Q30 76 37 52 Z"/>',
+  braids:'<path d="M46 12 Q23 16 23 42 Q27 25 46 22 Q59 18 63 27 Q64 15 46 12 Z"/><path d="M26 46 Q20 70 24 94 L32 94 Q28 70 34 50 Z"/><path d="M36 52 Q32 74 35 98 L43 98 Q40 74 44 56 Z"/>',
+  bun:   '<path d="M46 12 Q23 16 23 42 Q27 25 46 22 Q59 18 63 27 Q64 15 46 12 Z"/><circle cx="21" cy="36" r="9"/>',
+  bob:   '<path d="M48 12 Q20 14 19 44 Q18 56 22 66 Q31 59 39 62 L37 58 Q33 54 33 46 Q33 28 48 22 Q59 18 63 26 Q64 16 48 12 Z"/>'
+};
+
+function bustAccessory(acc){
+  if (acc === 'crown')
+    return '<path d="M32 13 L36 3 L42 10 L47 1 L52 9 L58 3 L61 14 Q46 9 32 13 Z" fill="url(#gilt)"/>';
+  if (acc === 'circlet')
+    return '<path d="M27 26 Q45 15 63 28" fill="none" stroke="url(#gilt)" stroke-width="1.7"/>';
+  return '';
+}
+
+function humanBust(av){
+  const hair = HAIR_SIL[av.hs] !== undefined ? HAIR_SIL[av.hs] : HAIR_SIL.short;
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  <defs>${MARBLE}</defs>
+  <rect width="100" height="120" fill="url(#plinth)"/>
+  <g fill="url(#marble)">
+    <path d="M46 16 Q62 15 65 30 Q65.5 34 63 36.5 Q61.5 38.5 63.5 40.5 L69.5 48 Q71.5 50.5 68.5 51.5 L65.5 52.3 Q64.2 55 66.2 57 Q67.5 59.5 63.8 60.8 Q61 61.8 62.8 64.5 Q64.5 67.5 60 70.5 Q54 75 48 74 Q28 72 26 50 Q24.5 24 46 16 Z"/>
+    <path d="M40 68 L40 92 Q22 97 16 120 L86 120 Q80 99 60 93 L60 66 Q52 75 40 68 Z"/>
+    ${hair}
+  </g>
+  ${bustAccessory(av.acc)}
+</svg>`;
+}
+
+function wyvernBust(){
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  <defs>${MARBLE}</defs>
+  <rect width="100" height="120" fill="url(#plinth)"/>
+  <g fill="url(#marble)">
+    <path d="M12 62 Q16 52 27 54 L31 42 L36 52 Q46 56 50 68 L46 74 Q40 66 32 66 Q18 68 12 62 Z"/>
+    <path d="M44 70 L58 22 L66 28 L60 70 Z"/>
+    <path d="M58 44 L74 30 L78 38 L64 52 Z"/>
+    <path d="M42 72 Q58 66 72 76 Q88 86 94 104 Q78 96 64 96 Q48 98 38 92 Z"/>
+    <path d="M36 90 Q30 104 34 120 L48 120 Q44 104 48 94 Z"/>
+    <path d="M66 96 Q64 108 68 120 L80 120 Q76 106 80 98 Z"/>
+  </g>
+</svg>`;
+}
+
+function dogBust(){
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  <defs>${MARBLE}</defs>
+  <rect width="100" height="120" fill="url(#plinth)"/>
+  <g fill="url(#marble)">
+    <path d="M34 46 Q32 26 44 22 Q56 18 64 26 Q74 24 78 32 Q72 34 70 40 Q74 50 68 60 Q58 68 46 64 Q34 60 34 46 Z"/>
+    <path d="M40 24 Q30 14 24 22 Q22 34 32 42 Q34 30 40 24 Z"/>
+    <path d="M66 26 Q76 18 82 26 Q82 38 72 42 Q72 32 66 26 Z"/>
+    <path d="M18 120 Q22 84 50 80 Q78 84 82 120 Z"/>
+    <path d="M44 60 L44 84 L58 84 L58 60 Z"/>
+  </g>
+</svg>`;
+}
+
+function avatarSVG(ch){
+  if (ch.av.kind === 'wyvern') return wyvernBust();
+  if (ch.av.kind === 'dog') return dogBust();
+  return humanBust(ch.av);
+}
+
+/* Colored monogram fallback for characters without a portrait. */
+const MONO_PALETTE = [
+  ['#2b323c','#0a0d12'], ['#343b44','#0c0f14'], ['#272e38','#090c10'],
+  ['#3a3f47','#0d1015'], ['#2e3741','#0a0e13'], ['#383c42','#0c1014'],
+  ['#2a333f','#090d12'], ['#363d46','#0b0f14'], ['#30363f','#0a0e12'],
+  ['#3d4149','#0e1116'], ['#2c343e','#090c11'], ['#343a43','#0b0e13'],
+];
+function initialsFor(name){
+  const skip = new Set(['the','of','and','a']);
+  const words = String(name).split(/\s+/).filter(w => w && !skip.has(w.toLowerCase()));
+  if (!words.length) return String(name).slice(0,1).toUpperCase();
+  if (words.length === 1) return words[0].slice(0,1).toUpperCase();
+  return (words[0][0] + words[words.length-1][0]).toUpperCase();
+}
+function monoColor(id){
+  let h = 0;
+  for (let i=0;i<id.length;i++) h = (h*31 + id.charCodeAt(i)) >>> 0;
+  return MONO_PALETTE[h % MONO_PALETTE.length];
+}
+function monogramSVG(ch){
+  const [c1,c2] = monoColor(ch.id);
+  const gid = 'mono-'+ch.id;
+  const ini = esc(initialsFor(nameFor(ch)));
+  const fs = ini.length > 1 ? 32 : 44;
+  return `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  <defs><radialGradient id="${gid}" cx="50%" cy="36%" r="75%">
+    <stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/>
+  </radialGradient></defs>
+  <rect width="100" height="100" fill="url(#${gid})"/>
+  <text x="50" y="52" text-anchor="middle" dominant-baseline="middle"
+    font-family="'Cinzel',Georgia,serif" font-weight="600"
+    font-size="${fs}" letter-spacing="1" fill="#e2dccf" fill-opacity="0.92">${ini}</text>
+</svg>`;
+}
+
+/* Built-in character portraits (embedded so the file is fully self-contained). */
+/* ---------- Profile enrichments (pronunciations are approximations) ---------- */
+const ENRICH = {
+  violet:{ say:'SOR-en-gale', links:[{id:'xaden',rel:'love',from:'fw'},{id:'tairn',rel:'her dragon',from:'fw'},{id:'andarna',rel:'her dragon',from:'fw'},{id:'rhiannon',rel:'best friend'},{id:'mira',rel:'sister'},{id:'brennan',rel:'brother',from:'fw'},{id:'lilith',rel:'mother'},{id:'dain',rel:'childhood friend'}] },
+  xaden:{ say:'ZAY-den REER-son', links:[{id:'violet',rel:'love',from:'fw'},{id:'sgaeyl',rel:'his dragon'},{id:'garrick',rel:'closest friend'},{id:'bodhi',rel:'cousin'},{id:'fen',rel:'father'},{id:'cat',rel:'former betrothed',from:'ironflame'}] },
+  tairn:{ say:'TAIR-nee-uh-nock', links:[{id:'violet',rel:'his rider'},{id:'sgaeyl',rel:'mate'},{id:'andarna',rel:'under his protection'}] },
+  andarna:{ say:'an-DAR-nuh', links:[{id:'violet',rel:'her rider'},{id:'tairn',rel:'her protector'}] },
+  sgaeyl:{ say:'SKAY-el', links:[{id:'xaden',rel:'her rider'},{id:'tairn',rel:'mate'}] },
+  rhiannon:{ say:'ree-ANN-un', links:[{id:'violet',rel:'best friend'},{id:'feirge',rel:'her dragon'},{id:'ridoc',rel:'squad'},{id:'sawyer',rel:'squad'}] },
+  ridoc:{ say:'RID-ock', links:[{id:'aotrom',rel:'his dragon'},{id:'violet',rel:'squad'},{id:'rhiannon',rel:'squad'},{id:'sawyer',rel:'squad'}] },
+  sawyer:{ links:[{id:'violet',rel:'squad'},{id:'rhiannon',rel:'squad'},{id:'ridoc',rel:'squad'}] },
+  liam:{ say:'LEE-um', links:[{id:'violet',rel:'sworn to protect her'},{id:'sloane',rel:'sister'},{id:'xaden',rel:'assigned by'}] },
+  dain:{ say:'DANE AY-tos', links:[{id:'violet',rel:'childhood friend'},{id:'aetos',rel:'father'}] },
+  mira:{ say:'MEER-uh', links:[{id:'violet',rel:'sister'},{id:'brennan',rel:'brother'},{id:'lilith',rel:'mother'},{id:'halden',rel:'history with'}] },
+  brennan:{ say:'BREN-un', links:[{id:'violet',rel:'sister'},{id:'mira',rel:'sister'},{id:'lilith',rel:'mother'},{id:'xaden',rel:'co-leads the rebellion',from:'fw'},{id:'naolin',rel:'died saving him'}] },
+  lilith:{ say:'LIL-ith', links:[{id:'violet',rel:'daughter'},{id:'mira',rel:'daughter'},{id:'brennan',rel:'son'},{id:'fen',rel:'executed him',from:'fw'}] },
+  imogen:{ say:'IM-uh-jen', links:[{id:'xaden',rel:'marked one'},{id:'violet',rel:'grudging friend'},{id:'sloane',rel:'looks after her',from:'ironflame'}] },
+  bodhi:{ say:'BOH-dee', links:[{id:'xaden',rel:'cousin'},{id:'garrick',rel:'friend'}] },
+  garrick:{ say:'GAIR-ik', links:[{id:'xaden',rel:'closest friend'},{id:'bodhi',rel:'friend'}] },
+  jesinia:{ say:'jeh-SIN-ee-uh', links:[{id:'violet',rel:'friend'},{id:'markham',rel:'her professor'}] },
+  sloane:{ say:'SLOHN', links:[{id:'liam',rel:'brother'},{id:'violet',rel:'blames her',from:'ironflame'},{id:'imogen',rel:'looks out for her'}] },
+  cat:{ say:'kuh-TREE-nuh', links:[{id:'xaden',rel:'former betrothed'},{id:'violet',rel:'rival'}] },
+  aaric:{ say:'AIR-ik', links:[{id:'violet',rel:'ally'},{id:'tauri',rel:'father',from:'ironflame'},{id:'halden',rel:'brother',from:'ironflame'}] },
+  jack:{ links:[{id:'violet',rel:'tried to kill her'}] },
+  varrish:{ say:'VAIR-ish', links:[{id:'violet',rel:'his target'}] },
+  amber:{ links:[{id:'violet',rel:'antagonist'}] },
+  devera:{ say:'deh-VAIR-uh', links:[{id:'violet',rel:'her student'}] },
+  carr:{ links:[{id:'violet',rel:'her signet instructor'}] },
+  markham:{ say:'MAR-kum', links:[{id:'violet',rel:'former student'},{id:'jesinia',rel:'scribe'}] },
+  aetos:{ say:'AY-tos', links:[{id:'dain',rel:'son'}] },
+  nolon:{ say:'NOH-lon', links:[{id:'violet',rel:'patient'},{id:'brennan',rel:'fellow mender',from:'fw'}] },
+  feirge:{ links:[{id:'rhiannon',rel:'her rider'}] },
+  aotrom:{ links:[{id:'ridoc',rel:'his rider'}] },
+  fen:{ links:[{id:'xaden',rel:'son'},{id:'lilith',rel:'executed by',from:'fw'}] },
+  naolin:{ say:'NAY-oh-lin', links:[{id:'brennan',rel:'died saving him'}] },
+  halden:{ say:'HAWL-den', links:[{id:'tauri',rel:'father'},{id:'mira',rel:'history with'},{id:'aaric',rel:'brother',from:'ironflame'}] },
+  tauri:{ say:'TOR-ee', links:[{id:'halden',rel:'son'},{id:'aaric',rel:'son',from:'ironflame'}] },
+  theophanie:{ say:'thee-OFF-uh-nee', links:[{id:'violet',rel:'hunts her'}] },
+};
+CHARACTERS.forEach(c => Object.assign(c, ENRICH[c.id] || {}));
+
+/* ---------- Detailed, spoiler-heavy book synopses ---------- */
+const SYNOPSES = {
+  fw:[
+    'Violet Sorrengail was raised in the Scribe Quadrant and built for it — bookish, brilliant, and physically fragile, with joints that dislocate and a body her instructors assume will break on the first day. Her mother, the commanding general of Basgiath War College, orders her into the Riders Quadrant anyway. Violet crosses the parapet in the rain, watches cadets fall to their deaths beside her, and starts a year in which failing to bond a dragon does not mean washing out. It means dying.',
+    'She survives on preparation and poison: memorized texts, hidden blades, and the Rider’s Codex. Her squad becomes her first real family — Rhiannon, Ridoc, Sawyer, and the relentlessly kind Liam Mairi, a “marked one” quietly assigned to keep her alive by the wingleader who should hate her, Xaden Riorson, son of the rebel leader Violet’s own mother executed. At Threshing, Violet does the impossible twice: she bonds the enormous black Tairneanach, whose previous rider died, and the golden feathertail Andarna, far too young to bond at all. Her signet manifests as lightning, the first in generations — and the mating bond between Tairn and Xaden’s Sgaeyl keeps throwing her and Xaden together until the hatred turns into something else entirely.',
+    'Underneath the training year, the records don’t add up: dragons are dying, the wards are thinning, and her childhood friend Dain Aetos uses his memory-reading signet on her without consent and carries what he finds to command. The year ends at Resson, where Violet’s squad flies into a village destroyed by venin and wyvern — creatures Navarre insists do not exist. Liam is killed shielding her. Violet nearly dies, and wakes to the rest of the truth: Xaden has been running a rebellion out of Aretia, Navarre’s leadership has been lying for a century about the war beyond its borders, and her brother Brennan — dead for six years — is alive and waiting for her.',
+  ],
+  ironflame:[
+    'Violet returns to Basgiath knowing what the leadership has buried, which means spending the year performing ignorance. A new commandant, Major Varrish, runs the Riders Quadrant like an interrogation room, and makes Violet his particular project — testing her signet past its limits, watching for the lie. Xaden is away more than he is present, and the mating bond between their dragons gives them intimacy without honesty, which strains everything. Liam’s younger sister, Sloane, crosses the parapet carrying a grudge, and Violet has to earn her way back to a family she helped break.',
+    'The year becomes a long, dangerous scavenger hunt for proof: Jesinia smuggles her forbidden texts out of the archives, Violet pushes the limits of what menders and channeling can do, and the shape of the lie emerges. The wards that protect Navarre are powered and the borders were deliberately drawn in, abandoning Poromiel and Tyrrendor to the venin to keep the center safe. Jack Barlowe, who should be dead, comes back as venin — proof of what the enemy can make from a rider.',
+    'It ends in open assault. Venin and wyvern come for Basgiath, Violet kills Varrish, and the fight for the wardstone sends her and her allies to Aretia, where she pours her own power into re-forging the wards over Tyrrendor. The victory lasts exactly as long as it takes Xaden to tell her what it cost: to save her, he channeled — and he is turning venin. The book closes on that confession and the terrible arithmetic it creates.',
+  ],
+  onyx:[
+    'With the wards failing and Navarre’s crown unwilling to admit the scale of the threat, Violet takes the war outward: an expedition across unmapped seas toward the isles, hunting allies, forgotten weapons, and whatever remains of the history Navarre scrubbed out of the archives. Court politics follow her — a king and princes with their own calculations — and so does Theophanie, a venin old enough to be patient and interested enough in Violet to make it personal.',
+    'The journey turns on what the dragons never told anyone. Andarna’s long, strange growth resolves into revelation: she is the last of an older kind, and what her bloodline can do rewrites the Empyrean’s own history and the terms of the war. Meanwhile Xaden hides what he has become from nearly everyone, managing the hunger with increasing difficulty, and the secret corrodes the bonds he depends on.',
+    'Alliances are won at a price, betrayals land from inside as often as outside, and the book ends with the board rearranged and the cost paid in people Violet loves.',
+  ],
+};
+BOOKS.forEach(b => { if (SYNOPSES[b.id]) b.synopsis = SYNOPSES[b.id]; });
+
+const EMBEDDED = {};
+
+function portraitHTML(ch){
+  if (EMBEDDED[ch.id]) {
+    return `<span class="pic-wrap"><span class="pic"><img class="custom" src="${EMBEDDED[ch.id]}" alt=""></span></span>`;
+  }
+  return `<span class="pic-wrap"><span class="pic">${monogramSVG(ch)}</span></span>`;
+}
+
+
+/* =========================================================
+   STATE + RENDERING
+   ========================================================= */
+const state = { progress: 0, query: '', shield: true };
+
+function nameFor(ch){
+  if (ch.reveal && state.progress >= IDX[ch.reveal.from]) return ch.reveal.name;
+  return ch.name;
+}
+function roleFor(ch){
+  if (ch.roleReveal && state.progress >= IDX[ch.roleReveal.from]) return ch.roleReveal.role;
+  return ch.role;
+}
+function visibleAliases(ch){
+  return (ch.aliases||[]).filter(a => !a.from || state.progress >= IDX[a.from]).map(a=>a.t);
+}
+function searchHaystack(ch){
+  return [nameFor(ch), ch.reveal ? '' : ch.name, roleFor(ch), ch.aff, ...visibleAliases(ch)]
+    .join(' ').toLowerCase();
+}
+function firstBookIdx(ch){
+  return Math.min(...Object.keys(ch.books).map(b=>IDX[b]));
+}
+function highlight(text, q){
+  if (!q) return esc(text);
+  const i = text.toLowerCase().indexOf(q);
+  if (i < 0) return esc(text);
+  return esc(text.slice(0,i)) + '<mark>' + esc(text.slice(i, i+q.length)) + '</mark>' + esc(text.slice(i+q.length));
+}
+
+function buildProgressOptions(){
+  const sel = document.getElementById('progress');
+  BOOKS.forEach((b,i)=>{
+    const o = document.createElement('option');
+    o.value = i;
+    o.textContent = `${b.num} ${b.title}`;
+    sel.appendChild(o);
+  });
+  sel.value = state.progress;
+}
+
+function render(){
+  const main = document.getElementById('main');
+  main.innerHTML = '';
+  const q = state.query;
+  let anyShown = false;
+
+  BOOKS.forEach((book, bi)=>{
+    if (bi !== state.progress) return;
+
+    const chars = CHARACTERS
+      .filter(ch => ch.books[book.id])
+      .filter(ch => firstBookIdx(ch) <= state.progress)
+      .filter(ch => !q || searchHaystack(ch).includes(q))
+      .sort((a,b)=> b.books[book.id].p - a.books[book.id].p);
+
+    if (!chars.length) {
+      if (book.pending && !q) {
+        const sec = document.createElement('section');
+        sec.className = 'book';
+        sec.innerHTML = `
+          <div class="book-head">
+            <span class="book-idx">/${String(bi).padStart(2,'0')}</span>
+            <h2>${esc(book.title)}</h2>
+            <span class="year">${book.num} — ${book.year}</span>
+          </div>
+          <p class="book-blurb">${esc(book.blurb)}</p>
+          <div class="book-pending"><strong>Entries in progress</strong>${esc(book.pending)}</div>`;
+        main.appendChild(sec);
+        anyShown = true;
+      }
+      return;
+    }
+    anyShown = true;
+
+    const sec = document.createElement('section');
+    sec.className = 'book';
+    sec.innerHTML = `
+      <div class="book-head">
+        <span class="book-idx">/${String(bi).padStart(2,'0')}</span>
+        <h2>${esc(book.title)}</h2>
+        <span class="year">${book.num} — ${book.year}</span>
+      </div>
+      <p class="book-blurb">${esc(book.blurb)}</p>
+      ${book.synopsis
+        ? `<details class="book-synopsis"><summary><span class="syn-title">Full Synopsis</span><span class="syn-hint">spoilers — click to reveal</span></summary><div class="syn-body">${book.synopsis.map(p=>`<p>${esc(p)}</p>`).join('')}</div></details>`
+        : (book.recap ? `<div class="book-recap"><span class="recap-label">The story so far</span>${spoilerSpan(book.recap)}</div>` : '')}
+      <div class="grid"></div>`;
+    const grid = sec.querySelector('.grid');
+
+    chars.forEach((ch, i)=>{
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.dataset.char = ch.id;
+      card.innerHTML = `
+        <div class="idx">/${String(i+1).padStart(2,'0')}</div>
+        ${portraitHTML(ch)}
+        <h3>${highlight(nameFor(ch), q)}</h3>
+        <div class="role">${esc(roleFor(ch))}</div>`;
+      card.addEventListener('click', ()=> openModal(ch));
+      grid.appendChild(card);
+    });
+    main.appendChild(sec);
+  });
+
+  document.getElementById('empty').style.display = anyShown ? 'none' : 'block';
+}
+
+/* ---------- Modal ---------- */
+function spoilerSpan(text){
+  return `<span class="spoiler" title="Click to reveal">${esc(text)}</span>`;
+}
+function quoteHTML(ch){
+  const q = ch.quote;
+  if (!q) return '';
+  const gate = q.from || q.book;
+  if (gate && state.progress < IDX[gate]) return '';
+  const body = q.spoiler ? spoilerSpan(q.t) : esc(q.t);
+  const cite = q.book ? `<cite>${esc(nameFor(ch))} · ${esc(BOOKS[IDX[q.book]].title)}</cite>` : '';
+  return `<blockquote class="quote">&ldquo;${body}&rdquo;${cite}</blockquote>`;
+}
+function connHTML(ch){
+  if (!ch.links || !ch.links.length) return '';
+  const chips = ch.links
+    .filter(l => !l.from || state.progress >= IDX[l.from])
+    .map(l => {
+      if (l.id) {
+        const t = CHARACTERS.find(c => c.id === l.id);
+        if (!t) return '';
+        return `<span class="conn" data-id="${l.id}">${esc(nameFor(t))} <span class="rel">· ${esc(l.rel)}</span></span>`;
+      }
+      return `<span class="conn">${esc(l.name||'')} <span class="rel">· ${esc(l.rel)}</span></span>`;
+    })
+    .filter(Boolean).join('');
+  if (!chips) return '';
+  return `<h4>Connections</h4><div class="h4-divider">✦</div><div class="connections">${chips}</div>`;
+}
+function openModal(ch){
+  const mc = document.getElementById('modal-content');
+  const aliases = visibleAliases(ch);
+  let descHTML = esc(ch.desc);
+  if (ch.descSpoiler && state.progress >= IDX[ch.descSpoiler.from]) {
+    descHTML += ' ' + spoilerSpan(ch.descSpoiler.text);
+  }
+
+  const rows = BOOKS
+    .map((b,bi)=>({b,bi,entry:ch.books[b.id]}))
+    .filter(r => r.entry && r.bi <= state.progress)
+    .map(r=>{
+      let note = esc(r.entry.n);
+      if (r.entry.s) note += ' ' + spoilerSpan(r.entry.s);
+      return `<div class="app-row">
+        <div class="app-book">${r.b.num} · ${esc(r.b.title)}</div>
+        <div class="app-note">${note}</div>
+      </div>`;
+    }).join('');
+
+  const hiddenCount = Object.keys(ch.books).filter(id => IDX[id] > state.progress).length;
+
+  mc.innerHTML = `
+    <div class="modal-head">
+      ${portraitHTML(ch)}
+      <div>
+        <h2>${esc(nameFor(ch))}</h2>
+        ${ch.say ? `<div class="say">/ ${esc(ch.say)} /</div>` : ''}
+        ${aliases.length ? `<div class="aka">also known as: ${esc(aliases.join(' · '))}</div>` : ''}
+        <div class="aff">${esc(roleFor(ch))} — ${esc(ch.aff)}</div>
+      </div>
+    </div>
+    <p class="desc">${descHTML}</p>
+    ${quoteHTML(ch)}
+    <h4>Their Story, Book by Book</h4>
+    <div class="h4-divider">✦</div>
+    <div class="appearance">${rows}</div>
+    ${connHTML(ch)}
+    ${hiddenCount ? `<div class="hidden-note">…and ${hiddenCount} more book${hiddenCount>1?'s':''} hidden by your reading progress.</div>` : ''}`;
+
+  mc.querySelectorAll('.conn[data-id]').forEach(el=>{
+    el.addEventListener('click', ev=>{
+      ev.stopPropagation();
+      const t = CHARACTERS.find(c => c.id === el.dataset.id);
+      if (t) openModal(t);
+    });
+  });
+
+  document.getElementById('overlay').classList.add('open');
+}
+/* reveal any spoiler (modal notes, quotes, and book-section recaps) */
+document.addEventListener('click', e=>{
+  const sp = e.target.closest && e.target.closest('.spoiler');
+  if (sp && !sp.classList.contains('revealed')) { e.stopPropagation(); sp.classList.add('revealed'); }
+});
+document.getElementById('overlay').addEventListener('click', e=>{
+  if (e.target.id === 'overlay') e.currentTarget.classList.remove('open');
+});
+document.querySelector('.modal .close').addEventListener('click', ()=>{
+  document.getElementById('overlay').classList.remove('open');
+});
+document.addEventListener('keydown', e=>{
+  if (e.key === 'Escape') document.getElementById('overlay').classList.remove('open');
+});
+
+/* ---------- Controls ---------- */
+document.getElementById('search').addEventListener('input', e=>{
+  state.query = e.target.value.trim().toLowerCase();
+  render();
+});
+document.getElementById('progress').addEventListener('change', e=>{
+  state.progress = Number(e.target.value);
+  render();
+});
+document.getElementById('shield').addEventListener('change', e=>{
+  state.shield = e.target.checked;
+  document.body.classList.toggle('shield-on', state.shield);
+});
+
+buildProgressOptions();
+render();
+
+/* ---------- Parallax backdrop ---------- */
+(function(){
+  const layers = [...document.querySelectorAll('#parallax .plx')];
+  if (!layers.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function update(){
+    const y = window.scrollY;
+    layers.forEach(l => {
+      l.style.transform = `translate3d(0, ${-(y * Number(l.dataset.speed)).toFixed(1)}px, 0)`;
+    });
+  }
+  addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+</body>
+</html>

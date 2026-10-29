@@ -868,7 +868,7 @@ function bustAccessory(acc){
 
 function humanBust(av){
   const hair = HAIR_SIL[av.hs] !== undefined ? HAIR_SIL[av.hs] : HAIR_SIL.short;
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Character portrait">
   <defs>${MARBLE}</defs>
   <rect width="100" height="120" fill="url(#plinth)"/>
   <g fill="url(#marble)">
@@ -881,7 +881,7 @@ function humanBust(av){
 }
 
 function wyvernBust(){
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dragon portrait">
   <defs>${MARBLE}</defs>
   <rect width="100" height="120" fill="url(#plinth)"/>
   <g fill="url(#marble)">
@@ -896,7 +896,7 @@ function wyvernBust(){
 }
 
 function dogBust(){
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Character portrait">
   <defs>${MARBLE}</defs>
   <rect width="100" height="120" fill="url(#plinth)"/>
   <g fill="url(#marble)">
@@ -939,7 +939,7 @@ function monogramSVG(ch){
   const gid = 'mono-'+ch.id;
   const ini = esc(initialsFor(nameFor(ch)));
   const fs = ini.length > 1 ? 32 : 44;
-  return `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(nameFor(ch))} monogram">
   <defs><radialGradient id="${gid}" cx="50%" cy="36%" r="75%">
     <stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/>
   </radialGradient></defs>
@@ -1013,7 +1013,1150 @@ BOOKS.forEach(b => { if (SYNOPSES[b.id]) b.synopsis = SYNOPSES[b.id]; });
 
 const EMBEDDED = {};
 
+function avatarViolet(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Violet Sorrengail portrait">
+    <defs>
+      <radialGradient id="av-violet-skin" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="#f5e8dc"/>
+        <stop offset="60%" stop-color="#e8d4c8"/>
+        <stop offset="100%" stop-color="#d4b8a8"/>
+      </radialGradient>
+      <radialGradient id="av-violet-blush" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#e8a8a0" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#e8a8a0" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="av-violet-hair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2a2a3e"/>
+        <stop offset="50%" stop-color="#1a1a2e"/>
+        <stop offset="100%" stop-color="#0f0f1e"/>
+      </linearGradient>
+      <radialGradient id="av-violet-eye" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#9d7bb8"/>
+        <stop offset="40%" stop-color="#6b4c9a"/>
+        <stop offset="100%" stop-color="#4a3570"/>
+      </radialGradient>
+      <linearGradient id="av-violet-lightning" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#e3b662" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#9d7bb8" stop-opacity="0.3"/>
+      </linearGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Hair with more detail -->
+    <path d="M15 35 Q15 12 50 8 Q85 12 85 35 L85 60 Q82 58 78 56 Q75 54 72 55 L72 45 Q72 35 68 30 Q65 25 60 23 Q55 22 50 22 Q45 22 40 23 Q35 25 32 30 Q28 35 28 45 L28 55 Q25 54 22 56 Q18 58 15 60 Z" fill="url(#av-violet-hair)"/>
+    <path d="M25 25 Q30 20 35 22 Q32 24 30 28" fill="#1a1a2e" opacity="0.5"/>
+    <path d="M75 25 Q70 20 65 22 Q68 24 70 28" fill="#1a1a2e" opacity="0.5"/>
+    
+    <!-- Lightning accent in hair -->
+    <path d="M45 15 L43 22 L46 22 L44 28" stroke="url(#av-violet-lightning)" stroke-width="1.2" fill="none" opacity="0.7"/>
+    
+    <!-- Neck and shoulders -->
+    <ellipse cx="50" cy="85" rx="18" ry="12" fill="url(#av-violet-skin)"/>
+    <path d="M35 78 Q35 82 40 85 L60 85 Q65 82 65 78" fill="#c08a2e" opacity="0.3"/>
+    
+    <!-- Face shape with better structure -->
+    <ellipse cx="50" cy="48" rx="20" ry="24" fill="url(#av-violet-skin)"/>
+    <ellipse cx="35" cy="52" rx="3" ry="5" fill="url(#av-violet-blush)"/>
+    <ellipse cx="65" cy="52" rx="3" ry="5" fill="url(#av-violet-blush)"/>
+    
+    <!-- Facial shadows for depth -->
+    <ellipse cx="50" cy="48" rx="19" ry="23" fill="none" stroke="#d4b8a8" stroke-width="0.5" opacity="0.3"/>
+    <path d="M32 48 Q32 60 50 65 Q68 60 68 48" fill="#d4b8a8" opacity="0.15"/>
+    
+    <!-- Eyebrows -->
+    <path d="M36 40 Q40 38 44 39" stroke="#2a2a3e" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M64 40 Q60 38 56 39" stroke="#2a2a3e" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    
+    <!-- Eyes with detail -->
+    <ellipse cx="40" cy="46" rx="4.5" ry="5" fill="white"/>
+    <ellipse cx="60" cy="46" rx="4.5" ry="5" fill="white"/>
+    <circle cx="40" cy="46" r="3.8" fill="url(#av-violet-eye)"/>
+    <circle cx="60" cy="46" r="3.8" fill="url(#av-violet-eye)"/>
+    <circle cx="40" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="60" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="41" cy="45" r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="61" cy="45" r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="39.5" cy="47" r="0.6" fill="white" opacity="0.6"/>
+    <circle cx="59.5" cy="47" r="0.6" fill="white" opacity="0.6"/>
+    
+    <!-- Eyelashes -->
+    <path d="M36 44 Q35 42 34 43" stroke="#1a1a2e" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <path d="M37 43 Q36 41 35 42" stroke="#1a1a2e" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <path d="M44 44 Q45 42 46 43" stroke="#1a1a2e" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <path d="M43 43 Q44 41 45 42" stroke="#1a1a2e" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <path d="M56 44 Q55 42 54 43" stroke="#1a1a2e" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <path d="M57 43 Q56 41 55 42" stroke="#1a1a2e" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <path d="M64 44 Q65 42 66 43" stroke="#1a1a2e" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <path d="M63 43 Q64 41 65 42" stroke="#1a1a2e" stroke-width="0.8" fill="none" opacity="0.6"/>
+    
+    <!-- Nose with shading -->
+    <path d="M50 46 L50 56" stroke="#d4b8a8" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M47 56 Q50 57 53 56" stroke="#c9a896" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <ellipse cx="47" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    <ellipse cx="53" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    
+    <!-- Lips with detail -->
+    <path d="M44 62 Q50 64 56 62" stroke="#c9a896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M44 62 Q50 61 56 62" fill="#d8a8a0" opacity="0.4"/>
+    <path d="M44 62 Q50 63 56 62" fill="#e8b8b0" opacity="0.3"/>
+    
+    <!-- Chin definition -->
+    <path d="M42 68 Q50 72 58 68" stroke="#d4b8a8" stroke-width="0.5" fill="none" opacity="0.3"/>
+  </svg>`;
+}
+
+function avatarXaden(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Xaden Riorson portrait">
+    <defs>
+      <linearGradient id="av-xaden-hair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a1a2e"/>
+        <stop offset="50%" stop-color="#0d0d1a"/>
+        <stop offset="100%" stop-color="#050508"/>
+      </linearGradient>
+      <radialGradient id="av-xaden-skin" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="#f0dcd0"/>
+        <stop offset="60%" stop-color="#e0ccc0"/>
+        <stop offset="100%" stop-color="#c8b0a0"/>
+      </radialGradient>
+      <radialGradient id="av-xaden-eye" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#4a3f35"/>
+        <stop offset="60%" stop-color="#2c2c3e"/>
+        <stop offset="100%" stop-color="#1a1a2e"/>
+      </radialGradient>
+      <linearGradient id="av-xaden-shadow" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#1a1a2e" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#4a1a6f" stop-opacity="0.2"/>
+      </linearGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Shadow aura -->
+    <ellipse cx="50" cy="50" rx="28" ry="32" fill="url(#av-xaden-shadow)"/>
+    
+    <!-- Hair with texture -->
+    <path d="M12 32 Q12 8 50 5 Q88 8 88 32 L88 62 Q85 60 80 58 Q76 56 72 57 L72 42 Q72 30 67 24 Q63 18 56 16 Q52 15 50 15 Q48 15 44 16 Q37 18 33 24 Q28 30 28 42 L28 57 Q24 56 20 58 Q15 60 12 62 Z" fill="url(#av-xaden-hair)"/>
+    <path d="M22 22 Q28 16 35 18 Q32 20 28 25" fill="#0d0d1a" opacity="0.6"/>
+    <path d="M78 22 Q72 16 65 18 Q68 20 72 25" fill="#0d0d1a" opacity="0.6"/>
+    <path d="M45 12 Q48 10 50 10 Q52 10 55 12" stroke="#1a1a2e" stroke-width="1.5" fill="none"/>
+    
+    <!-- Relic marks suggestion -->
+    <path d="M30 48 Q28 52 30 56" stroke="url(#av-xaden-shadow)" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <path d="M70 48 Q72 52 70 56" stroke="url(#av-xaden-shadow)" stroke-width="1.2" fill="none" opacity="0.5"/>
+    
+    <!-- Neck and shoulders -->
+    <ellipse cx="50" cy="85" rx="20" ry="13" fill="url(#av-xaden-skin)"/>
+    <path d="M33 78 Q33 83 38 86 L62 86 Q67 83 67 78" fill="#1a1a2e" opacity="0.4"/>
+    
+    <!-- Face with strong structure -->
+    <ellipse cx="50" cy="48" rx="21" ry="25" fill="url(#av-xaden-skin)"/>
+    <path d="M31 48 Q31 62 50 68 Q69 62 69 48" fill="#c8b0a0" opacity="0.2"/>
+    
+    <!-- Strong jawline -->
+    <path d="M32 58 Q32 66 40 70" stroke="#b89888" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M68 58 Q68 66 60 70" stroke="#b89888" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M40 70 Q50 73 60 70" stroke="#b89888" stroke-width="0.8" fill="none" opacity="0.4"/>
+    
+    <!-- Eyebrows - strong and dark -->
+    <path d="M35 39 Q40 37 45 38" stroke="#0d0d1a" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M65 39 Q60 37 55 38" stroke="#0d0d1a" stroke-width="2" fill="none" stroke-linecap="round"/>
+    
+    <!-- Eyes with intensity -->
+    <ellipse cx="40" cy="46" rx="5" ry="5.5" fill="white"/>
+    <ellipse cx="60" cy="46" rx="5" ry="5.5" fill="white"/>
+    <circle cx="40" cy="46" r="4.2" fill="url(#av-xaden-eye)"/>
+    <circle cx="60" cy="46" r="4.2" fill="url(#av-xaden-eye)"/>
+    <circle cx="40" cy="46" r="2.5" fill="#0d0d1a"/>
+    <circle cx="60" cy="46" r="2.5" fill="#0d0d1a"/>
+    <circle cx="41" cy="45" r="1.3" fill="white" opacity="0.9"/>
+    <circle cx="61" cy="45" r="1.3" fill="white" opacity="0.9"/>
+    <circle cx="39.5" cy="47.5" r="0.7" fill="white" opacity="0.5"/>
+    <circle cx="59.5" cy="47.5" r="0.7" fill="white" opacity="0.5"/>
+    
+    <!-- Eyelashes -->
+    <path d="M35 44 Q34 42 33 43" stroke="#0d0d1a" stroke-width="0.9" fill="none" opacity="0.7"/>
+    <path d="M36 43 Q35 41 34 42" stroke="#0d0d1a" stroke-width="0.9" fill="none" opacity="0.7"/>
+    <path d="M45 44 Q46 42 47 43" stroke="#0d0d1a" stroke-width="0.9" fill="none" opacity="0.7"/>
+    <path d="M44 43 Q45 41 46 42" stroke="#0d0d1a" stroke-width="0.9" fill="none" opacity="0.7"/>
+    <path d="M55 44 Q54 42 53 43" stroke="#0d0d1a" stroke-width="0.9" fill="none" opacity="0.7"/>
+    <path d="M56 43 Q55 41 54 42" stroke="#0d0d1a" stroke-width="0.9" fill="none" opacity="0.7"/>
+    <path d="M65 44 Q66 42 67 43" stroke="#0d0d1a" stroke-width="0.9" fill="none" opacity="0.7"/>
+    <path d="M64 43 Q65 41 66 42" stroke="#0d0d1a" stroke-width="0.9" fill="none" opacity="0.7"/>
+    
+    <!-- Nose with definition -->
+    <path d="M50 46 L50 57" stroke="#c8b0a0" stroke-width="0.9" fill="none" opacity="0.4"/>
+    <path d="M47 57 Q50 58 53 57" stroke="#b89888" stroke-width="0.9" fill="none" opacity="0.5"/>
+    <ellipse cx="47" cy="57" rx="1.3" ry="1.6" fill="#c8b0a0" opacity="0.3"/>
+    <ellipse cx="53" cy="57" rx="1.3" ry="1.6" fill="#c8b0a0" opacity="0.3"/>
+    
+    <!-- Lips - subtle smirk -->
+    <path d="M43 63 Q50 64 57 63" stroke="#b89888" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <path d="M43 63 Q50 62 57 63" fill="#c8a8a0" opacity="0.3"/>
+    <path d="M43 63 Q50 63.5 57 63" fill="#d8b8b0" opacity="0.2"/>
+    <path d="M57 63 Q58 62 58 61" stroke="#b89888" stroke-width="0.6" fill="none" opacity="0.4"/>
+  </svg>`;
+}
+
+function avatarTairn(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tairneanach portrait">
+    <defs>
+      <radialGradient id="av-tairn-eye" cx="50%" cy="40%" r="60%">
+        <stop offset="0%" stop-color="#ffe44d"/>
+        <stop offset="30%" stop-color="#ffd700"/>
+        <stop offset="70%" stop-color="#daa520"/>
+        <stop offset="100%" stop-color="#b8860b"/>
+      </radialGradient>
+      <radialGradient id="av-tairn-scales" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#1a1a2e"/>
+        <stop offset="50%" stop-color="#0d0d1a"/>
+        <stop offset="100%" stop-color="#050508"/>
+      </radialGradient>
+      <linearGradient id="av-tairn-horn" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#2a2a3e"/>
+        <stop offset="100%" stop-color="#1a1a2e"/>
+      </linearGradient>
+      <radialGradient id="av-tairn-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffd700" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#ffd700" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Glow aura -->
+    <ellipse cx="50" cy="50" rx="40" ry="45" fill="url(#av-tairn-glow)"/>
+    
+    <!-- Dragon head structure -->
+    <path d="M20 55 Q18 40 28 30 Q35 22 45 20 Q55 18 65 22 Q75 26 82 38 Q86 48 84 58 Q80 68 70 75 Q60 80 48 80 Q35 78 25 70 Q20 65 20 55 Z" fill="url(#av-tairn-scales)"/>
+    
+    <!-- Scale texture -->
+    <ellipse cx="35" cy="45" rx="3" ry="4" fill="#1a1a2e" opacity="0.6"/>
+    <ellipse cx="42" cy="52" rx="2.5" ry="3.5" fill="#1a1a2e" opacity="0.6"/>
+    <ellipse cx="48" cy="58" rx="3" ry="4" fill="#1a1a2e" opacity="0.6"/>
+    <ellipse cx="55" cy="62" rx="2.8" ry="3.8" fill="#1a1a2e" opacity="0.6"/>
+    <ellipse cx="38" cy="62" rx="2.5" ry="3.5" fill="#1a1a2e" opacity="0.6"/>
+    <ellipse cx="30" cy="58" rx="2.8" ry="3.8" fill="#1a1a2e" opacity="0.6"/>
+    
+    <!-- Horns with detail -->
+    <path d="M38 18 Q32 8 35 2 L37 4 Q35 10 38 16" fill="url(#av-tairn-horn)"/>
+    <path d="M62 16 Q68 6 65 0 L63 2 Q65 8 62 14" fill="url(#av-tairn-horn)"/>
+    <path d="M38 18 Q36 12 37 8" stroke="#2a2a3e" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <path d="M62 16 Q64 10 63 6" stroke="#2a2a3e" stroke-width="0.8" fill="none" opacity="0.5"/>
+    
+    <!-- Snout ridge -->
+    <path d="M45 35 Q50 32 55 35 Q58 38 58 42 Q56 48 50 50 Q44 48 42 42 Q42 38 45 35" fill="#0d0d1a"/>
+    <path d="M45 35 Q50 33 55 35" stroke="#1a1a2e" stroke-width="0.8" fill="none"/>
+    
+    <!-- Nostrils -->
+    <ellipse cx="46" cy="42" rx="2" ry="2.5" fill="#050508"/>
+    <ellipse cx="54" cy="42" rx="2" ry="2.5" fill="#050508"/>
+    <ellipse cx="46" cy="41" rx="0.8" ry="1" fill="#ffd700" opacity="0.3"/>
+    <ellipse cx="54" cy="41" rx="0.8" ry="1" fill="#ffd700" opacity="0.3"/>
+    
+    <!-- Eye socket and brow ridge -->
+    <path d="M60 28 Q68 30 72 36 Q74 40 72 44 Q68 48 62 48 Q56 46 54 40 Q54 34 60 28" fill="#0d0d1a"/>
+    <path d="M58 26 Q66 24 72 28" stroke="#1a1a2e" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    
+    <!-- Eye with intense glow -->
+    <ellipse cx="65" cy="38" rx="7" ry="9" fill="#151520"/>
+    <circle cx="65" cy="38" r="6.5" fill="url(#av-tairn-eye)"/>
+    <circle cx="65" cy="38" r="3.5" fill="#1a1a2e" opacity="0.7"/>
+    <circle cx="66" cy="37" r="2" fill="#ffe44d"/>
+    <circle cx="64" cy="39" r="1" fill="#ffe44d" opacity="0.6"/>
+    <circle cx="65" cy="38" r="7.5" fill="none" stroke="#ffd700" stroke-width="1" opacity="0.5"/>
+    <circle cx="65" cy="38" r="9" fill="none" stroke="#ffd700" stroke-width="0.5" opacity="0.3"/>
+    
+    <!-- Jaw and teeth suggestion -->
+    <path d="M28 58 Q35 68 48 72 Q60 70 70 62" stroke="#1a1a2e" stroke-width="1.5" fill="none"/>
+    <path d="M35 65 L35 68" stroke="#2a2a3e" stroke-width="1.2" fill="none" opacity="0.6"/>
+    <path d="M42 68 L42 71" stroke="#2a2a3e" stroke-width="1.2" fill="none" opacity="0.6"/>
+    <path d="M50 70 L50 73" stroke="#2a2a3e" stroke-width="1.2" fill="none" opacity="0.6"/>
+    <path d="M58 68 L58 71" stroke="#2a2a3e" stroke-width="1.2" fill="none" opacity="0.6"/>
+    
+    <!-- Neck scales -->
+    <ellipse cx="75" cy="55" rx="6" ry="8" fill="#0d0d1a" opacity="0.7"/>
+    <ellipse cx="78" cy="62" rx="5" ry="7" fill="#0d0d1a" opacity="0.7"/>
+  </svg>`;
+}
+function avatarAndarna(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Andarna portrait">
+    <defs>
+      <radialGradient id="av-andarna-body" cx="40%" cy="40%" r="60%">
+        <stop offset="0%" stop-color="#ffe44d"/>
+        <stop offset="40%" stop-color="#f4d03f"/>
+        <stop offset="100%" stop-color="#d4af37"/>
+      </radialGradient>
+      <radialGradient id="av-andarna-eye" cx="50%" cy="40%" r="60%">
+        <stop offset="0%" stop-color="#ffe44d"/>
+        <stop offset="50%" stop-color="#ffd700"/>
+        <stop offset="100%" stop-color="#daa520"/>
+      </radialGradient>
+      <linearGradient id="av-andarna-feather" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ffe44d"/>
+        <stop offset="50%" stop-color="#f4d03f"/>
+        <stop offset="100%" stop-color="#d4af37"/>
+      </linearGradient>
+      <radialGradient id="av-andarna-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffd700" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#ffd700" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Ethereal glow -->
+    <ellipse cx="50" cy="50" rx="42" ry="45" fill="url(#av-andarna-glow)"/>
+    <circle cx="50" cy="50" r="35" fill="url(#av-andarna-glow)"/>
+    
+    <!-- Light rays -->
+    <path d="M50 15 L48 25 L52 25 Z" fill="#ffe44d" opacity="0.3"/>
+    <path d="M70 22 L66 30 L72 32 Z" fill="#ffe44d" opacity="0.3"/>
+    <path d="M82 40 L75 44 L78 48 Z" fill="#ffe44d" opacity="0.3"/>
+    <path d="M30 22 L34 30 L28 32 Z" fill="#ffe44d" opacity="0.3"/>
+    <path d="M18 40 L25 44 L22 48 Z" fill="#ffe44d" opacity="0.3"/>
+    
+    <!-- Dragon head -->
+    <ellipse cx="50" cy="50" rx="22" ry="26" fill="url(#av-andarna-body)"/>
+    
+    <!-- Feather details on head -->
+    <path d="M32 32 Q28 22 30 15 L31 17 Q30 24 32 30" fill="url(#av-andarna-feather)"/>
+    <path d="M38 28 Q36 18 38 12 L39 14 Q38 20 38 26" fill="url(#av-andarna-feather)" opacity="0.9"/>
+    <path d="M50 26 Q50 14 50 8 L50 10 Q50 18 50 24" fill="url(#av-andarna-feather)"/>
+    <path d="M62 28 Q64 18 62 12 L61 14 Q62 20 62 26" fill="url(#av-andarna-feather)" opacity="0.9"/>
+    <path d="M68 32 Q72 22 70 15 L69 17 Q70 24 68 30" fill="url(#av-andarna-feather)"/>
+    
+    <!-- Feather texture lines -->
+    <path d="M32 32 Q32 28 32 24" stroke="#d4af37" stroke-width="0.5" fill="none" opacity="0.5"/>
+    <path d="M38 28 Q38 24 38 20" stroke="#d4af37" stroke-width="0.5" fill="none" opacity="0.5"/>
+    <path d="M50 26 Q50 20 50 14" stroke="#d4af37" stroke-width="0.5" fill="none" opacity="0.5"/>
+    <path d="M62 28 Q62 24 62 20" stroke="#d4af37" stroke-width="0.5" fill="none" opacity="0.5"/>
+    <path d="M68 32 Q68 28 68 24" stroke="#d4af37" stroke-width="0.5" fill="none" opacity="0.5"/>
+    
+    <!-- Snout -->
+    <path d="M42 48 Q50 45 58 48 Q60 52 58 56 Q54 60 50 60 Q46 60 42 56 Q40 52 42 48" fill="#f4d03f"/>
+    <ellipse cx="47" cy="54" rx="1.5" ry="2" fill="#d4af37"/>
+    <ellipse cx="53" cy="54" rx="1.5" ry="2" fill="#d4af37"/>
+    
+    <!-- Eye with sparkle -->
+    <ellipse cx="60" cy="45" rx="6" ry="7" fill="#f4d03f"/>
+    <circle cx="60" cy="45" r="5.5" fill="url(#av-andarna-eye)"/>
+    <circle cx="60" cy="45" r="3" fill="#0a0c10" opacity="0.6"/>
+    <circle cx="61" cy="44" r="1.8" fill="#ffe44d"/>
+    <circle cx="59" cy="46" r="0.8" fill="#ffe44d" opacity="0.7"/>
+    <circle cx="60" cy="45" r="6.5" fill="none" stroke="#ffe44d" stroke-width="0.8" opacity="0.6"/>
+    <path d="M58 42 L56 40" stroke="#ffe44d" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M62 42 L64 40" stroke="#ffe44d" stroke-width="1" fill="none" opacity="0.5"/>
+    
+    <!-- Neck feathers -->
+    <ellipse cx="72" cy="52" rx="8" ry="10" fill="url(#av-andarna-body)" opacity="0.8"/>
+    <path d="M72 48 L75 42" stroke="#d4af37" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M74 52 L78 48" stroke="#d4af37" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M74 56 L78 60" stroke="#d4af37" stroke-width="1" fill="none" opacity="0.4"/>
+    
+    <!-- Scale/feather texture on body -->
+    <ellipse cx="40" cy="58" rx="2" ry="2.5" fill="#d4af37" opacity="0.4"/>
+    <ellipse cx="48" cy="64" rx="2.2" ry="2.8" fill="#d4af37" opacity="0.4"/>
+    <ellipse cx="56" cy="66" rx="2" ry="2.5" fill="#d4af37" opacity="0.4"/>
+    <ellipse cx="35" cy="52" rx="1.8" ry="2.3" fill="#d4af37" opacity="0.4"/>
+  </svg>`;
+}
+
+function avatarSgaeyl(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sgaeyl portrait">
+    <defs>
+      <radialGradient id="av-sgaeyl-body" cx="40%" cy="40%" r="60%">
+        <stop offset="0%" stop-color="#6bb3ff"/>
+        <stop offset="40%" stop-color="#4a90e2"/>
+        <stop offset="100%" stop-color="#2c5aa0"/>
+      </radialGradient>
+      <radialGradient id="av-sgaeyl-eye" cx="50%" cy="40%" r="60%">
+        <stop offset="0%" stop-color="#d4f1ff"/>
+        <stop offset="40%" stop-color="#87ceeb"/>
+        <stop offset="100%" stop-color="#4a90e2"/>
+      </radialGradient>
+      <linearGradient id="av-sgaeyl-dagger" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#2c5aa0"/>
+        <stop offset="100%" stop-color="#1a3a6f"/>
+      </linearGradient>
+      <radialGradient id="av-sgaeyl-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#4a90e2" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#4a90e2" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Blue glow aura -->
+    <ellipse cx="50" cy="50" rx="40" ry="45" fill="url(#av-sgaeyl-glow)"/>
+    
+    <!-- Dragon head structure -->
+    <path d="M22 52 Q22 35 32 26 Q40 18 50 16 Q60 16 68 22 Q78 30 82 42 Q84 52 80 62 Q74 72 62 78 Q50 82 38 78 Q26 72 22 62 Z" fill="url(#av-sgaeyl-body)"/>
+    
+    <!-- Daggertail spines on head -->
+    <path d="M35 18 L32 8 L34 10 L36 16" fill="url(#av-sgaeyl-dagger)"/>
+    <path d="M42 14 L40 4 L42 6 L44 12" fill="url(#av-sgaeyl-dagger)"/>
+    <path d="M50 12 L50 2 L51 4 L51 10" fill="url(#av-sgaeyl-dagger)"/>
+    <path d="M58 14 L60 4 L58 6 L56 12" fill="url(#av-sgaeyl-dagger)"/>
+    <path d="M65 18 L68 8 L66 10 L64 16" fill="url(#av-sgaeyl-dagger)"/>
+    
+    <!-- Dagger spine details -->
+    <path d="M35 18 L35 12" stroke="#1a3a6f" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <path d="M42 14 L42 8" stroke="#1a3a6f" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <path d="M50 12 L50 6" stroke="#1a3a6f" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <path d="M58 14 L58 8" stroke="#1a3a6f" stroke-width="0.8" fill="none" opacity="0.6"/>
+    <path d="M65 18 L65 12" stroke="#1a3a6f" stroke-width="0.8" fill="none" opacity="0.6"/>
+    
+    <!-- Scale texture -->
+    <ellipse cx="36" cy="42" rx="2.5" ry="3.5" fill="#2c5aa0" opacity="0.5"/>
+    <ellipse cx="44" cy="50" rx="2.8" ry="3.8" fill="#2c5aa0" opacity="0.5"/>
+    <ellipse cx="52" cy="56" rx="2.5" ry="3.5" fill="#2c5aa0" opacity="0.5"/>
+    <ellipse cx="32" cy="54" rx="2.3" ry="3.2" fill="#2c5aa0" opacity="0.5"/>
+    <ellipse cx="40" cy="62" rx="2.6" ry="3.6" fill="#2c5aa0" opacity="0.5"/>
+    
+    <!-- Snout with sharp features -->
+    <path d="M40 44 Q50 40 60 44 Q62 48 60 52 Q56 56 50 56 Q44 56 40 52 Q38 48 40 44" fill="#4a90e2"/>
+    <ellipse cx="46" cy="50" rx="1.5" ry="2" fill="#2c5aa0"/>
+    <ellipse cx="54" cy="50" rx="1.5" ry="2" fill="#2c5aa0"/>
+    
+    <!-- Eye socket and brow -->
+    <path d="M62 30 Q70 32 74 38 Q76 42 74 46 Q70 50 64 50 Q58 48 56 42 Q56 36 62 30" fill="#2c5aa0"/>
+    <path d="M60 28 Q68 26 74 30" stroke="#1a3a6f" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    
+    <!-- Eye with fierce blue glow -->
+    <ellipse cx="67" cy="40" rx="7" ry="9" fill="#1a3a6f"/>
+    <circle cx="67" cy="40" r="6.5" fill="url(#av-sgaeyl-eye)"/>
+    <circle cx="67" cy="40" r="3.5" fill="#0a0c10" opacity="0.6"/>
+    <circle cx="68" cy="39" r="2" fill="#d4f1ff"/>
+    <circle cx="66" cy="41" r="1" fill="#d4f1ff" opacity="0.7"/>
+    <circle cx="67" cy="40" r="7.5" fill="none" stroke="#87ceeb" stroke-width="1" opacity="0.5"/>
+    <circle cx="67" cy="40" r="9" fill="none" stroke="#87ceeb" stroke-width="0.5" opacity="0.3"/>
+    
+    <!-- Jaw line -->
+    <path d="M30 56 Q38 66 50 70 Q62 68 72 60" stroke="#2c5aa0" stroke-width="1.5" fill="none"/>
+    
+    <!-- Neck spines -->
+    <ellipse cx="76" cy="52" rx="6" ry="8" fill="#4a90e2" opacity="0.8"/>
+    <path d="M76 48 L80 42" stroke="#2c5aa0" stroke-width="1.2" fill="none" opacity="0.6"/>
+    <path d="M78 52 L82 48" stroke="#2c5aa0" stroke-width="1.2" fill="none" opacity="0.6"/>
+    <path d="M78 56 L82 60" stroke="#2c5aa0" stroke-width="1.2" fill="none" opacity="0.6"/>
+  </svg>`;
+}
+
+function avatarRhiannon(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rhiannon Matthias portrait">
+    <defs>
+      <radialGradient id="av-rhiannon-skin" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="#f2e4d8"/>
+        <stop offset="60%" stop-color="#e8d4c8"/>
+        <stop offset="100%" stop-color="#d4b8a8"/>
+      </radialGradient>
+      <radialGradient id="av-rhiannon-blush" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#e8a8a0" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#e8a8a0" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="av-rhiannon-hair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#6b4f3a"/>
+        <stop offset="50%" stop-color="#5c4033"/>
+        <stop offset="100%" stop-color="#3e2723"/>
+      </linearGradient>
+      <radialGradient id="av-rhiannon-eye" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#8b6f47"/>
+        <stop offset="60%" stop-color="#5c4033"/>
+        <stop offset="100%" stop-color="#3e2723"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Hair with warrior style -->
+    <path d="M14 36 Q14 10 50 7 Q86 10 86 36 L86 62 Q83 60 78 58 Q74 56 70 57 L70 44 Q70 32 65 26 Q60 20 55 18 Q52 17 50 17 Q48 17 45 18 Q40 20 35 26 Q30 32 30 44 L30 57 Q26 56 22 58 Q17 60 14 62 Z" fill="url(#av-rhiannon-hair)"/>
+    <path d="M24 24 Q30 18 36 20 Q33 22 28 27" fill="#5c4033" opacity="0.6"/>
+    <path d="M76 24 Q70 18 64 20 Q67 22 72 27" fill="#5c4033" opacity="0.6"/>
+    
+    <!-- Neck and shoulders -->
+    <ellipse cx="50" cy="85" rx="19" ry="12" fill="url(#av-rhiannon-skin)"/>
+    <path d="M34 78 Q34 83 39 86 L61 86 Q66 83 66 78" fill="#8b1a1a" opacity="0.3"/>
+    
+    <!-- Face with strong features -->
+    <ellipse cx="50" cy="48" rx="20" ry="24" fill="url(#av-rhiannon-skin)"/>
+    <ellipse cx="36" cy="52" rx="3" ry="5" fill="url(#av-rhiannon-blush)"/>
+    <ellipse cx="64" cy="52" rx="3" ry="5" fill="url(#av-rhiannon-blush)"/>
+    <path d="M32 48 Q32 60 50 65 Q68 60 68 48" fill="#d4b8a8" opacity="0.15"/>
+    
+    <!-- Strong eyebrows -->
+    <path d="M36 40 Q40 38 44 39" stroke="#3e2723" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M64 40 Q60 38 56 39" stroke="#3e2723" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    
+    <!-- Eyes with confidence -->
+    <ellipse cx="40" cy="46" rx="4.5" ry="5" fill="white"/>
+    <ellipse cx="60" cy="46" rx="4.5" ry="5" fill="white"/>
+    <circle cx="40" cy="46" r="4" fill="url(#av-rhiannon-eye)"/>
+    <circle cx="60" cy="46" r="4" fill="url(#av-rhiannon-eye)"/>
+    <circle cx="40" cy="46" r="2.3" fill="#1a1a2e"/>
+    <circle cx="60" cy="46" r="2.3" fill="#1a1a2e"/>
+    <circle cx="41" cy="45" r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="61" cy="45" r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="39.5" cy="47" r="0.6" fill="white" opacity="0.6"/>
+    <circle cx="59.5" cy="47" r="0.6" fill="white" opacity="0.6"/>
+    
+    <!-- Eyelashes -->
+    <path d="M36 44 Q35 42 34 43" stroke="#3e2723" stroke-width="0.8" fill="none" opacity="0.7"/>
+    <path d="M37 43 Q36 41 35 42" stroke="#3e2723" stroke-width="0.8" fill="none" opacity="0.7"/>
+    <path d="M44 44 Q45 42 46 43" stroke="#3e2723" stroke-width="0.8" fill="none" opacity="0.7"/>
+    <path d="M43 43 Q44 41 45 42" stroke="#3e2723" stroke-width="0.8" fill="none" opacity="0.7"/>
+    <path d="M56 44 Q55 42 54 43" stroke="#3e2723" stroke-width="0.8" fill="none" opacity="0.7"/>
+    <path d="M57 43 Q56 41 55 42" stroke="#3e2723" stroke-width="0.8" fill="none" opacity="0.7"/>
+    <path d="M64 44 Q65 42 66 43" stroke="#3e2723" stroke-width="0.8" fill="none" opacity="0.7"/>
+    <path d="M63 43 Q64 41 65 42" stroke="#3e2723" stroke-width="0.8" fill="none" opacity="0.7"/>
+    
+    <!-- Nose -->
+    <path d="M50 46 L50 56" stroke="#d4b8a8" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M47 56 Q50 57 53 56" stroke="#c9a896" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <ellipse cx="47" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    <ellipse cx="53" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    
+    <!-- Lips with determination -->
+    <path d="M44 62 Q50 63 56 62" stroke="#c9a896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M44 62 Q50 61.5 56 62" fill="#d8a8a0" opacity="0.4"/>
+    
+    <!-- Strong jawline -->
+    <path d="M33 58 Q33 65 40 69" stroke="#c9a896" stroke-width="0.6" fill="none" opacity="0.4"/>
+    <path d="M67 58 Q67 65 60 69" stroke="#c9a896" stroke-width="0.6" fill="none" opacity="0.4"/>
+  </svg>`;
+}
+
+function avatarRidoc(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ridoc Gamlyn portrait">
+    <defs>
+      <radialGradient id="av-ridoc-skin" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="#f2e4d8"/>
+        <stop offset="60%" stop-color="#e8d4c8"/>
+        <stop offset="100%" stop-color="#d4b8a8"/>
+      </radialGradient>
+      <radialGradient id="av-ridoc-blush" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#e8a8a0" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#e8a8a0" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="av-ridoc-hair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#7a5533"/>
+        <stop offset="50%" stop-color="#6b4423"/>
+        <stop offset="100%" stop-color="#4a2c17"/>
+      </linearGradient>
+      <radialGradient id="av-ridoc-eye" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#8b6f47"/>
+        <stop offset="60%" stop-color="#6b4423"/>
+        <stop offset="100%" stop-color="#4a2c17"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Hair with casual style -->
+    <path d="M16 34 Q16 12 50 8 Q84 12 84 34 L84 60 Q81 58 76 56 Q72 54 68 55 L68 43 Q68 33 63 27 Q58 22 53 20 Q51 19 50 19 Q49 19 47 20 Q42 22 37 27 Q32 33 32 43 L32 55 Q28 54 24 56 Q19 58 16 60 Z" fill="url(#av-ridoc-hair)"/>
+    <path d="M26 26 Q32 20 38 22 Q35 24 30 29" fill="#6b4423" opacity="0.5"/>
+    <path d="M74 26 Q68 20 62 22 Q65 24 70 29" fill="#6b4423" opacity="0.5"/>
+    
+    <!-- Neck and shoulders -->
+    <ellipse cx="50" cy="85" rx="18" ry="12" fill="url(#av-ridoc-skin)"/>
+    <path d="M35 78 Q35 82 40 85 L60 85 Q65 82 65 78" fill="#6b4423" opacity="0.2"/>
+    
+    <!-- Face with friendly features -->
+    <ellipse cx="50" cy="49" rx="19" ry="23" fill="url(#av-ridoc-skin)"/>
+    <ellipse cx="36" cy="53" rx="3.5" ry="5" fill="url(#av-ridoc-blush)"/>
+    <ellipse cx="64" cy="53" rx="3.5" ry="5" fill="url(#av-ridoc-blush)"/>
+    <path d="M33 49 Q33 61 50 66 Q67 61 67 49" fill="#d4b8a8" opacity="0.15"/>
+    
+    <!-- Friendly eyebrows -->
+    <path d="M37 41 Q41 39 45 40" stroke="#4a2c17" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M63 41 Q59 39 55 40" stroke="#4a2c17" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    
+    <!-- Eyes with warmth -->
+    <ellipse cx="41" cy="47" rx="4.2" ry="4.8" fill="white"/>
+    <ellipse cx="59" cy="47" rx="4.2" ry="4.8" fill="white"/>
+    <circle cx="41" cy="47" r="3.8" fill="url(#av-ridoc-eye)"/>
+    <circle cx="59" cy="47" r="3.8" fill="url(#av-ridoc-eye)"/>
+    <circle cx="41" cy="47" r="2.2" fill="#1a1a2e"/>
+    <circle cx="59" cy="47" r="2.2" fill="#1a1a2e"/>
+    <circle cx="42" cy="46" r="1.1" fill="white" opacity="0.9"/>
+    <circle cx="60" cy="46" r="1.1" fill="white" opacity="0.9"/>
+    <circle cx="40.5" cy="48" r="0.6" fill="white" opacity="0.6"/>
+    <circle cx="58.5" cy="48" r="0.6" fill="white" opacity="0.6"/>
+    
+    <!-- Smile lines -->
+    <path d="M36 50 Q35 52 36 54" stroke="#d4b8a8" stroke-width="0.5" fill="none" opacity="0.4"/>
+    <path d="M64 50 Q65 52 64 54" stroke="#d4b8a8" stroke-width="0.5" fill="none" opacity="0.4"/>
+    
+    <!-- Nose -->
+    <path d="M50 47 L50 57" stroke="#d4b8a8" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M47 57 Q50 58 53 57" stroke="#c9a896" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <ellipse cx="47" cy="57" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    <ellipse cx="53" cy="57" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    
+    <!-- Friendly smile -->
+    <path d="M43 63 Q50 66 57 63" stroke="#c9a896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M43 63 Q50 65 57 63" fill="#d8a8a0" opacity="0.4"/>
+    <path d="M43 63 Q50 64 57 63" fill="#e8b8b0" opacity="0.3"/>
+    
+    <!-- Dimple -->
+    <circle cx="57" cy="64" r="0.8" fill="#d4b8a8" opacity="0.4"/>
+  </svg>`;
+}
+
+function avatarSawyer(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sawyer Henrick portrait">
+    <defs>
+      <radialGradient id="av-sawyer-skin" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="#f5e8dc"/>
+        <stop offset="60%" stop-color="#e8d4c8"/>
+        <stop offset="100%" stop-color="#d4b8a8"/>
+      </radialGradient>
+      <linearGradient id="av-sawyer-hair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#d86f4a"/>
+        <stop offset="50%" stop-color="#c85a3a"/>
+        <stop offset="100%" stop-color="#a0421f"/>
+      </linearGradient>
+      <radialGradient id="av-sawyer-eye" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#7a9fb8"/>
+        <stop offset="60%" stop-color="#5c7a8f"/>
+        <stop offset="100%" stop-color="#3e5565"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Red hair -->
+    <path d="M14 36 Q14 10 50 7 Q86 10 86 36 L86 62 Q83 60 78 58 Q74 56 70 57 L70 44 Q70 32 65 26 Q60 20 55 18 Q52 17 50 17 Q48 17 45 18 Q40 20 35 26 Q30 32 30 44 L30 57 Q26 56 22 58 Q17 60 14 62 Z" fill="url(#av-sawyer-hair)"/>
+    <path d="M24 24 Q30 18 36 20 Q33 22 28 27" fill="#c85a3a" opacity="0.6"/>
+    <path d="M76 24 Q70 18 64 20 Q67 22 72 27" fill="#c85a3a" opacity="0.6"/>
+    
+    <!-- Neck -->
+    <ellipse cx="50" cy="85" rx="19" ry="12" fill="url(#av-sawyer-skin)"/>
+    
+    <!-- Face with freckles -->
+    <ellipse cx="50" cy="48" rx="20" ry="24" fill="url(#av-sawyer-skin)"/>
+    <path d="M32 48 Q32 60 50 65 Q68 60 68 48" fill="#d4b8a8" opacity="0.15"/>
+    
+    <!-- Freckles -->
+    <circle cx="38" cy="52" r="0.6" fill="#c85a3a" opacity="0.4"/>
+    <circle cx="42" cy="50" r="0.5" fill="#c85a3a" opacity="0.4"/>
+    <circle cx="40" cy="54" r="0.5" fill="#c85a3a" opacity="0.4"/>
+    <circle cx="62" cy="52" r="0.6" fill="#c85a3a" opacity="0.4"/>
+    <circle cx="58" cy="50" r="0.5" fill="#c85a3a" opacity="0.4"/>
+    <circle cx="60" cy="54" r="0.5" fill="#c85a3a" opacity="0.4"/>
+    <circle cx="48" cy="56" r="0.5" fill="#c85a3a" opacity="0.3"/>
+    <circle cx="52" cy="56" r="0.5" fill="#c85a3a" opacity="0.3"/>
+    
+    <!-- Eyebrows -->
+    <path d="M36 40 Q40 38 44 39" stroke="#a0421f" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M64 40 Q60 38 56 39" stroke="#a0421f" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    
+    <!-- Eyes -->
+    <ellipse cx="40" cy="46" rx="4.5" ry="5" fill="white"/>
+    <ellipse cx="60" cy="46" rx="4.5" ry="5" fill="white"/>
+    <circle cx="40" cy="46" r="4" fill="url(#av-sawyer-eye)"/>
+    <circle cx="60" cy="46" r="4" fill="url(#av-sawyer-eye)"/>
+    <circle cx="40" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="60" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="41" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    <circle cx="61" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    
+    <!-- Nose -->
+    <path d="M50 46 L50 56" stroke="#d4b8a8" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M47 56 Q50 57 53 56" stroke="#c9a896" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <ellipse cx="47" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    <ellipse cx="53" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    
+    <!-- Lips -->
+    <path d="M44 62 Q50 63 56 62" stroke="#c9a896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M44 62 Q50 62 56 62" fill="#d8a8a0" opacity="0.3"/>
+  </svg>`;
+}
+
+function avatarLiam(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Liam Mairi portrait">
+    <defs>
+      <radialGradient id="av-liam-skin" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="#f5e8dc"/>
+        <stop offset="60%" stop-color="#e8d4c8"/>
+        <stop offset="100%" stop-color="#d4b8a8"/>
+      </radialGradient>
+      <linearGradient id="av-liam-hair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e8c68a"/>
+        <stop offset="50%" stop-color="#d4a574"/>
+        <stop offset="100%" stop-color="#b8885c"/>
+      </linearGradient>
+      <radialGradient id="av-liam-eye" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#a89968"/>
+        <stop offset="60%" stop-color="#8b6f47"/>
+        <stop offset="100%" stop-color="#6b5537"/>
+      </radialGradient>
+      <radialGradient id="av-liam-warmth" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#e8c68a" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#e8c68a" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Warm glow -->
+    <ellipse cx="50" cy="50" rx="35" ry="40" fill="url(#av-liam-warmth)"/>
+    
+    <!-- Golden hair -->
+    <path d="M14 36 Q14 10 50 7 Q86 10 86 36 L86 62 Q83 60 78 58 Q74 56 70 57 L70 44 Q70 32 65 26 Q60 20 55 18 Q52 17 50 17 Q48 17 45 18 Q40 20 35 26 Q30 32 30 44 L30 57 Q26 56 22 58 Q17 60 14 62 Z" fill="url(#av-liam-hair)"/>
+    <path d="M24 24 Q30 18 36 20 Q33 22 28 27" fill="#d4a574" opacity="0.6"/>
+    <path d="M76 24 Q70 18 64 20 Q67 22 72 27" fill="#d4a574" opacity="0.6"/>
+    
+    <!-- Neck -->
+    <ellipse cx="50" cy="85" rx="19" ry="12" fill="url(#av-liam-skin)"/>
+    
+    <!-- Face with kind features -->
+    <ellipse cx="50" cy="48" rx="20" ry="24" fill="url(#av-liam-skin)"/>
+    <path d="M32 48 Q32 60 50 65 Q68 60 68 48" fill="#d4b8a8" opacity="0.15"/>
+    
+    <!-- Gentle eyebrows -->
+    <path d="M36 40 Q40 39 44 40" stroke="#b8885c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M64 40 Q60 39 56 40" stroke="#b8885c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    
+    <!-- Warm eyes -->
+    <ellipse cx="40" cy="46" rx="4.5" ry="5" fill="white"/>
+    <ellipse cx="60" cy="46" rx="4.5" ry="5" fill="white"/>
+    <circle cx="40" cy="46" r="4" fill="url(#av-liam-eye)"/>
+    <circle cx="60" cy="46" r="4" fill="url(#av-liam-eye)"/>
+    <circle cx="40" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="60" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="41" cy="45" r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="61" cy="45" r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="39.5" cy="47" r="0.6" fill="white" opacity="0.6"/>
+    <circle cx="59.5" cy="47" r="0.6" fill="white" opacity="0.6"/>
+    
+    <!-- Smile lines -->
+    <path d="M36 50 Q35 52 36 54" stroke="#d4b8a8" stroke-width="0.5" fill="none" opacity="0.4"/>
+    <path d="M64 50 Q65 52 64 54" stroke="#d4b8a8" stroke-width="0.5" fill="none" opacity="0.4"/>
+    
+    <!-- Nose -->
+    <path d="M50 46 L50 56" stroke="#d4b8a8" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M47 56 Q50 57 53 56" stroke="#c9a896" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <ellipse cx="47" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    <ellipse cx="53" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    
+    <!-- Warm smile -->
+    <path d="M44 62 Q50 65 56 62" stroke="#c9a896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M44 62 Q50 64 56 62" fill="#d8a8a0" opacity="0.4"/>
+    <path d="M44 62 Q50 63 56 62" fill="#e8b8b0" opacity="0.3"/>
+  </svg>`;
+}
+
+function avatarDain(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dain Aetos portrait">
+    <defs>
+      <radialGradient id="av-dain-skin" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="#f0dcd0"/>
+        <stop offset="60%" stop-color="#e8d4c8"/>
+        <stop offset="100%" stop-color="#d4b8a8"/>
+      </radialGradient>
+      <linearGradient id="av-dain-hair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#4d4d5d"/>
+        <stop offset="50%" stop-color="#3d3d4d"/>
+        <stop offset="100%" stop-color="#1a1a2e"/>
+      </linearGradient>
+      <radialGradient id="av-dain-eye" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#6a7a8f"/>
+        <stop offset="60%" stop-color="#4a5568"/>
+        <stop offset="100%" stop-color="#2a3540"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Neat hair -->
+    <path d="M14 36 Q14 10 50 7 Q86 10 86 36 L86 62 Q83 60 78 58 Q74 56 70 57 L70 44 Q70 32 65 26 Q60 20 55 18 Q52 17 50 17 Q48 17 45 18 Q40 20 35 26 Q30 32 30 44 L30 57 Q26 56 22 58 Q17 60 14 62 Z" fill="url(#av-dain-hair)"/>
+    
+    <!-- Neck -->
+    <ellipse cx="50" cy="85" rx="19" ry="12" fill="url(#av-dain-skin)"/>
+    
+    <!-- Face with controlled features -->
+    <ellipse cx="50" cy="48" rx="21" ry="25" fill="url(#av-dain-skin)"/>
+    <path d="M32 48 Q32 60 50 65 Q68 60 68 48" fill="#d4b8a8" opacity="0.15"/>
+    
+    <!-- Strong eyebrows -->
+    <path d="M36 40 Q40 38 44 39" stroke="#1a1a2e" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M64 40 Q60 38 56 39" stroke="#1a1a2e" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    
+    <!-- Eyes -->
+    <ellipse cx="40" cy="46" rx="4.5" ry="5" fill="white"/>
+    <ellipse cx="60" cy="46" rx="4.5" ry="5" fill="white"/>
+    <circle cx="40" cy="46" r="4" fill="url(#av-dain-eye)"/>
+    <circle cx="60" cy="46" r="4" fill="url(#av-dain-eye)"/>
+    <circle cx="40" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="60" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="41" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    <circle cx="61" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    
+    <!-- Nose -->
+    <path d="M50 46 L50 56" stroke="#d4b8a8" stroke-width="0.9" fill="none" opacity="0.4"/>
+    <path d="M47 56 Q50 57 53 56" stroke="#c9a896" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <ellipse cx="47" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    <ellipse cx="53" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    
+    <!-- Controlled expression -->
+    <path d="M44 62 Q50 62 56 62" stroke="#c9a896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M44 62 Q50 61 56 62" fill="#d8a8a0" opacity="0.3"/>
+    
+    <!-- Strong jaw -->
+    <path d="M33 58 Q33 65 40 69" stroke="#c9a896" stroke-width="0.6" fill="none" opacity="0.4"/>
+    <path d="M67 58 Q67 65 60 69" stroke="#c9a896" stroke-width="0.6" fill="none" opacity="0.4"/>
+  </svg>`;
+}
+
+function avatarMira(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mira Sorrengail portrait">
+    <defs>
+      <radialGradient id="av-mira-skin" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="#f5e8dc"/>
+        <stop offset="60%" stop-color="#e8d4c8"/>
+        <stop offset="100%" stop-color="#d4b8a8"/>
+      </radialGradient>
+      <linearGradient id="av-mira-hair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2a2a3e"/>
+        <stop offset="50%" stop-color="#1a1a2e"/>
+        <stop offset="100%" stop-color="#0f0f1e"/>
+      </linearGradient>
+      <radialGradient id="av-mira-eye" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#6a5a7a"/>
+        <stop offset="60%" stop-color="#3d3d4d"/>
+        <stop offset="100%" stop-color="#1a1a2e"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Hair with warrior style -->
+    <path d="M14 36 Q14 10 50 7 Q86 10 86 36 L86 62 Q83 60 78 58 Q74 56 70 57 L70 44 Q70 32 65 26 Q60 20 55 18 Q52 17 50 17 Q48 17 45 18 Q40 20 35 26 Q30 32 30 44 L30 57 Q26 56 22 58 Q17 60 14 62 Z" fill="url(#av-mira-hair)"/>
+    
+    <!-- Neck -->
+    <ellipse cx="50" cy="85" rx="19" ry="12" fill="url(#av-mira-skin)"/>
+    <path d="M34 78 Q34 83 39 86 L61 86 Q66 83 66 78" fill="#8b1a1a" opacity="0.3"/>
+    
+    <!-- Face with fierce features -->
+    <ellipse cx="50" cy="48" rx="20" ry="24" fill="url(#av-mira-skin)"/>
+    <path d="M32 48 Q32 60 50 65 Q68 60 68 48" fill="#d4b8a8" opacity="0.15"/>
+    
+    <!-- Scar -->
+    <path d="M48 58 L49 62" stroke="#b89888" stroke-width="0.7" fill="none" opacity="0.5"/>
+    
+    <!-- Strong eyebrows -->
+    <path d="M36 40 Q40 38 44 39" stroke="#1a1a2e" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M64 40 Q60 38 56 39" stroke="#1a1a2e" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    
+    <!-- Eyes with determination -->
+    <ellipse cx="40" cy="46" rx="4.5" ry="5" fill="white"/>
+    <ellipse cx="60" cy="46" rx="4.5" ry="5" fill="white"/>
+    <circle cx="40" cy="46" r="4" fill="url(#av-mira-eye)"/>
+    <circle cx="60" cy="46" r="4" fill="url(#av-mira-eye)"/>
+    <circle cx="40" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="60" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="41" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    <circle cx="61" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    
+    <!-- Nose -->
+    <path d="M50 46 L50 56" stroke="#d4b8a8" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M47 56 Q50 57 53 56" stroke="#c9a896" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <ellipse cx="47" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    <ellipse cx="53" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    
+    <!-- Lips -->
+    <path d="M44 62 Q50 62 56 62" stroke="#c9a896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M44 62 Q50 61 56 62" fill="#d8a8a0" opacity="0.3"/>
+    
+    <!-- Strong jawline -->
+    <path d="M33 58 Q33 65 40 69" stroke="#c9a896" stroke-width="0.6" fill="none" opacity="0.4"/>
+    <path d="M67 58 Q67 65 60 69" stroke="#c9a896" stroke-width="0.6" fill="none" opacity="0.4"/>
+  </svg>`;
+}
+
+function avatarBrennan(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Brennan Sorrengail portrait">
+    <defs>
+      <radialGradient id="av-brennan-skin" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="#f5e8dc"/>
+        <stop offset="60%" stop-color="#e8d4c8"/>
+        <stop offset="100%" stop-color="#d4b8a8"/>
+      </radialGradient>
+      <linearGradient id="av-brennan-hair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#6b4f3a"/>
+        <stop offset="50%" stop-color="#5c4033"/>
+        <stop offset="100%" stop-color="#3e2723"/>
+      </linearGradient>
+      <radialGradient id="av-brennan-eye" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#8b6f47"/>
+        <stop offset="60%" stop-color="#5c4033"/>
+        <stop offset="100%" stop-color="#3e2723"/>
+      </radialGradient>
+      <radialGradient id="av-brennan-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#d4af37" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Healer's glow -->
+    <ellipse cx="50" cy="50" rx="35" ry="40" fill="url(#av-brennan-glow)"/>
+    
+    <!-- Hair -->
+    <path d="M14 36 Q14 10 50 7 Q86 10 86 36 L86 62 Q83 60 78 58 Q74 56 70 57 L70 44 Q70 32 65 26 Q60 20 55 18 Q52 17 50 17 Q48 17 45 18 Q40 20 35 26 Q30 32 30 44 L30 57 Q26 56 22 58 Q17 60 14 62 Z" fill="url(#av-brennan-hair)"/>
+    
+    <!-- Neck -->
+    <ellipse cx="50" cy="85" rx="19" ry="12" fill="url(#av-brennan-skin)"/>
+    
+    <!-- Face with gentle features -->
+    <ellipse cx="50" cy="48" rx="20" ry="24" fill="url(#av-brennan-skin)"/>
+    <path d="M32 48 Q32 60 50 65 Q68 60 68 48" fill="#d4b8a8" opacity="0.15"/>
+    
+    <!-- Gentle eyebrows -->
+    <path d="M36 40 Q40 39 44 40" stroke="#3e2723" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M64 40 Q60 39 56 40" stroke="#3e2723" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    
+    <!-- Eyes with healer's warmth -->
+    <ellipse cx="40" cy="46" rx="4.5" ry="5" fill="white"/>
+    <ellipse cx="60" cy="46" rx="4.5" ry="5" fill="white"/>
+    <circle cx="40" cy="46" r="4" fill="url(#av-brennan-eye)"/>
+    <circle cx="60" cy="46" r="4" fill="url(#av-brennan-eye)"/>
+    <circle cx="40" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="60" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="41" cy="45" r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="61" cy="45" r="1.2" fill="white" opacity="0.9"/>
+    <circle cx="40" cy="46" r="4.5" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.4"/>
+    <circle cx="60" cy="46" r="4.5" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.4"/>
+    
+    <!-- Nose -->
+    <path d="M50 46 L50 56" stroke="#d4b8a8" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M47 56 Q50 57 53 56" stroke="#c9a896" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <ellipse cx="47" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    <ellipse cx="53" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    
+    <!-- Gentle smile -->
+    <path d="M44 62 Q50 64 56 62" stroke="#c9a896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M44 62 Q50 63 56 62" fill="#d8a8a0" opacity="0.4"/>
+  </svg>`;
+}
+
+function avatarLilith(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="General Lilith Sorrengail portrait">
+    <defs>
+      <radialGradient id="av-lilith-skin" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="#f0dcd0"/>
+        <stop offset="60%" stop-color="#e8d4c8"/>
+        <stop offset="100%" stop-color="#d4b8a8"/>
+      </radialGradient>
+      <linearGradient id="av-lilith-hair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2a2a3e"/>
+        <stop offset="50%" stop-color="#1a1a2e"/>
+        <stop offset="100%" stop-color="#0f0f1e"/>
+      </linearGradient>
+      <radialGradient id="av-lilith-eye" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#4a4a5e"/>
+        <stop offset="60%" stop-color="#2c2c3e"/>
+        <stop offset="100%" stop-color="#1a1a2e"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Hair pulled back -->
+    <path d="M14 36 Q14 10 50 7 Q86 10 86 36 L86 62 Q83 60 78 58 Q74 56 70 57 L70 44 Q70 32 65 26 Q60 20 55 18 Q52 17 50 17 Q48 17 45 18 Q40 20 35 26 Q30 32 30 44 L30 57 Q26 56 22 58 Q17 60 14 62 Z" fill="url(#av-lilith-hair)"/>
+    
+    <!-- Neck -->
+    <ellipse cx="50" cy="85" rx="19" ry="12" fill="url(#av-lilith-skin)"/>
+    <path d="M34 78 Q34 83 39 86 L61 86 Q66 83 66 78" fill="#8b1a1a" opacity="0.3"/>
+    
+    <!-- Face with commanding features -->
+    <ellipse cx="50" cy="48" rx="21" ry="25" fill="url(#av-lilith-skin)"/>
+    <path d="M32 48 Q32 60 50 65 Q68 60 68 48" fill="#d4b8a8" opacity="0.15"/>
+    
+    <!-- Strong, arched eyebrows -->
+    <path d="M36 39 Q40 37 44 38" stroke="#1a1a2e" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M64 39 Q60 37 56 38" stroke="#1a1a2e" stroke-width="2" fill="none" stroke-linecap="round"/>
+    
+    <!-- Stern eyes -->
+    <ellipse cx="40" cy="46" rx="4.5" ry="5" fill="white"/>
+    <ellipse cx="60" cy="46" rx="4.5" ry="5" fill="white"/>
+    <circle cx="40" cy="46" r="4" fill="url(#av-lilith-eye)"/>
+    <circle cx="60" cy="46" r="4" fill="url(#av-lilith-eye)"/>
+    <circle cx="40" cy="46" r="2.3" fill="#1a1a2e"/>
+    <circle cx="60" cy="46" r="2.3" fill="#1a1a2e"/>
+    <circle cx="41" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    <circle cx="61" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    
+    <!-- Nose -->
+    <path d="M50 46 L50 56" stroke="#d4b8a8" stroke-width="0.9" fill="none" opacity="0.4"/>
+    <path d="M47 56 Q50 57 53 56" stroke="#c9a896" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <ellipse cx="47" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    <ellipse cx="53" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    
+    <!-- Stern expression -->
+    <path d="M44 62 Q50 61 56 62" stroke="#c9a896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M44 62 Q50 60 56 62" fill="#d8a8a0" opacity="0.3"/>
+    
+    <!-- Strong jaw and cheekbones -->
+    <path d="M32 55 Q32 62 38 67" stroke="#c9a896" stroke-width="0.7" fill="none" opacity="0.4"/>
+    <path d="M68 55 Q68 62 62 67" stroke="#c9a896" stroke-width="0.7" fill="none" opacity="0.4"/>
+    <path d="M30 48 Q28 50 30 52" stroke="#d4b8a8" stroke-width="0.6" fill="none" opacity="0.4"/>
+    <path d="M70 48 Q72 50 70 52" stroke="#d4b8a8" stroke-width="0.6" fill="none" opacity="0.4"/>
+  </svg>`;
+}
+
+function avatarImogen(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Imogen Cardulo portrait">
+    <defs>
+      <radialGradient id="av-imogen-skin" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="#f5e8dc"/>
+        <stop offset="60%" stop-color="#e8d4c8"/>
+        <stop offset="100%" stop-color="#d4b8a8"/>
+      </radialGradient>
+      <linearGradient id="av-imogen-hair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ff8fc7"/>
+        <stop offset="50%" stop-color="#ff69b4"/>
+        <stop offset="100%" stop-color="#db1f7d"/>
+      </linearGradient>
+      <radialGradient id="av-imogen-eye" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#6a5a7a"/>
+        <stop offset="60%" stop-color="#3d3d4d"/>
+        <stop offset="100%" stop-color="#1a1a2e"/>
+      </radialGradient>
+      <radialGradient id="av-imogen-aura" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ff69b4" stop-opacity="0.3"/>
+        <stop offset="100%" stop-color="#ff69b4" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Pink aura -->
+    <ellipse cx="50" cy="50" rx="35" ry="40" fill="url(#av-imogen-aura)"/>
+    
+    <!-- Pink hair -->
+    <path d="M14 36 Q14 10 50 7 Q86 10 86 36 L86 62 Q83 60 78 58 Q74 56 70 57 L70 44 Q70 32 65 26 Q60 20 55 18 Q52 17 50 17 Q48 17 45 18 Q40 20 35 26 Q30 32 30 44 L30 57 Q26 56 22 58 Q17 60 14 62 Z" fill="url(#av-imogen-hair)"/>
+    <path d="M24 24 Q30 18 36 20 Q33 22 28 27" fill="#ff69b4" opacity="0.6"/>
+    <path d="M76 24 Q70 18 64 20 Q67 22 72 27" fill="#ff69b4" opacity="0.6"/>
+    
+    <!-- Neck -->
+    <ellipse cx="50" cy="85" rx="19" ry="12" fill="url(#av-imogen-skin)"/>
+    
+    <!-- Face with fierce features -->
+    <ellipse cx="50" cy="48" rx="20" ry="24" fill="url(#av-imogen-skin)"/>
+    <path d="M32 48 Q32 60 50 65 Q68 60 68 48" fill="#d4b8a8" opacity="0.15"/>
+    
+    <!-- Strong eyebrows -->
+    <path d="M36 40 Q40 38 44 39" stroke="#db1f7d" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <path d="M64 40 Q60 38 56 39" stroke="#db1f7d" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    
+    <!-- Fierce eyes -->
+    <ellipse cx="40" cy="46" rx="4.5" ry="5" fill="white"/>
+    <ellipse cx="60" cy="46" rx="4.5" ry="5" fill="white"/>
+    <circle cx="40" cy="46" r="4" fill="url(#av-imogen-eye)"/>
+    <circle cx="60" cy="46" r="4" fill="url(#av-imogen-eye)"/>
+    <circle cx="40" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="60" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="41" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    <circle cx="61" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    
+    <!-- Nose -->
+    <path d="M50 46 L50 56" stroke="#d4b8a8" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M47 56 Q50 57 53 56" stroke="#c9a896" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <ellipse cx="47" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    <ellipse cx="53" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    
+    <!-- Lips -->
+    <path d="M44 62 Q50 62 56 62" stroke="#c9a896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M44 62 Q50 61 56 62" fill="#d8a8a0" opacity="0.4"/>
+    
+    <!-- Marked one aura -->
+    <circle cx="50" cy="50" r="24" fill="none" stroke="#ff69b4" stroke-width="0.5" opacity="0.3"/>
+  </svg>`;
+}
+
+function avatarBodhi(){
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bodhi Durran portrait">
+    <defs>
+      <radialGradient id="av-bodhi-skin" cx="50%" cy="40%" r="65%">
+        <stop offset="0%" stop-color="#f0dcd0"/>
+        <stop offset="60%" stop-color="#e8d4c8"/>
+        <stop offset="100%" stop-color="#d4b8a8"/>
+      </radialGradient>
+      <linearGradient id="av-bodhi-hair" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#4d4d5d"/>
+        <stop offset="50%" stop-color="#3d3d4d"/>
+        <stop offset="100%" stop-color="#1a1a2e"/>
+      </linearGradient>
+      <radialGradient id="av-bodhi-eye" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#6a7a8f"/>
+        <stop offset="60%" stop-color="#4a5568"/>
+        <stop offset="100%" stop-color="#2a3540"/>
+      </radialGradient>
+      <radialGradient id="av-bodhi-aura" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#d4af37" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="100" height="100" fill="#0a0c10"/>
+    
+    <!-- Marked one aura -->
+    <ellipse cx="50" cy="50" rx="35" ry="40" fill="url(#av-bodhi-aura)"/>
+    
+    <!-- Hair -->
+    <path d="M14 36 Q14 10 50 7 Q86 10 86 36 L86 62 Q83 60 78 58 Q74 56 70 57 L70 44 Q70 32 65 26 Q60 20 55 18 Q52 17 50 17 Q48 17 45 18 Q40 20 35 26 Q30 32 30 44 L30 57 Q26 56 22 58 Q17 60 14 62 Z" fill="url(#av-bodhi-hair)"/>
+    
+    <!-- Neck -->
+    <ellipse cx="50" cy="85" rx="19" ry="12" fill="url(#av-bodhi-skin)"/>
+    
+    <!-- Face with watchful features -->
+    <ellipse cx="50" cy="48" rx="21" ry="25" fill="url(#av-bodhi-skin)"/>
+    <path d="M32 48 Q32 60 50 65 Q68 60 68 48" fill="#d4b8a8" opacity="0.15"/>
+    
+    <!-- Eyebrows -->
+    <path d="M36 40 Q40 38 44 39" stroke="#1a1a2e" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    <path d="M64 40 Q60 38 56 39" stroke="#1a1a2e" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+    
+    <!-- Watchful eyes -->
+    <ellipse cx="40" cy="46" rx="4.5" ry="5" fill="white"/>
+    <ellipse cx="60" cy="46" rx="4.5" ry="5" fill="white"/>
+    <circle cx="40" cy="46" r="4" fill="url(#av-bodhi-eye)"/>
+    <circle cx="60" cy="46" r="4" fill="url(#av-bodhi-eye)"/>
+    <circle cx="40" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="60" cy="46" r="2.2" fill="#1a1a2e"/>
+    <circle cx="41" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    <circle cx="61" cy="45" r="1.1" fill="white" opacity="0.9"/>
+    
+    <!-- Nose -->
+    <path d="M50 46 L50 56" stroke="#d4b8a8" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <path d="M47 56 Q50 57 53 56" stroke="#c9a896" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <ellipse cx="47" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    <ellipse cx="53" cy="56" rx="1.2" ry="1.5" fill="#d4b8a8" opacity="0.3"/>
+    
+    <!-- Lips -->
+    <path d="M44 62 Q50 62 56 62" stroke="#c9a896" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M44 62 Q50 61 56 62" fill="#d8a8a0" opacity="0.3"/>
+    
+    <!-- Marked one quality -->
+    <circle cx="50" cy="50" r="24" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.3"/>
+    <path d="M32 50 Q30 52 32 54" stroke="#d4af37" stroke-width="0.6" fill="none" opacity="0.3"/>
+    <path d="M68 50 Q70 52 68 54" stroke="#d4af37" stroke-width="0.6" fill="none" opacity="0.3"/>
+  </svg>`;
+}
+
+
+
 function portraitHTML(ch){
+  const avatars = {
+    violet: avatarViolet,
+    xaden: avatarXaden,
+    tairn: avatarTairn,
+    andarna: avatarAndarna,
+    sgaeyl: avatarSgaeyl,
+    rhiannon: avatarRhiannon,
+    ridoc: avatarRidoc,
+    sawyer: avatarSawyer,
+    liam: avatarLiam,
+    dain: avatarDain,
+    mira: avatarMira,
+    brennan: avatarBrennan,
+    lilith: avatarLilith,
+    imogen: avatarImogen,
+    bodhi: avatarBodhi
+  };
+  
+  if (avatars[ch.id]) {
+    return `<span class="pic-wrap"><span class="pic">${avatars[ch.id]()}</span></span>`;
+  }
+  
   if (EMBEDDED[ch.id]) {
     return `<span class="pic-wrap"><span class="pic"><img class="custom" src="${EMBEDDED[ch.id]}" alt=""></span></span>`;
   }
