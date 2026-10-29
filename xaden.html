@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xaden Riorson — Fourth Wing Character Profile</title>
+<meta name="description" content="Complete character profile of Xaden Riorson from Rebecca Yarros's Empyrean series.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Marcellus+SC&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07080a;
+    --panel: #11141a;
+    --panel2: #0a0c10;
+    --edge: rgba(190,202,218,.11);
+    --edge-str: rgba(190,202,218,.26);
+    --stone: #8d98a8;
+    --bone: #e2dccf;
+    --bone-dim: #a9a394;
+    --amber: #c08a2e;
+    --amber-b: #e3b662;
+    --steel: #7d91a6;
+    --ink: #dce2ea;
+    --muted: #767f8c;
+    --crimson: #8b1a1a;
+    --gold: #d4af37;
+    --dragon-purple: #4a1a6f;
+    --shadow-black: #1a0a2e;
+    --shadow-glow: #2d1b4e;
+    --display: 'Cinzel', Georgia, serif;
+    --body: 'Spectral', Georgia, serif;
+    --label: 'Marcellus SC', Georgia, serif;
+    font-size: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { overflow-x: clip; }
+  body {
+    overflow-x: clip;
+    background:
+      radial-gradient(1100px 620px at 50% -12%, rgba(45,27,78,.18), transparent 64%),
+      radial-gradient(820px 520px at 88% 22%, rgba(26,10,46,.08), transparent 60%),
+      radial-gradient(900px 600px at 6% 72%, rgba(125,145,166,.07), transparent 62%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.012) 0 1px, transparent 1px 9px),
+      linear-gradient(180deg, #0a0c10 0%, var(--bg) 42%, #050608 100%);
+    color: var(--ink);
+    font-family: var(--body);
+    min-height: 100vh;
+  }
+
+  /* ---------- Header ---------- */
+  header { 
+    text-align: center; 
+    padding: 5rem 1rem 3rem;
+    position: relative;
+  }
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(45,27,78,.25), transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .mark { margin-bottom: 1.5rem; position: relative; z-index: 1; }
+  .mark svg { width: 128px; height: 66px; filter: drop-shadow(0 6px 22px rgba(0,0,0,.8)); }
+  header .eyebrow {
+    font-family: var(--label);
+    letter-spacing: .46em; text-indent: .46em; text-transform: uppercase;
+    font-size: .64rem; color: var(--shadow-glow); margin-bottom: 1.15rem;
+  }
+  header h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(2.8rem, 8vw, 5.2rem);
+    letter-spacing: .13em; text-transform: uppercase;
+    color: var(--bone); line-height: 1.05;
+    text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(45,27,78,.4), 0 0 80px rgba(45,27,78,.25);
+    animation: shadow-glow 3s ease-in-out infinite;
+    margin-bottom: .5rem;
+  }
+  @keyframes shadow-glow {
+    0%, 100% { text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(45,27,78,.4), 0 0 80px rgba(45,27,78,.25); }
+    50% { text-shadow: 0 2px 30px rgba(0,0,0,.9), 0 0 48px rgba(45,27,78,.6), 0 0 120px rgba(45,27,78,.45); }
+  }
+  header .subtitle {
+    font-family: var(--label); font-size: .75rem;
+    letter-spacing: .4em; text-indent: .4em; text-transform: uppercase;
+    color: var(--stone); margin-top: .5rem;
+  }
+  header p.tagline { 
+    margin-top: 1.5rem; 
+    color: var(--amber-b); 
+    font-size: 1.2rem; 
+    font-style: italic;
+    font-weight: 500;
+  }
+  .ornament {
+    margin: 2rem auto 0; width: min(360px, 70%); height: 2px;
+    background: linear-gradient(90deg, transparent, var(--edge-str) 20%, var(--shadow-glow) 50%, var(--edge-str) 80%, transparent);
+    position: relative;
+    box-shadow: 0 0 20px rgba(45,27,78,.35), 0 0 40px rgba(45,27,78,.15);
+  }
+  .ornament .gem { 
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--shadow-glow);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 12px rgba(45,27,78,.9);
+  }
+  .ornament .gem:nth-child(1) { left: 15%; }
+  .ornament .gem:nth-child(2) { left: 50%; transform: translateX(-50%) translateY(-50%); }
+  .ornament .gem:nth-child(3) { right: 15%; }
+
+  /* ---------- Main Content ---------- */
+  main { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+  
+  .intro {
+    background: linear-gradient(135deg, rgba(17,20,26,.8), rgba(10,12,16,.9));
+    border: 1px solid var(--edge-str);
+    border-radius: 4px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,.4), inset 0 1px 0 rgba(45,27,78,.15);
+  }
+  .intro p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .intro p:last-child { margin-bottom: 0; }
+
+  section {
+    margin-bottom: 3.5rem;
+  }
+  section h2 {
+    font-family: var(--display);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--bone);
+    margin-bottom: 1.5rem;
+    padding-bottom: .75rem;
+    border-bottom: 2px solid var(--edge);
+    position: relative;
+  }
+  section h2::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--shadow-glow), transparent);
+    box-shadow: 0 0 8px rgba(45,27,78,.6);
+  }
+
+  section h3 {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    color: var(--amber-b);
+    margin: 1.5rem 0 1rem;
+  }
+
+  section p {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+
+  ul, ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: var(--ink);
+  }
+  li {
+    font-size: 1.08rem;
+    line-height: 1.7;
+    margin-bottom: .7rem;
+  }
+  li strong {
+    color: var(--amber-b);
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  .stat-card {
+    background: linear-gradient(135deg, rgba(17,20,26,.6), rgba(10,12,16,.8));
+    border: 1px solid var(--edge);
+    border-radius: 4px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,.3);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(45,27,78,.25);
+  }
+  .stat-card h4 {
+    font-family: var(--label);
+    font-size: .7rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--shadow-glow);
+    margin-bottom: .75rem;
+  }
+  .stat-card .value {
+    font-size: 1.15rem;
+    color: var(--bone);
+    line-height: 1.5;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(26,10,46,.18), rgba(45,27,78,.12));
+    border-left: 3px solid var(--shadow-glow);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  }
+  .highlight-box h3 {
+    margin-top: 0;
+  }
+
+  blockquote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--amber-b);
+    border-left: 3px solid var(--amber);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: rgba(192,138,46,.05);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .abilities-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .ability-item {
+    background: rgba(17,20,26,.5);
+    border: 1px solid var(--edge);
+    padding: 1rem 1.25rem;
+    border-radius: 3px;
+    border-left: 3px solid var(--shadow-glow);
+  }
+  .ability-item strong {
+    color: var(--shadow-glow);
+    display: block;
+    margin-bottom: .4rem;
+    font-size: 1.1rem;
+  }
+
+  .warning-box {
+    background: linear-gradient(135deg, rgba(139,26,26,.15), rgba(139,26,26,.08));
+    border-left: 3px solid var(--crimson);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  }
+  .warning-box h3 {
+    color: #d66;
+    margin-top: 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    border-top: 1px solid var(--edge);
+    margin-top: 4rem;
+  }
+  footer p {
+    color: var(--muted);
+    font-size: .95rem;
+    font-style: italic;
+  }
+  footer a {
+    color: var(--shadow-glow);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  footer a:hover {
+    color: var(--amber-b);
+  }
+
+  @media (max-width: 768px) {
+    header { padding: 3rem 1rem 2rem; }
+    header h1 { font-size: 2.2rem; }
+    main { padding: 1.5rem 1rem 3rem; }
+    .intro { padding: 1.5rem; }
+    section h2 { font-size: 1.6rem; }
+    .stat-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mark">
+    <svg viewBox="0 0 128 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M64 2L74 22L96 26L80 42L84 64L64 54L44 64L48 42L32 26L54 22L64 2Z" stroke="#2d1b4e" stroke-width="2" fill="rgba(45,27,78,.2)"/>
+      <circle cx="64" cy="33" r="8" fill="#1a0a2e" opacity="0.7"/>
+    </svg>
+  </div>
+  <div class="eyebrow">Wingleader of Fourth Wing</div>
+  <h1>Xaden Riorson</h1>
+  <div class="subtitle">Son of the Rebellion • Shadow Wielder • Leader</div>
+  <p class="tagline">"I may be bastard-born and rebellious by blood, but I'm not my father."</p>
+  <div class="ornament">
+    <span class="gem"></span>
+    <span class="gem"></span>
+    <span class="gem"></span>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <p>Xaden Riorson is one of the central characters of Rebecca Yarros's Empyrean series, beginning with <em>Fourth Wing</em>. As the son of the executed rebel leader Fen Riorson, Xaden bears the rebellion's relic inked across his back and carries the weight of his father's legacy with every step through Basgiath War College.</p>
+    <p>Lethal, unreadable, and bound by oaths he never fully explains, Xaden serves as Wingleader of Fourth Wing while secretly running a rebellion out of Aretia. His dragon Sgaeyl's mating bond with Tairn chains him to Violet Sorrengail—the daughter of the general who executed his father—whether either of them wants it or not. Their relationship evolves from mutual distrust and enmity into one of the series' most complex and passionate connections.</p>
+  </div>
+
+  <section>
+    <h2>Character Profile</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <h4>Full Name</h4>
+        <div class="value">Xaden Riorson</div>
+      </div>
+      <div class="stat-card">
+        <h4>Age</h4>
+        <div class="value">23-24 years old</div>
+      </div>
+      <div class="stat-card">
+        <h4>Position</h4>
+        <div class="value">Wingleader, Fourth Wing</div>
+      </div>
+      <div class="stat-card">
+        <h4>Dragon</h4>
+        <div class="value">Sgaeyl (Blue Daggertail)</div>
+      </div>
+      <div class="stat-card">
+        <h4>Signet</h4>
+        <div class="value">Shadow Wielder</div>
+      </div>
+      <div class="stat-card">
+        <h4>Affiliation</h4>
+        <div class="value">Navarre / Tyrrendor / Aretia</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Physical Appearance</h2>
+    <p>Xaden is strikingly handsome with dark, almost black hair and piercing onyx eyes that seem to see through any deception. He stands tall and powerfully built, with a commanding physical presence that makes him impossible to ignore in any room. His body is marked by the rebellion relic—an intricate dragon design that covers his back, marking him as one of the children whose parents participated in the failed Tyrrendor Rebellion.</p>
+    <p>He moves with a lethal grace, every gesture controlled and deliberate. His expressions are famously difficult to read, a mask of control that rarely slips. When he does smile, it's often sardonic or dangerous, though those who know him best occasionally see something warmer beneath the surface.</p>
+  </section>
+
+  <section>
+    <h2>Personality & Strengths</h2>
+    <p>Xaden is complex, secretive, and driven by loyalties that often conflict with one another. As a marked one and the son of a rebel leader, he has learned to survive by keeping his cards close to his chest. He is a natural leader who commands respect and loyalty from those around him, particularly the other marked ones who look to him for guidance and protection.</p>
+    
+    <h3>Key Traits</h3>
+    <ul>
+      <li><strong>Strategic & Calculating:</strong> Xaden thinks several moves ahead, always planning for contingencies and protecting his people through careful strategy.</li>
+      <li><strong>Fiercely Loyal:</strong> His loyalty to the marked ones, to Tyrrendor, and to those he considers family is absolute and unwavering.</li>
+      <li><strong>Protective:</strong> Despite his dangerous reputation, Xaden is deeply protective of those he cares about, often putting himself at risk to keep them safe.</li>
+      <li><strong>Controlled:</strong> He maintains rigid control over his emotions and reactions, a survival skill learned from years of being watched and judged.</li>
+      <li><strong>Lethal:</strong> Xaden is one of the most dangerous riders at Basgiath, skilled in combat both with and without his signet.</li>
+      <li><strong>Burdened:</strong> He carries the weight of his father's legacy, the responsibility for the marked ones, and the secrets of the rebellion with little complaint.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Background & History</h2>
+    <p>Xaden is the son of Fen Riorson, who led the Tyrrendor Rebellion against Navarre six years before the events of <em>Fourth Wing</em>. When the rebellion failed, his father and the other leaders were executed by General Lilith Sorrengail. The children of the rebels—including Xaden—were marked with rebellion relics and forced to enter the Riders Quadrant at Basgiath War College, where many expected them to die.</p>
+    
+    <p>Instead of dying, Xaden survived and thrived. He bonded with Sgaeyl, became one of the most formidable riders of his generation, and rose to the position of Wingleader. But survival was never his only goal. Behind the scenes, Xaden has been quietly continuing his father's work, running a secret rebellion out of Aretia alongside the other marked ones and working to protect Tyrrendor and uncover the truths Navarre has been hiding about the venin and the war.</p>
+
+    <p>Being assigned to protect Violet Sorrengail—the daughter of the woman who executed his father—was both a burden and an assignment he took seriously, even as their relationship became far more complicated than either of them anticipated.</p>
+  </section>
+
+  <section>
+    <h2>Dragon & Bond</h2>
+    <div class="highlight-box">
+      <h3>Sgaeyl - The Blue Daggertail</h3>
+      <p>Sgaeyl is a fierce blue daggertail dragon, known for her speed, agility, and deadly precision in combat. Faster and more aggressive than most dragons, she is a perfect match for Xaden's lethal prowess and strategic mind. Sgaeyl is fiercely protective of her rider and uncompromising in her loyalty.</p>
+      
+      <p>The bond between Sgaeyl and Xaden is strong and intuitive, built on mutual respect and understanding. However, their relationship becomes even more complicated when Sgaeyl enters a mating bond with Tairn, Violet's dragon. This creates an involuntary connection between Xaden and Violet that neither can escape—their dragons' bond means they can sense each other's strong emotions and are drawn to protect one another, regardless of their personal feelings.</p>
+
+      <p>The mating bond between their dragons becomes both a source of tension and an undeniable pull that forces Xaden and Violet together, even when they would prefer distance. It strips away privacy and creates an intimacy neither initially wanted but both eventually learn to navigate.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Signet & Abilities</h2>
+    <p>Xaden's signet is <strong>shadow wielding</strong>—the ability to manipulate and control shadows. This rare and powerful ability allows him to use darkness as both a weapon and a tool, extending shadows to strike enemies, create barriers, or gather intelligence. He can move through shadows, use them to spy on others, and wield them with lethal precision in combat.</p>
+    
+    <div class="abilities-list">
+      <div class="ability-item">
+        <strong>Shadow Manipulation</strong>
+        Can control, extend, and weaponize shadows with devastating effectiveness
+      </div>
+      <div class="ability-item">
+        <strong>Combat Mastery</strong>
+        Exceptional fighter in both armed and unarmed combat
+      </div>
+      <div class="ability-item">
+        <strong>Leadership</strong>
+        Natural leader who commands loyalty and respect from riders and marked ones
+      </div>
+      <div class="ability-item">
+        <strong>Strategic Mind</strong>
+        Brilliant tactical thinker who plans multiple moves ahead
+      </div>
+      <div class="ability-item">
+        <strong>Dragon Bond</strong>
+        Deep connection with Sgaeyl enhances his combat abilities and awareness
+      </div>
+      <div class="ability-item">
+        <strong>Espionage Skills</strong>
+        Uses shadows to gather intelligence and maintain secrecy
+      </div>
+    </div>
+
+    <p>Xaden's shadow wielding is particularly useful for the rebellion's covert operations, allowing him to gather information, move unseen, and strike from unexpected angles. Combined with his natural combat skills and Sgaeyl's speed, he is one of the most dangerous riders in Navarre.</p>
+  </section>
+
+  <section>
+    <h2>Relationships</h2>
+    
+    <h3>Violet Sorrengail</h3>
+    <p>Xaden's relationship with Violet is the emotional core of the series. It begins with enmity—he is the son of the rebel leader her mother executed, and she is the daughter of the general who destroyed his family. Their connection through their dragons' mating bond forces them into proximity neither initially wants.</p>
+    
+    <p>Despite their history, Xaden is assigned to protect Violet, a task he takes seriously even as he keeps her at arm's length with threats and cold distance. Over time, mutual respect develops as Violet proves herself stronger and more capable than anyone expected. The attraction between them is undeniable but complicated by secrets, loyalties, and the weight of their families' histories.</p>
+
+    <p>Eventually, their relationship transforms into a deep, passionate love built on trust, honesty, and shared purpose. However, it remains tested by the secrets Xaden keeps, the rebellion he runs, and the impossible choices the war forces them to make. Their love is fierce, complicated, and central to both their journeys.</p>
+
+    <h3>Garrick Tavis</h3>
+    <p>Garrick is Xaden's closest friend and most trusted ally. The two share an unshakeable bond forged through years of surviving together as marked ones. Garrick serves as Xaden's right hand in both official capacities at Basgiath and in the secret rebellion. He is one of the few people Xaden trusts completely and relies on for both tactical support and honest counsel.</p>
+
+    <h3>Bodhi Durran</h3>
+    <p>Bodhi is Xaden's cousin and one of his inner circle among the marked ones. Their family connection adds another layer to Bodhi's loyalty, and Xaden trusts him deeply with the rebellion's most sensitive operations. Bodhi is steady, reliable, and shoulder-deep in the rebellion's business.</p>
+
+    <h3>The Marked Ones</h3>
+    <p>Xaden is the de facto leader of the marked ones—the children of the rebellion who were forced into the Riders Quadrant. He feels personally responsible for their survival and protection, carrying the weight of leadership that was thrust upon him after his father's execution. The marked ones look to him for guidance, protection, and leadership, and he takes this responsibility seriously, often at great personal cost.</p>
+
+    <h3>Brennan Sorrengail</h3>
+    <p>Brennan, Violet's supposedly dead brother, is actually alive and working with Xaden at Aretia to run the rebellion. Their alliance is crucial to the resistance efforts, though it complicates Xaden's relationship with Violet when the truth is revealed.</p>
+  </section>
+
+  <section>
+    <h2>Character Arc & Development</h2>
+    <p>Xaden's journey throughout the series is one of transformation from a man defined by his father's legacy and driven by revenge to a leader fighting for a cause larger than personal vengeance. In <em>Fourth Wing</em>, he is introduced as dangerous, mysterious, and seemingly antagonistic to Violet, but layers are gradually peeled back to reveal a man carrying enormous burdens and fighting a secret war.</p>
+
+    <p>His relationship with Violet challenges him to be more open and vulnerable than he has allowed himself to be since his father's death. She sees through his masks and demands honesty, forcing him to confront his own tendency to bear everything alone. Their love becomes both his greatest strength and his greatest vulnerability.</p>
+
+    <p>In <em>Iron Flame</em>, the costs of leadership and the war become more severe. Xaden is forced to make impossible choices to protect both Violet and the rebellion, leading to devastating consequences that test his character and his relationships to their limits.</p>
+
+    <div class="warning-box">
+      <h3>⚠️ Major Spoiler Warning - Iron Flame & Beyond</h3>
+      <p>At the end of <em>Iron Flame</em>, Xaden makes the ultimate sacrifice to save Violet during the assault on Basgiath: he channels power directly, turning venin in the process. This gut-punch revelation transforms his character arc, as he must now hide his condition while fighting to find a way back from the very thing he has spent his life fighting against. The secret he keeps from Violet about his turning creates new tensions and raises the stakes impossibly high for the continuation of the series.</p>
+    </div>
+
+    <blockquote>
+      "Power doesn't make you a good leader. Caring about the people you're responsible for—that's what makes you a good leader."
+    </blockquote>
+  </section>
+
+  <section>
+    <h2>Themes & Symbolism</h2>
+    <p>Xaden embodies several key themes throughout the Empyrean series:</p>
+    
+    <ul>
+      <li><strong>Legacy & Choice:</strong> Xaden must navigate the shadow of his father's rebellion while choosing his own path and defining himself beyond his parentage.</li>
+      <li><strong>Sacrifice & Leadership:</strong> His journey explores what true leadership costs and the sacrifices required to protect those who depend on you.</li>
+      <li><strong>Secrets & Trust:</strong> Xaden's tendency to keep secrets—even from those he loves—creates ongoing tension and raises questions about trust, protection, and autonomy.</li>
+      <li><strong>Redemption & Transformation:</strong> His arc suggests that people can transcend their origins and the expectations placed on them, though not without cost.</li>
+      <li><strong>Love & Vulnerability:</strong> Through Violet, Xaden learns that true strength includes the courage to be vulnerable and to trust others with his burdens.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Legacy & Impact</h2>
+    <p>Xaden Riorson has become one of the most beloved and complex characters in contemporary fantasy romance. His combination of danger, vulnerability, fierce loyalty, and emotional depth resonates with readers who appreciate morally complex protagonists. The slow burn of his relationship with Violet, built on a foundation of forced proximity, mutual respect, and undeniable chemistry, has captivated fans.</p>
+    
+    <p>As a character, Xaden represents a departure from simple hero archetypes. He is capable of great violence and willing to make morally ambiguous choices to protect his people, yet he is also capable of profound love and loyalty. His internal conflicts between duty, love, secrets, and sacrifice make him a richly drawn character whose choices drive much of the series' emotional weight.</p>
+
+    <p>His leadership of the marked ones and the rebellion positions him as a potential agent of change in Navarre's corrupt system, while his personal journey with Violet offers a compelling exploration of how love can develop even between people who should be enemies.</p>
+  </section>
+</main>
+
+<footer>
+  <p>Xaden Riorson is a character from Rebecca Yarros's <em>Empyrean</em> series.</p>
+  <p><a href="index.html">← Back to Character Guide</a></p>
+</footer>
+
+</body>
+</html>
