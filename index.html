@@ -315,7 +315,8 @@
 <div id="parallax" aria-hidden="true">
   <!-- wing of dragons, upper right -->
   <div class="plx" data-speed="0.07" style="top:4vh; right:2vw;">
-    <svg viewBox="0 0 620 420" style="width:58vmin;height:auto;min-width:320px;">
+    <svg viewBox="0 0 620 420" style="width:58vmin;height:auto;min-width:320px;" role="img" aria-label="Flying dragons silhouettes in formation">
+      <title>Flying dragons silhouettes</title>
       <g transform="translate(300 10) scale(0.85)"><g fill="#0d1117" opacity="0.55" transform="scale(1)">
         <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
         <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
@@ -348,7 +349,8 @@
   </div>
   <!-- lone dragon banking, left -->
   <div class="plx" data-speed="0.2" style="top:62vh; left:-2vw;">
-    <svg viewBox="0 0 240 170" style="width:34vmin;height:auto;min-width:200px;">
+    <svg viewBox="0 0 240 170" style="width:34vmin;height:auto;min-width:200px;" role="img" aria-label="Lone dragon banking left">
+      <title>Lone dragon banking left</title>
       <g transform="rotate(-14 110 80)"><g fill="#0e1218" opacity="0.42" transform="scale(1)">
         <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
         <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
@@ -360,7 +362,8 @@
   </div>
   <!-- mist band -->
   <div class="plx" data-speed="0.12" style="top:118vh; left:0; width:100%;">
-    <svg viewBox="0 0 1200 180" preserveAspectRatio="none" style="width:100%;height:22vmin;">
+    <svg viewBox="0 0 1200 180" preserveAspectRatio="none" style="width:100%;height:22vmin;" role="img" aria-label="Mist band across the landscape">
+      <title>Mist band</title>
       <defs><linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stop-color="#9fb0c4" stop-opacity="0"/>
         <stop offset="55%" stop-color="#9fb0c4" stop-opacity=".07"/>
@@ -371,7 +374,8 @@
   </div>
   <!-- the citadel and the parapet, lower band -->
   <div class="plx" data-speed="0.3" style="top:150vh; left:0; width:100%;">
-    <svg viewBox="0 0 1200 340" preserveAspectRatio="xMidYMax meet" style="width:100%;height:auto;">
+    <svg viewBox="0 0 1200 340" preserveAspectRatio="xMidYMax meet" style="width:100%;height:auto;" role="img" aria-label="The citadel and the parapet bridge">
+      <title>The citadel and the parapet</title>
       <g fill="#0b0e13" opacity=".92">
         <!-- left cliff -->
         <path d="M0 340 L0 150 L58 136 L104 158 L150 142 L196 178 L228 212 L250 340 Z"/>
@@ -410,7 +414,9 @@
 
 <header>
   <div class="mark">
-    <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#e2dccf" opacity="0.95" transform="scale(1)">
+    <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dragon emblem">
+      <title>Dragon emblem</title>
+      <g fill="#e2dccf" opacity="0.95" transform="scale(1)">
         <path d="M110 8 C105 15 104 22 105 30 L115 30 C116 22 115 15 110 8 Z"/>
         <path d="M105 30 C102 48 102 74 105 98 L115 98 C118 74 118 48 115 30 Z"/>
         <path d="M108 96 C107 112 106 126 103 142 L110 130 L117 142 C114 126 113 112 112 96 Z"/>
@@ -875,7 +881,8 @@ function bustAccessory(acc){
 
 function humanBust(av){
   const hair = HAIR_SIL[av.hs] !== undefined ? HAIR_SIL[av.hs] : HAIR_SIL.short;
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Human character bust">
+  <title>Human character bust</title>
   <defs>${MARBLE}</defs>
   <rect width="100" height="120" fill="url(#plinth)"/>
   <g fill="url(#marble)">
@@ -886,9 +893,11 @@ function humanBust(av){
   ${bustAccessory(av.acc)}
 </svg>`;
 }
+}
 
 function wyvernBust(){
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wyvern bust">
+  <title>Wyvern bust</title>
   <defs>${MARBLE}</defs>
   <rect width="100" height="120" fill="url(#plinth)"/>
   <g fill="url(#marble)">
@@ -901,9 +910,11 @@ function wyvernBust(){
   </g>
 </svg>`;
 }
+}
 
 function dogBust(){
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dog bust">
+  <title>Dog bust</title>
   <defs>${MARBLE}</defs>
   <rect width="100" height="120" fill="url(#plinth)"/>
   <g fill="url(#marble)">
@@ -946,7 +957,8 @@ function monogramSVG(ch){
   const gid = 'mono-'+ch.id;
   const ini = esc(initialsFor(nameFor(ch)));
   const fs = ini.length > 1 ? 32 : 44;
-  return `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Character monogram ${ini}">
+  <title>Character monogram ${ini}</title>
   <defs><radialGradient id="${gid}" cx="50%" cy="36%" r="75%">
     <stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/>
   </radialGradient></defs>
@@ -955,6 +967,7 @@ function monogramSVG(ch){
     font-family="'Cinzel',Georgia,serif" font-weight="600"
     font-size="${fs}" letter-spacing="1" fill="#e2dccf" fill-opacity="0.92">${ini}</text>
 </svg>`;
+}
 }
 
 /* Built-in character portraits (embedded so the file is fully self-contained). */
