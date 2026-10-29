@@ -868,7 +868,7 @@ function bustAccessory(acc){
 
 function humanBust(av){
   const hair = HAIR_SIL[av.hs] !== undefined ? HAIR_SIL[av.hs] : HAIR_SIL.short;
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Character portrait">
   <defs>${MARBLE}</defs>
   <rect width="100" height="120" fill="url(#plinth)"/>
   <g fill="url(#marble)">
@@ -881,7 +881,7 @@ function humanBust(av){
 }
 
 function wyvernBust(){
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dragon portrait">
   <defs>${MARBLE}</defs>
   <rect width="100" height="120" fill="url(#plinth)"/>
   <g fill="url(#marble)">
@@ -896,7 +896,7 @@ function wyvernBust(){
 }
 
 function dogBust(){
-  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 120" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Character portrait">
   <defs>${MARBLE}</defs>
   <rect width="100" height="120" fill="url(#plinth)"/>
   <g fill="url(#marble)">
@@ -939,7 +939,7 @@ function monogramSVG(ch){
   const gid = 'mono-'+ch.id;
   const ini = esc(initialsFor(nameFor(ch)));
   const fs = ini.length > 1 ? 32 : 44;
-  return `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(nameFor(ch))} monogram">
   <defs><radialGradient id="${gid}" cx="50%" cy="36%" r="75%">
     <stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/>
   </radialGradient></defs>
@@ -1014,7 +1014,7 @@ BOOKS.forEach(b => { if (SYNOPSES[b.id]) b.synopsis = SYNOPSES[b.id]; });
 const EMBEDDED = {};
 
 function avatarViolet(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Violet Sorrengail portrait">
     <defs>
       <radialGradient id="av-violet-skin" cx="50%" cy="45%" r="60%">
         <stop offset="0%" stop-color="#e8d4c8"/>
@@ -1043,7 +1043,7 @@ function avatarViolet(){
 }
 
 function avatarXaden(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Xaden Riorson portrait">
     <defs>
       <linearGradient id="av-xaden-hair" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stop-color="#0d0d1a"/>
@@ -1072,7 +1072,7 @@ function avatarXaden(){
 }
 
 function avatarTairn(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tairneanach portrait">
     <defs>
       <radialGradient id="av-tairn-eye" cx="60%" cy="40%" r="50%">
         <stop offset="0%" stop-color="#ffd700"/>
@@ -1095,7 +1095,7 @@ function avatarTairn(){
   </svg>`;
 }
 function avatarAndarna(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Andarna portrait">
     <defs>
       <radialGradient id="av-andarna-eye" cx="60%" cy="40%" r="50%">
         <stop offset="0%" stop-color="#ffd700"/>
@@ -1121,7 +1121,7 @@ function avatarAndarna(){
 }
 
 function avatarSgaeyl(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sgaeyl portrait">
     <defs>
       <radialGradient id="av-sgaeyl-eye" cx="60%" cy="40%" r="50%">
         <stop offset="0%" stop-color="#87ceeb"/>
@@ -1145,7 +1145,7 @@ function avatarSgaeyl(){
 }
 
 function avatarRhiannon(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rhiannon Matthias portrait">
     <defs>
       <radialGradient id="av-rhiannon-skin" cx="50%" cy="45%" r="60%">
         <stop offset="0%" stop-color="#e8d4c8"/>
@@ -1173,7 +1173,7 @@ function avatarRhiannon(){
 }
 
 function avatarRidoc(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ridoc Gamlyn portrait">
     <defs>
       <radialGradient id="av-ridoc-skin" cx="50%" cy="45%" r="60%">
         <stop offset="0%" stop-color="#e8d4c8"/>
@@ -1201,7 +1201,7 @@ function avatarRidoc(){
 }
 
 function avatarSawyer(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sawyer Henrick portrait">
     <defs>
       <radialGradient id="av-sawyer-skin" cx="50%" cy="45%" r="60%">
         <stop offset="0%" stop-color="#e8d4c8"/>
@@ -1229,7 +1229,7 @@ function avatarSawyer(){
 }
 
 function avatarLiam(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Liam Mairi portrait">
     <defs>
       <radialGradient id="av-liam-skin" cx="50%" cy="45%" r="60%">
         <stop offset="0%" stop-color="#e8d4c8"/>
@@ -1258,7 +1258,7 @@ function avatarLiam(){
 }
 
 function avatarDain(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dain Aetos portrait">
     <defs>
       <radialGradient id="av-dain-skin" cx="50%" cy="45%" r="60%">
         <stop offset="0%" stop-color="#e8d4c8"/>
@@ -1285,7 +1285,7 @@ function avatarDain(){
 }
 
 function avatarMira(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mira Sorrengail portrait">
     <defs>
       <radialGradient id="av-mira-skin" cx="50%" cy="45%" r="60%">
         <stop offset="0%" stop-color="#e8d4c8"/>
@@ -1313,7 +1313,7 @@ function avatarMira(){
 }
 
 function avatarBrennan(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Brennan Sorrengail portrait">
     <defs>
       <radialGradient id="av-brennan-skin" cx="50%" cy="45%" r="60%">
         <stop offset="0%" stop-color="#e8d4c8"/>
@@ -1341,7 +1341,7 @@ function avatarBrennan(){
 }
 
 function avatarLilith(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="General Lilith Sorrengail portrait">
     <defs>
       <radialGradient id="av-lilith-skin" cx="50%" cy="45%" r="60%">
         <stop offset="0%" stop-color="#e8d4c8"/>
@@ -1369,7 +1369,7 @@ function avatarLilith(){
 }
 
 function avatarImogen(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Imogen Cardulo portrait">
     <defs>
       <radialGradient id="av-imogen-skin" cx="50%" cy="45%" r="60%">
         <stop offset="0%" stop-color="#e8d4c8"/>
@@ -1397,7 +1397,7 @@ function avatarImogen(){
 }
 
 function avatarBodhi(){
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bodhi Durran portrait">
     <defs>
       <radialGradient id="av-bodhi-skin" cx="50%" cy="45%" r="60%">
         <stop offset="0%" stop-color="#e8d4c8"/>
