@@ -133,6 +133,30 @@
   .toggle input:checked + .track { background: rgba(192,138,46,.26); }
   .toggle input:checked + .track::after { transform: translateX(21px); background: var(--amber-b); }
   .toggle .tlabel { font-size: 1rem; color: var(--muted); font-style: italic; }
+  .trivia-btn {
+    background: linear-gradient(135deg, rgba(192,138,46,.18), rgba(192,138,46,.08));
+    border: 1px solid var(--amber);
+    border-radius: 3px;
+    color: var(--amber-b);
+    font-family: var(--label);
+    font-size: .62rem;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    transition: all .2s;
+    box-shadow: 0 0 12px rgba(192,138,46,.2);
+  }
+  .trivia-btn:hover {
+    background: linear-gradient(135deg, rgba(192,138,46,.28), rgba(192,138,46,.15));
+    border-color: var(--amber-b);
+    box-shadow: 0 0 20px rgba(192,138,46,.4), inset 0 0 15px rgba(192,138,46,.1);
+    transform: translateY(-2px);
+  }
+  .trivia-btn svg { flex: none; }
   .note-bar { text-align: center; font-size: .96rem; color: var(--muted); padding: .7rem 1rem 0; font-style: italic; }
 
   /* ---------- Book sections ---------- */
@@ -290,6 +314,249 @@
   .modal .conn[data-id]:hover { border-color: var(--amber); color: var(--amber-b); }
   .modal .conn .rel { color: var(--muted); font-style: italic; }
 
+  /* ---------- Trivia Game ---------- */
+  #trivia-overlay { position: fixed; inset: 0; z-index: 100; background: rgba(3,4,6,.98); display: none; align-items: center; justify-content: center; padding: 2rem 1rem; overflow-y: auto; }
+  #trivia-overlay.open { display: flex; }
+  .trivia-modal {
+    background: linear-gradient(172deg, #141821, #080a0e);
+    border: 2px solid var(--edge-str); border-radius: 4px;
+    max-width: 700px; width: 100%; padding: 2rem 1.9rem 2.1rem; position: relative;
+    box-shadow: 0 28px 80px rgba(0,0,0,.85), 0 0 40px rgba(212,175,55,.15), inset 0 0 30px rgba(212,175,55,.05);
+  }
+  .trivia-modal .close { position: absolute; top: 1rem; right: 1.1rem; background: none; border: none; color: var(--muted); font-size: 1.3rem; cursor: pointer; font-family: var(--body); z-index: 10; }
+  .trivia-modal .close:hover { color: var(--amber-b); }
+  
+  /* Threshing Day Header */
+  .threshing-header { text-align: center; margin-bottom: 2rem; }
+  .threshing-header h2 { 
+    font-family: var(--display); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; 
+    color: var(--bone); font-size: 2rem; margin-bottom: .5rem;
+    text-shadow: 0 0 30px rgba(212,175,55,.4);
+  }
+  .threshing-header .subtitle { 
+    font-family: var(--label); color: var(--crimson); font-size: .64rem; 
+    letter-spacing: .3em; text-transform: uppercase; text-shadow: 0 0 20px rgba(139,26,26,.6);
+  }
+  .threshing-header .flavor { 
+    font-family: var(--body); font-style: italic; color: var(--stone); 
+    font-size: .95rem; margin-top: 1rem; line-height: 1.5;
+  }
+  
+  /* Lives Display */
+  .lives-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: linear-gradient(170deg, rgba(139,26,26,.15), rgba(139,26,26,.08));
+    border: 1px solid rgba(139,26,26,.3);
+    border-radius: 3px;
+  }
+  .lives-display .label {
+    font-family: var(--label);
+    font-size: .64rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+  .lives-display .hearts {
+    display: flex;
+    gap: .4rem;
+  }
+  .lives-display .heart {
+    width: 24px;
+    height: 24px;
+    fill: var(--crimson);
+    filter: drop-shadow(0 0 8px rgba(139,26,26,.6));
+    transition: all .3s;
+  }
+  .lives-display .heart.lost {
+    fill: var(--edge);
+    filter: none;
+    opacity: 0.3;
+  }
+  
+  /* Progress Display */
+  .progress-display {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-family: var(--label);
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .progress-display .current { color: var(--amber-b); font-size: 1.1rem; }
+  
+  /* Question Display */
+  .question-display {
+    margin-bottom: 2rem;
+  }
+  .question-text {
+    font-family: var(--body);
+    font-size: 1.2rem;
+    color: var(--bone);
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(170deg, rgba(212,175,55,.08), rgba(212,175,55,.03));
+    border: 1px solid var(--edge);
+    border-radius: 3px;
+  }
+  
+  /* Answer Options */
+  .answer-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .answer-option {
+    background: linear-gradient(170deg, var(--panel), var(--panel2));
+    border: 2px solid var(--edge);
+    border-radius: 3px;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    transition: all .25s;
+    font-family: var(--body);
+    font-size: 1.05rem;
+    color: var(--ink);
+    text-align: left;
+    position: relative;
+  }
+  .answer-option:hover:not(.disabled) {
+    border-color: var(--amber);
+    box-shadow: 0 0 20px rgba(192,138,46,.25), inset 0 0 15px rgba(192,138,46,.05);
+    transform: translateX(4px);
+  }
+  .answer-option.correct {
+    border-color: #4a7c59;
+    background: linear-gradient(170deg, rgba(74,124,89,.25), rgba(74,124,89,.12));
+    box-shadow: 0 0 30px rgba(74,124,89,.4);
+    animation: pulse-correct .6s;
+  }
+  .answer-option.incorrect {
+    border-color: var(--crimson);
+    background: linear-gradient(170deg, rgba(139,26,26,.25), rgba(139,26,26,.12));
+    animation: death-shake .5s;
+  }
+  .answer-option.disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+  @keyframes pulse-correct {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+  @keyframes death-shake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    20% { transform: translateX(-10px) rotate(-2deg); }
+    40% { transform: translateX(10px) rotate(2deg); }
+    60% { transform: translateX(-10px) rotate(-1deg); }
+    80% { transform: translateX(10px) rotate(1deg); }
+  }
+  
+  /* Feedback Message */
+  .feedback-message {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    font-family: var(--body);
+    font-style: italic;
+    font-size: 1rem;
+    border-radius: 3px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .feedback-message.correct {
+    color: #6fb583;
+    background: linear-gradient(170deg, rgba(74,124,89,.15), rgba(74,124,89,.08));
+    border: 1px solid rgba(74,124,89,.3);
+  }
+  .feedback-message.incorrect {
+    color: #d47676;
+    background: linear-gradient(170deg, rgba(139,26,26,.15), rgba(139,26,26,.08));
+    border: 1px solid rgba(139,26,26,.3);
+  }
+  
+  /* Results Screen */
+  .threshing-result {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .threshing-result h3 { 
+    font-family: var(--display); font-weight: 700; letter-spacing: .1em; 
+    text-transform: uppercase; font-size: 1.8rem; margin-bottom: 1rem; 
+  }
+  .threshing-result.survived h3 { 
+    color: #6fb583; 
+    text-shadow: 0 0 30px rgba(111,181,131,.5);
+  }
+  .threshing-result.died h3 { 
+    color: var(--crimson); 
+    text-shadow: 0 0 30px rgba(139,26,26,.6);
+  }
+  .result-stats {
+    font-family: var(--body);
+    font-size: 1.2rem;
+    color: var(--amber-b);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+  }
+  .result-message {
+    font-family: var(--body);
+    font-style: italic;
+    color: var(--stone);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(170deg, rgba(212,175,55,.08), rgba(212,175,55,.03));
+    border: 1px solid var(--edge);
+    border-radius: 3px;
+  }
+  .trivia-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .trivia-btn-primary, .trivia-btn-secondary {
+    font-family: var(--label);
+    font-size: .64rem;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    padding: .8rem 1.8rem;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .2s;
+    border: 1px solid;
+  }
+  .trivia-btn-primary {
+    background: linear-gradient(135deg, rgba(192,138,46,.25), rgba(192,138,46,.12));
+    border-color: var(--amber);
+    color: var(--amber-b);
+    box-shadow: 0 0 15px rgba(192,138,46,.25);
+  }
+  .trivia-btn-primary:hover {
+    background: linear-gradient(135deg, rgba(192,138,46,.35), rgba(192,138,46,.18));
+    box-shadow: 0 0 25px rgba(192,138,46,.4), inset 0 0 15px rgba(192,138,46,.1);
+    transform: translateY(-2px);
+  }
+  .trivia-btn-secondary {
+    background: linear-gradient(170deg, var(--panel), var(--panel2));
+    border-color: var(--edge-str);
+    color: var(--stone);
+  }
+  .trivia-btn-secondary:hover {
+    border-color: var(--amber);
+    color: var(--amber-b);
+    transform: translateY(-2px);
+  }
+  @media (max-width: 768px) {
+    .trivia-game { grid-template-columns: 1fr; gap: 1.5rem; }
+    .trivia-score { gap: 1rem; font-size: .6rem; }
+  }
+
   .empty-msg { text-align: center; color: var(--muted); padding: 3rem 1rem; display: none; font-size: 1.1rem; font-style: italic; }
   footer { text-align: center; color: #5a626e; font-size: .95rem; font-family: var(--body); font-style: italic; padding: 2.6rem 1rem 3.4rem; line-height: 1.75; }
   footer em { color: var(--amber); font-style: normal; }
@@ -439,6 +706,13 @@
       <span class="track"></span>
       <span class="tlabel">Blur twists &amp; deaths</span>
     </label>
+    <button id="trivia-btn" class="trivia-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 11l3 3L22 4"/>
+        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+      </svg>
+      Face Threshing Day
+    </button>
   </div>
   <div class="note-bar">Showing one book at a time. Names, titles, and notes stay spoiler-safe for the selected book — some characters aren't who they first appear to be…</div>
 </div>
@@ -457,6 +731,15 @@
   <div class="modal" role="dialog" aria-modal="true">
     <button class="close" aria-label="Close">✕</button>
     <div id="modal-content"></div>
+  </div>
+</div>
+
+<div id="trivia-overlay">
+  <div class="trivia-modal" role="dialog" aria-modal="true">
+    <button class="close" aria-label="Close">✕</button>
+    <div id="trivia-content">
+      <!-- Game will be rendered here -->
+    </div>
   </div>
 </div>
 
@@ -1253,6 +1536,469 @@ render();
   addEventListener('scroll', update, { passive: true });
   update();
 })();
+
+/* =========================================================
+   TRIVIA GAME
+   ========================================================= */
+// Threshing Day Trivia Question Bank
+function generateTriviaQuestions() {
+  const currentBook = BOOKS[state.progress];
+  const availableChars = CHARACTERS
+    .filter(ch => ch.books[currentBook.id])
+    .filter(ch => firstBookIdx(ch) <= state.progress);
+  
+  const questions = [];
+  
+  // Character identification questions
+  availableChars.forEach(ch => {
+    // Dragon bond questions
+    if (ch.links) {
+      const dragonLink = ch.links.find(l => l.rel && (l.rel.includes('dragon') || l.rel.includes('her dragon') || l.rel.includes('his dragon')));
+      if (dragonLink && dragonLink.id) {
+        const dragon = CHARACTERS.find(c => c.id === dragonLink.id);
+        if (dragon) {
+          questions.push({
+            question: `Which rider is bonded to ${nameFor(dragon)}?`,
+            correct: nameFor(ch),
+            type: 'character',
+            difficulty: 1
+          });
+        }
+      }
+    }
+    
+    // Role questions
+    if (ch.role) {
+      questions.push({
+        question: `Who serves as ${roleFor(ch)}?`,
+        correct: nameFor(ch),
+        type: 'character',
+        difficulty: 2
+      });
+    }
+    
+    // Relationship questions
+    if (ch.links && ch.links.length > 0) {
+      const visibleLinks = ch.links.filter(l => !l.from || state.progress >= IDX[l.from]);
+      visibleLinks.slice(0, 2).forEach(link => {
+        if (link.id) {
+          const related = CHARACTERS.find(c => c.id === link.id);
+          if (related) {
+            questions.push({
+              question: `Who is ${link.rel} ${nameFor(related)}?`,
+              correct: nameFor(ch),
+              type: 'character',
+              difficulty: 2
+            });
+          }
+        }
+      });
+    }
+    
+    // Quote questions
+    if (ch.quote && (!ch.quote.from || state.progress >= IDX[ch.quote.from])) {
+      if (!ch.quote.spoiler || !state.shield) {
+        questions.push({
+          question: `Who said: "${ch.quote.t}"`,
+          correct: nameFor(ch),
+          type: 'quote',
+          difficulty: 3
+        });
+      }
+    }
+  });
+  
+  // Dragon lore questions
+  const dragons = availableChars.filter(ch => ch.species === 'Dragon');
+  dragons.forEach(dragon => {
+    if (dragon.desc) {
+      questions.push({
+        question: `Which dragon is described as: ${dragon.desc.split('.')[0]}?`,
+        correct: nameFor(dragon),
+        type: 'dragon',
+        difficulty: 2
+      });
+    }
+    
+    // Rider questions
+    if (dragon.links) {
+      const riderLink = dragon.links.find(l => l.rel && l.rel.includes('rider'));
+      if (riderLink && riderLink.id) {
+        const rider = CHARACTERS.find(c => c.id === riderLink.id);
+        if (rider) {
+          questions.push({
+            question: `Who is the rider of ${nameFor(dragon)}?`,
+            correct: nameFor(rider),
+            type: 'dragon',
+            difficulty: 1
+          });
+        }
+      }
+    }
+  });
+  
+  // General lore questions (hand-crafted)
+  const loreQuestions = [
+    {
+      question: 'What is the name of the war college where riders train?',
+      correct: 'Basgiath War College',
+      wrong: ['Aretia Academy', 'Navarre Institute', 'Dragon Keep'],
+      type: 'lore',
+      difficulty: 1
+    },
+    {
+      question: 'What are the corrupted wielders called?',
+      correct: 'Venin',
+      wrong: ['Wyvern', 'Gryphons', 'Darklings'],
+      type: 'lore',
+      difficulty: 1
+    },
+    {
+      question: 'What is the deadly narrow bridge that first-years must cross to enter Basgiath?',
+      correct: 'The Parapet',
+      wrong: ['The Gauntlet', 'The Crucible', 'The Crossing'],
+      type: 'lore',
+      difficulty: 1,
+      books: ['fw']
+    },
+    {
+      question: 'What is the day when cadets attempt to bond dragons called?',
+      correct: 'Threshing',
+      wrong: ['The Bonding', 'Dragon Day', 'The Choosing'],
+      type: 'lore',
+      difficulty: 1,
+      books: ['fw']
+    },
+    {
+      question: 'Which quadrant is considered the most dangerous at Basgiath?',
+      correct: 'Riders Quadrant',
+      wrong: ['Healers Quadrant', 'Infantry Quadrant', 'Scribes Quadrant'],
+      type: 'lore',
+      difficulty: 1
+    },
+    {
+      question: 'What physical condition makes Violet different from other cadets?',
+      correct: 'Ehlers-Danlos Syndrome',
+      wrong: ['Chronic illness', 'Weak bones', 'Poor eyesight'],
+      type: 'lore',
+      difficulty: 2,
+      books: ['fw']
+    },
+    {
+      question: 'What color is lightning wielding magic?',
+      correct: 'Blue',
+      wrong: ['White', 'Purple', 'Silver'],
+      type: 'lore',
+      difficulty: 2
+    },
+    {
+      question: 'What is the name of the rebellion stronghold?',
+      correct: 'Aretia',
+      wrong: ['Athebyne', 'Tyrrendor', 'Cordyn'],
+      type: 'lore',
+      difficulty: 2,
+      books: ['ironflame']
+    },
+    {
+      question: 'What protects Navarre from venin attacks?',
+      correct: 'The Wards',
+      wrong: ['The Shields', 'The Barriers', 'The Dragon Guard'],
+      type: 'lore',
+      difficulty: 1
+    },
+    {
+      question: 'What is the most powerful type of dragon?',
+      correct: 'Black Dragon',
+      wrong: ['Red Dragon', 'Golden Dragon', 'Storm Dragon'],
+      type: 'lore',
+      difficulty: 2
+    },
+    {
+      question: 'What weapon does Violet carry that was her father\'s?',
+      correct: 'Daggers',
+      wrong: ['A sword', 'A bow', 'A staff'],
+      type: 'lore',
+      difficulty: 2,
+      books: ['fw']
+    },
+    {
+      question: 'What happens to cadets who fail to bond a dragon?',
+      correct: 'They die',
+      wrong: ['They become infantry', 'They are expelled', 'They try again next year'],
+      type: 'lore',
+      difficulty: 1,
+      books: ['fw']
+    },
+    {
+      question: 'What is the forbidden section of the library called?',
+      correct: 'The Archives',
+      wrong: ['The Vault', 'The Restricted Wing', 'The Hidden Stacks'],
+      type: 'lore',
+      difficulty: 2
+    },
+    {
+      question: 'How many signets can a rider typically manifest?',
+      correct: 'One',
+      wrong: ['Two', 'Three', 'It varies'],
+      type: 'lore',
+      difficulty: 2
+    },
+    {
+      question: 'What is the name of Violet\'s mother?',
+      correct: 'Lilith Sorrengail',
+      wrong: ['Mira Sorrengail', 'Brennan Sorrengail', 'Lyra Sorrengail'],
+      type: 'lore',
+      difficulty: 1,
+      books: ['fw']
+    },
+    {
+      question: 'What rank does Violet\'s mother hold?',
+      correct: 'General',
+      wrong: ['Colonel', 'Commander', 'Captain'],
+      type: 'lore',
+      difficulty: 1,
+      books: ['fw']
+    }
+  ];
+  
+  // Add lore questions that match current book
+  loreQuestions.forEach(q => {
+    if (!q.books || q.books.some(b => IDX[b] <= state.progress)) {
+      questions.push(q);
+    }
+  });
+  
+  return questions;
+}
+
+// Threshing Day Trivia State
+const triviaState = {
+  questions: [],
+  currentQuestion: 0,
+  lives: 3,
+  score: 0,
+  gameActive: false,
+  answered: false
+};
+
+function startTrivia() {
+  const allQuestions = generateTriviaQuestions();
+  
+  if (allQuestions.length < 5) {
+    alert('Not enough content available for trivia. Try selecting a different book or adjusting your spoiler settings.');
+    return;
+  }
+  
+  // Shuffle and select 10 questions, increasing difficulty
+  const shuffled = allQuestions.sort(() => Math.random() - 0.5);
+  triviaState.questions = shuffled.slice(0, Math.min(10, shuffled.length));
+  triviaState.currentQuestion = 0;
+  triviaState.lives = 3;
+  triviaState.score = 0;
+  triviaState.gameActive = true;
+  triviaState.answered = false;
+  
+  renderQuestion();
+  document.getElementById('trivia-overlay').classList.add('open');
+}
+
+function renderQuestion() {
+  const content = document.getElementById('trivia-content');
+  const q = triviaState.questions[triviaState.currentQuestion];
+  
+  // Generate wrong answers
+  let wrongAnswers = [];
+  if (q.wrong) {
+    wrongAnswers = q.wrong;
+  } else {
+    // Generate plausible wrong answers from other characters
+    const currentBook = BOOKS[state.progress];
+    const otherChars = CHARACTERS
+      .filter(ch => ch.books[currentBook.id])
+      .filter(ch => firstBookIdx(ch) <= state.progress)
+      .filter(ch => nameFor(ch) !== q.correct)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3)
+      .map(ch => nameFor(ch));
+    wrongAnswers = otherChars;
+  }
+  
+  // Combine and shuffle answers
+  const allAnswers = [q.correct, ...wrongAnswers].sort(() => Math.random() - 0.5);
+  
+  // Render hearts
+  const heartsHTML = Array.from({length: 3}, (_, i) => {
+    const lost = i >= triviaState.lives;
+    return `<svg class="heart ${lost ? 'lost' : ''}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>`;
+  }).join('');
+  
+  content.innerHTML = `
+    <div class="threshing-header">
+      <h2>Threshing Day</h2>
+      <div class="subtitle">Survive or Fall</div>
+      <div class="flavor">Answer incorrectly three times and you will not survive the day.</div>
+    </div>
+    
+    <div class="lives-display">
+      <span class="label">Lives Remaining</span>
+      <div class="hearts">${heartsHTML}</div>
+    </div>
+    
+    <div class="progress-display">
+      Question <span class="current">${triviaState.currentQuestion + 1}</span> of ${triviaState.questions.length}
+    </div>
+    
+    <div class="question-display">
+      <div class="question-text">${esc(q.question)}</div>
+      <div class="answer-options">
+        ${allAnswers.map(answer => `
+          <button class="answer-option" onclick="selectAnswer('${esc(answer).replace(/'/g, "\\'")}', '${esc(q.correct).replace(/'/g, "\\'")}')">
+            ${esc(answer)}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+    
+    <div class="feedback-message" id="feedback"></div>
+  `;
+}
+
+function selectAnswer(selected, correct) {
+  if (triviaState.answered) return;
+  triviaState.answered = true;
+  
+  const isCorrect = selected === correct;
+  const options = document.querySelectorAll('.answer-option');
+  const feedback = document.getElementById('feedback');
+  
+  // Disable all options
+  options.forEach(opt => {
+    opt.classList.add('disabled');
+    if (opt.textContent.trim() === correct) {
+      opt.classList.add('correct');
+    }
+    if (opt.textContent.trim() === selected && !isCorrect) {
+      opt.classList.add('incorrect');
+    }
+  });
+  
+  if (isCorrect) {
+    triviaState.score++;
+    feedback.className = 'feedback-message correct';
+    feedback.textContent = getCorrectFeedback();
+    
+    setTimeout(() => {
+      triviaState.currentQuestion++;
+      triviaState.answered = false;
+      if (triviaState.currentQuestion < triviaState.questions.length) {
+        renderQuestion();
+      } else {
+        showResults(true);
+      }
+    }, 2000);
+  } else {
+    triviaState.lives--;
+    feedback.className = 'feedback-message incorrect';
+    feedback.textContent = getIncorrectFeedback();
+    
+    setTimeout(() => {
+      if (triviaState.lives <= 0) {
+        showResults(false);
+      } else {
+        triviaState.currentQuestion++;
+        triviaState.answered = false;
+        if (triviaState.currentQuestion < triviaState.questions.length) {
+          renderQuestion();
+        } else {
+          showResults(true);
+        }
+      }
+    }, 2500);
+  }
+}
+
+function getCorrectFeedback() {
+  const messages = [
+    'Correct! The dragons approve.',
+    'Well done. You may yet survive this day.',
+    'Impressive. Your knowledge serves you well.',
+    'The dragons sense your understanding.',
+    'Correct. You prove yourself worthy.',
+    'Yes. Another step toward bonding.',
+    'Right answer. The dragons circle closer.'
+  ];
+  return messages[Math.floor(Math.random() * messages.length)];
+}
+
+function getIncorrectFeedback() {
+  const messages = [
+    'Wrong. The dragons turn away.',
+    'Incorrect. You feel the ground shake beneath you.',
+    'No. A dragon roars in disapproval.',
+    'Wrong answer. Your chances grow slimmer.',
+    'Incorrect. The dragons sense your doubt.',
+    'No. You stumble on the path.',
+    'Wrong. The air grows colder around you.'
+  ];
+  return messages[Math.floor(Math.random() * messages.length)];
+}
+
+function showResults(survived) {
+  const content = document.getElementById('trivia-content');
+  
+  let resultClass, title, message;
+  
+  if (!survived) {
+    resultClass = 'died';
+    title = 'You Did Not Survive';
+    message = 'The dragons rejected you. Your knowledge was not enough to survive Threshing Day. Many cadets fall—there is no shame in it. Return to the archives, study harder, and try again when you are ready.';
+  } else {
+    const percentage = Math.round((triviaState.score / triviaState.questions.length) * 100);
+    resultClass = 'survived';
+    title = 'You Survived Threshing';
+    
+    if (percentage === 100 && triviaState.lives === 3) {
+      message = 'Flawless. Not a single mistake. The dragons bow their heads in respect. You have proven yourself worthy of the most powerful bond. Even Tairn would be impressed by such mastery.';
+    } else if (percentage >= 90) {
+      message = 'Exceptional performance. You answered with the confidence of a seasoned rider. The dragons have chosen you, and your bond will be strong. Few cadets demonstrate such knowledge under pressure.';
+    } else if (percentage >= 70) {
+      message = 'Well done. You survived Threshing with your wits intact. The dragons sensed your determination despite your stumbles. You have earned your place among the riders.';
+    } else {
+      message = 'You survived, but barely. The dragons were merciful today. Your knowledge has gaps that could prove fatal in real combat. Study harder—next time, you may not be so fortunate.';
+    }
+  }
+  
+  content.innerHTML = `
+    <div class="threshing-result ${resultClass}">
+      <h3>${title}</h3>
+      <div class="result-stats">
+        ${triviaState.score} correct out of ${triviaState.questions.length} questions
+        <br>
+        ${triviaState.lives} ${triviaState.lives === 1 ? 'life' : 'lives'} remaining
+      </div>
+      <div class="result-message">${message}</div>
+      <div class="trivia-actions">
+        <button class="trivia-btn-primary" onclick="startTrivia()">Face Threshing Again</button>
+        <button class="trivia-btn-secondary" onclick="closeTrivia()">Return to Guide</button>
+      </div>
+    </div>
+  `;
+}
+
+function closeTrivia() {
+  document.getElementById('trivia-overlay').classList.remove('open');
+  triviaState.gameActive = false;
+}
+
+// Event listeners
+document.getElementById('trivia-btn').addEventListener('click', startTrivia);
+document.querySelector('#trivia-overlay .close').addEventListener('click', closeTrivia);
+document.getElementById('trivia-overlay').addEventListener('click', e => {
+  if (e.target.id === 'trivia-overlay') closeTrivia();
+});
+
 </script>
 </body>
 </html>
