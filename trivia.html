@@ -801,7 +801,9 @@ const gameState = {
   timer: null,
   timeLeft: 30,
   questions: [],
-  usedQuestions: new Set()
+  usedQuestions: new Set(),
+  answerSelected: false,
+  nextQuestionTimeout: null
 };
 
 // Question bank
@@ -1195,6 +1197,9 @@ function loadQuestion() {
     return;
   }
   
+  // Reset answer selection flag
+  gameState.answerSelected = false;
+  
   const question = gameState.questions[gameState.currentQuestion];
   
   // Update UI
@@ -1255,6 +1260,12 @@ function updateTimerDisplay() {
 }
 
 function selectAnswer(selectedIndex, correctIndex) {
+  // Prevent multiple answer selections for the same question
+  if (gameState.answerSelected) {
+    return;
+  }
+  gameState.answerSelected = true;
+  
   clearInterval(gameState.timer);
   
   const buttons = document.querySelectorAll('.answer-btn');
@@ -1297,8 +1308,13 @@ function selectAnswer(selectedIndex, correctIndex) {
   // Update score display
   document.getElementById('score').textContent = gameState.score;
   
+  // Clear any pending next question timeout
+  if (gameState.nextQuestionTimeout) {
+    clearTimeout(gameState.nextQuestionTimeout);
+  }
+  
   // Move to next question
-  setTimeout(() => {
+  gameState.nextQuestionTimeout = setTimeout(() => {
     gameState.currentQuestion++;
     loadQuestion();
   }, 1500);
@@ -1344,11 +1360,13 @@ function showScreen(screenName) {
 
 function resetGame() {
   if (gameState.timer) clearInterval(gameState.timer);
+  if (gameState.nextQuestionTimeout) clearTimeout(gameState.nextQuestionTimeout);
   gameState.currentQuestion = 0;
   gameState.score = 0;
   gameState.correctAnswers = 0;
   gameState.streak = 0;
   gameState.bestStreak = 0;
+  gameState.answerSelected = false;
 }
 
 function shuffleArray(array) {
