@@ -123,8 +123,8 @@
   header { 
     text-align: center; 
     padding: 5rem 1rem 2.2rem; 
-    background: rgba(26,26,26,0.85);
-    backdrop-filter: blur(8px);
+    background: rgba(26,26,26,0.96);
+    backdrop-filter: blur(12px);
     margin: 0 auto;
     max-width: 100%;
   }
@@ -213,7 +213,12 @@
   .toggle input:checked + .track { background: rgba(212,175,55,.3); }
   .toggle input:checked + .track::after { transform: translateX(21px); background: var(--amber); }
   .toggle .tlabel { font-size: 1rem; color: var(--bone-dim); font-style: italic; }
-  .note-bar { text-align: center; font-size: .96rem; color: var(--bone-dim); padding: .7rem 1rem 0; font-style: italic; }
+  .note-bar { 
+    text-align: center; font-size: .96rem; color: var(--bone); 
+    padding: .7rem 1rem; font-style: italic;
+    background: rgba(26,26,26,.92);
+    backdrop-filter: blur(8px);
+  }
 
   /* ---------- Book sections ---------- */
   main { max-width: 1140px; margin: 0 auto; padding: 1.6rem 1.2rem 5rem; }
@@ -376,7 +381,13 @@
   .modal .conn .rel { color: var(--bone-dim); font-style: italic; }
 
   .empty-msg { text-align: center; color: var(--bone-dim); padding: 3rem 1rem; display: none; font-size: 1.1rem; font-style: italic; }
-  footer { text-align: center; color: var(--bone-dim); font-size: .95rem; font-family: var(--body); font-style: italic; padding: 2.6rem 1rem 3.4rem; line-height: 1.75; }
+  footer { 
+    text-align: center; color: var(--bone); font-size: .95rem; 
+    font-family: var(--body); font-style: italic; 
+    padding: 2.6rem 1rem 3.4rem; line-height: 1.75;
+    background: rgba(26,26,26,.92);
+    backdrop-filter: blur(8px);
+  }
   footer em { color: var(--amber); font-style: normal; }
 
   /* ---------- Parallax ---------- */
